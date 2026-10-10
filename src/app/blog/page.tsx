@@ -19,11 +19,11 @@ export default async function BlogPage() {
             <h2 className="text-xl font-semibold">{post.title}</h2>
           </Link>
 
-          <p className="text-sm text-muted-foreground">{post.date}</p>
+          <p className="text-sm text-gray-500">{post.date}</p>
 
           <div className="flex gap-2 mt-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="rounded border border-border bg-muted px-2 py-1 text-xs text-muted-foreground">
+              <span key={tag} className="text-xs dark:bg-gray-800 bg-gray-200 px-2 py-1 rounded">
                 {tag}
               </span>
             ))}

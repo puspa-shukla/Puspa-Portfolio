@@ -1,13 +1,14 @@
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { DATA } from "@/data/resume";
+import { Icons } from "@/components/icons";
 
 export default function ContactSection() {
   return (
-    <div className="relative rounded-xl border p-10">
-      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 rounded-xl border bg-primary px-4 py-1">
-        <span className="text-sm font-medium text-background">Contact</span>
+    <div className="border rounded-xl p-10 relative">
+      <div className="absolute -top-4 border bg-primary z-10 rounded-xl px-4 py-1 left-1/2 -translate-x-1/2">
+        <span className="text-background text-sm font-medium">Contact</span>
       </div>
-      <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden rounded-xl">
+      <div className="absolute inset-0 top-0 left-0 right-0 h-1/2 rounded-xl overflow-hidden">
         <FlickeringGrid
           className="h-full w-full"
           squareSize={2}
@@ -22,19 +23,65 @@ export default function ContactSection() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
           Get in Touch
         </h2>
-        <p className="mx-auto max-w-lg text-balance text-muted-foreground">
-          Want to chat? Just shoot me a dm{" "}
+        <p className="mx-auto max-w-lg text-muted-foreground text-balance">
+          Want to chat? Send me a direct question on{" "}
           <a
             href={DATA.contact.social.LinkedIn.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-sm text-blue-500 underline underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="text-blue-500 underline underline-offset-4"
           >
-            with a direct question on LinkedIn
+            LinkedIn
           </a>{" "}
-          and I&apos;ll respond whenever I can. I will ignore all soliciting.
+          or{" "}
+          <a
+            href={DATA.contact.social.X.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline underline-offset-4"
+          >
+            X
+          </a>
+          .
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-5 text-sm">
+          <a className="inline-flex items-center gap-2 underline underline-offset-4" href={`mailto:${DATA.contact.email}`}>
+            <Icons.email className="size-4" />
+            {DATA.contact.email}
+          </a>
+          <a className="inline-flex items-center gap-2 underline underline-offset-4" href={`tel:${DATA.contact.tel}`}>
+            {DATA.contact.tel}
+          </a>
+          <a
+            className="inline-flex items-center gap-2 underline underline-offset-4"
+            href={DATA.contact.social.LinkedIn.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icons.linkedin className="size-4" />
+            LinkedIn
+          </a>
+          <a
+            className="inline-flex items-center gap-2 underline underline-offset-4"
+            href={DATA.contact.social.GitHub.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icons.github className="size-4" />
+            GitHub
+          </a>
+          <a
+            className="inline-flex items-center gap-2 underline underline-offset-4"
+            href={DATA.contact.social.X.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icons.x className="size-4" />
+            X
+          </a>
+        </div>
       </div>
     </div>
   );
 }
+

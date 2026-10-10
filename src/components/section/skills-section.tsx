@@ -20,6 +20,10 @@ export default function SkillsSection() {
   return (
     <section id="skills">
       <div className="flex min-h-0 flex-col gap-y-4">
+        <BlurFade delay={0.08} duration={0.22}>
+          <h2 className="text-xl font-bold">Skills</h2>
+        </BlurFade>
+
         <div className="flex flex-wrap gap-2">
           {visibleSkills.map((skill, id) => (
             <BlurFade key={skill.name} delay={0.1 + id * 0.015} duration={0.22}>

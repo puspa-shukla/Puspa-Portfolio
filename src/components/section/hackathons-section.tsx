@@ -38,17 +38,23 @@ export default function HackathonsSection() {
   return (
     <section id="hackathons" className="overflow-hidden">
       <div className="flex min-h-0 flex-col gap-y-8 w-full">
-        <div className="flex flex-col gap-y-3">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Recognition & community
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="font-display text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
-              Learning, leadership &amp; community
+        <div className="flex flex-col gap-y-4 items-center justify-center">
+          <div className="flex items-center w-full">
+            <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
+            <div className="border bg-primary z-10 rounded-xl px-4 py-1">
+              <span className="text-background text-sm font-medium">
+                Achievements & Recognition
+              </span>
+            </div>
+            <div className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent" />
+          </div>
+          <div className="flex flex-col gap-y-3 items-center justify-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+              Learning, leadership & community
             </h2>
-            <p className="max-w-md text-sm leading-6 text-muted-foreground sm:text-right">
-              Opportunities to represent, mentor, and support scholars through
-              technology.
+            <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
+              Recognition, learning, and opportunities to support scholars
+              through technology and mentorship.
             </p>
           </div>
         </div>
@@ -68,20 +74,12 @@ export default function HackathonsSection() {
             return (
             <TimelineItem
               key={hackathon.title + hackathon.dates}
-              className={`group w-full flex gap-5 sm:gap-8 ${
-                isUgoAiSession ? "items-stretch" : "items-start"
-              }`}
+              className="group w-full flex items-start gap-5 sm:gap-8"
             >
-              <TimelineConnectItem
-                className={`flex items-start justify-center self-stretch ${
-                  isUgoAiSession
-                    ? "[&_[data-timeline-line]]:!block [&_[data-timeline-line]]:!top-0 [&_[data-timeline-line]]:!bottom-0 [&_[data-timeline-line]]:!h-auto"
-                    : ""
-                }`}
-              >
+              <TimelineConnectItem className="flex items-start justify-center">
                 {isUgoAiSession ? (
                   <div className="size-10 bg-card z-10 flex shrink-0 items-center justify-center rounded-full border shadow ring-2 ring-border">
-                    <Award className="size-5 text-muted-foreground" aria-hidden="true" />
+                    <Award className="size-5 text-primary" aria-hidden="true" />
                   </div>
                 ) : hackathon.image ? (
                   <img
@@ -97,16 +95,16 @@ export default function HackathonsSection() {
                 {isNasaSpaceApps && hackathon.image ? (
                   <div className="group w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg">
                     <div className="flex flex-col p-5 sm:p-7">
-                      <p className="text-sm font-semibold text-muted-foreground">
+                      <p className="text-sm font-semibold text-primary">
                         {hackathon.dates} &middot; National hackathon
                       </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-4 transition-colors group-hover:text-foreground/80 sm:text-3xl">
+                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         <Link
                           href="https://www.spaceappschallenge.org/2023/find-a-team/creative-astrophiles/?tab=project"
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="View the Creative Astrophiles NASA Space Apps project"
-                          className="hover:text-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           NASA Space Apps Challenge
                         </Link>
@@ -140,21 +138,29 @@ export default function HackathonsSection() {
                 ) : isUgoAiSession ? (
                   <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg sm:min-h-[30rem]">
                     <div className="p-5 sm:p-7">
-                      <p className="text-sm font-semibold text-muted-foreground">
+                      <p className="text-sm font-semibold text-primary">
                         AI learning and mentoring
                       </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-4 transition-colors group-hover:text-foreground/80 sm:text-3xl">
+                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         U-GO AI Workshops &amp; Advanced Courses
                       </h3>
                     </div>
                     <UgoAiVideoGallery />
                     <div className="px-5 pb-5 sm:px-7 sm:pb-7">
                       <blockquote className="mt-4 rounded-r-lg border-l-4 border-primary bg-primary/5 px-4 py-3 text-base font-semibold leading-relaxed text-foreground sm:text-lg">
-                        Puspa: &quot;Learns From Experience And Leads By Example&quot;
+                        Puspa: "Learns From Experience And Leads By Example"
                       </blockquote>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                         {hackathon.description}
                       </p>
+                      <OpenAndDownloadLink
+                        href="/ugo-ai-certificate.pdf"
+                        filename="Puspa-Shukla-U-GO-AI-Certificate.pdf"
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        Open and download U-GO AI certificate
+                        <Download className="size-4" />
+                      </OpenAndDownloadLink>
                     </div>
                   </div>
                 ) : isRippleEffect && hackathon.image ? (
@@ -172,10 +178,10 @@ export default function HackathonsSection() {
                       />
                     </OpenAndDownloadLink>
                     <div className="flex flex-col justify-center p-5 sm:p-8">
-                      <p className="text-sm font-semibold text-muted-foreground">
+                      <p className="text-sm font-semibold text-primary">
                         {hackathon.dates} Â· U-GO Global Publication
                       </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-4 transition-colors group-hover:text-foreground/80 sm:text-3xl">
+                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         The Ripple Effect
                       </h3>
                       <p className="mt-4 text-lg font-medium text-foreground">
@@ -202,10 +208,10 @@ export default function HackathonsSection() {
                       />
                     </div>
                     <div className="flex flex-col justify-center p-5 sm:p-8">
-                      <p className="text-sm font-semibold text-muted-foreground">
+                      <p className="text-sm font-semibold text-primary">
                         {hackathon.dates} Â· Vietnam
                       </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-4 transition-colors group-hover:text-foreground/80 sm:text-3xl">
+                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         U-Go Nepal Representative
                       </h3>
                       <p className="mt-4 text-lg font-medium text-foreground">
@@ -214,7 +220,7 @@ export default function HackathonsSection() {
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                         {hackathon.description}
                       </p>
-                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground">
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                         Read the U-Go Nepal story
                         <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       </span>
@@ -223,16 +229,16 @@ export default function HackathonsSection() {
                 ) : isTechSkillsFinalist && articleLink ? (
                   <div className="group grid w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-lg sm:min-h-[30rem]">
                     <div className="flex flex-col p-5 sm:p-7">
-                      <p className="text-sm font-semibold text-muted-foreground">
+                      <p className="text-sm font-semibold text-primary">
                         {hackathon.dates}
                       </p>
-                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-foreground/30 decoration-2 underline-offset-4 transition-colors group-hover:text-foreground/80 sm:text-3xl">
+                      <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         <Link
                           href={articleLink.href}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="Read the Banking Samachar article about Puspa's TechSkills scholarship"
-                          className="transition-colors hover:text-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           Top 6 Finalist | TechSkills Nepal IT Scholarship Program
                         </Link>
@@ -246,7 +252,7 @@ export default function HackathonsSection() {
                       <OpenAndDownloadLink
                         href="/techskills-certificate.jpeg"
                         filename="Puspa-Shukla-TechSkills-Certificate.jpeg"
-                        className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         Awarded the designation of System &amp; Network Support Specialist Â· View and download certificate
                         <Download className="size-4" />

@@ -1,51 +1,43 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
 import { DATA } from "@/data/resume";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-function SchoolLogo({
-  school,
+function LogoImage({
   src,
-  mark,
+  alt,
+  initials,
 }: {
-  school: string;
   src: string;
-  mark: string;
+  alt: string;
+  initials: string;
 }) {
   const [imageError, setImageError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+
+  if (!src || imageError) {
+    return (
+      <span className="grid size-9 shrink-0 place-items-center rounded-full border border-border bg-muted text-xs font-bold text-foreground md:size-11">
+        {initials}
+      </span>
+    );
+  }
 
   return (
-    <span
-      role="img"
-      aria-label={`${school} logo`}
-      className="relative flex size-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-xs font-extrabold tracking-wide text-foreground shadow ring-2 ring-border transition-transform group-hover/logo:scale-105 md:size-11 md:text-sm"
-    >
-      {(!src || imageError || !imageLoaded) && <span>{mark}</span>}
-      {src && !imageError && (
-        <img
-          src={src}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 size-full rounded-full p-1 object-contain"
-          onLoad={() => setImageLoaded(true)}
-          onError={() => setImageError(true)}
-        />
-      )}
-      {imageLoaded && !imageError && (
-        <span className="absolute bottom-0 right-0 z-10 flex size-4 items-center justify-center rounded-full border border-background bg-card text-[8px] font-bold leading-none text-foreground shadow-sm md:size-[18px] md:text-[9px]">
-          {mark}
-        </span>
-      )}
-    </span>
+    <img
+      src={src}
+      alt={alt}
+      className="size-9 shrink-0 rounded-full object-contain md:size-11"
+      onError={() => setImageError(true)}
+    />
   );
 }
 
@@ -76,41 +68,37 @@ function PointList({
 export default function EducationSection() {
   return (
     <Accordion type="single" collapsible className="w-full grid gap-6">
-      {DATA.education.map((education) => {
-        const fallbackHref = education.href;
-        const websiteUrl =
-          "websiteUrl" in education &&
-          typeof education.websiteUrl === "string"
-            ? education.websiteUrl
-            : fallbackHref;
-
-        return (
-          <AccordionItem
-            key={education.school}
-            value={education.school}
-            className="w-full border-b-0 grid gap-2"
-          >
-          <div className="group/education flex w-full items-center gap-3">
-            <a
-              href={websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${education.school} website`}
-              title={`Visit ${education.school} website`}
-              className="group/logo inline-flex shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
-            >
-              <SchoolLogo
-                school={education.school}
-                src={education.logoUrl}
-                mark={education.school === "CAMAD College" ? "C" : "EF"}
-              />
-            </a>
-            <AccordionTrigger className="group min-w-0 flex-1 hover:no-underline p-0 cursor-pointer transition-colors rounded-none [&>svg]:hidden">
-              <div className="flex items-center justify-between w-full gap-3 text-left">
-                <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
-                  <div className="flex items-center gap-2 text-base font-semibold leading-tight">
+      {DATA.education.map((education) => (
+        <AccordionItem
+          key={education.school}
+          value={education.school}
+          className="w-full border-b-0 grid gap-2"
+        >
+          <div className="group/education flex w-full items-center justify-between gap-3 text-left">
+            <div className="flex min-w-0 flex-1 items-center gap-x-4">
+              <a
+                href={education.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${education.school} website`}
+                className="grid size-14 shrink-0 place-items-center rounded-full border-4 border-muted-foreground/20 bg-background p-1 shadow-sm ring-2 ring-border/70 transition hover:scale-105 hover:border-muted-foreground/35 hover:ring-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:size-16"
+              >
+                <LogoImage
+                  src={education.logoUrl}
+                  alt={`${education.school} logo`}
+                  initials={education.school === "CAMAD College" ? "CC" : "EF"}
+                />
+              </a>
+              <div className="flex min-w-0 flex-1 flex-col gap-1">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="truncate text-base font-semibold leading-tight text-foreground">
                     {education.school}
-                    <span className="relative ml-1 inline-flex size-5 shrink-0 items-center justify-center text-muted-foreground transition-colors group-hover/education:text-foreground group-data-[state=open]:text-foreground">
+                  </span>
+                  <AccordionTrigger
+                    aria-label={`Toggle education details for ${education.school}`}
+                    className="group relative inline-flex size-5 w-5 flex-none items-center justify-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&>svg]:hidden"
+                  >
+                    <span className="relative inline-flex size-5 items-center justify-center">
                       <ChevronRight
                         className={cn(
                           "absolute size-3.5 stroke-2 transition-all duration-300 ease-out",
@@ -130,31 +118,21 @@ export default function EducationSection() {
                         aria-hidden="true"
                       />
                     </span>
+                  </AccordionTrigger>
                 </div>
                 <div className="font-sans text-base text-muted-foreground sm:text-lg">
                   {education.program} - {education.specialization}
                 </div>
-                <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                  <span>
-                    {education.start} - {education.end}
-                  </span>
-                </div>
               </div>
             </div>
-            </AccordionTrigger>
+            <div className="shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+              {education.start} - {education.end}
+            </div>
           </div>
           <AccordionContent className="mt-4 space-y-4 text-sm text-muted-foreground">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h3 className="font-semibold text-foreground">Education Details</h3>
-                <a
-                  href={websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  Visit {education.school} website
-                </a>
               </div>
               <PointList
                 items={education.details}
@@ -172,9 +150,8 @@ export default function EducationSection() {
               </div>
             )}
           </AccordionContent>
-          </AccordionItem>
-        );
-      })}
+        </AccordionItem>
+      ))}
     </Accordion>
   );
 }
