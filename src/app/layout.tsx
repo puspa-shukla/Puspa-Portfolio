@@ -40,6 +40,14 @@ export const metadata: Metadata = {
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${DATA.name} — Portfolio`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -56,7 +64,7 @@ export const metadata: Metadata = {
     title: `${DATA.name} | BCA Student in Kathmandu, Nepal`,
     card: "summary_large_image",
     description: siteDescription,
-    images: ["/me.png"],
+    images: ["/opengraph-image"],
   },
 };
 
