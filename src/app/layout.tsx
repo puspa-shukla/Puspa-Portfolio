@@ -10,11 +10,13 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
-  : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.URL
-      ? process.env.URL.replace(/\/$/, "")
-      : "http://localhost:3000";
+  : process.env.VERCEL_ENV === "production"
+    ? "https://puspa-shukla.vercel.app"
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : process.env.URL
+        ? process.env.URL.replace(/\/$/, "")
+        : "http://localhost:3000";
 
 const siteDescription =
   "Portfolio of Puspa Shukla, a BCA student in Kathmandu, Nepal, learning and building in web development, practical AI, and IT systems support.";
