@@ -10,6 +10,7 @@ import SkillsSection from "@/components/section/skills-section";
 import WorkSection from "@/components/section/work-section";
 import CopyEmailBtn from "@/components/ui/CopyEmailBtn";
 import Resume from "@/components/ui/Resume";
+import { Download } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -38,6 +39,14 @@ export default function Page() {
               >
                 <CopyEmailBtn />
                 <Resume />
+                <a
+                  href="/opengraph-image"
+                  download="puspa-shukla-social-card.png"
+                  className="inline-flex items-center gap-1 rounded-sm px-1 py-1 text-sm font-medium text-foreground underline underline-offset-4 decoration-1 transition-all hover:text-foreground/80 hover:decoration-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <Download aria-hidden="true" className="size-4" />
+                  Download Share Card
+                </a>
               </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">

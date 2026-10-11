@@ -42,7 +42,14 @@ export const metadata: Metadata = {
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
-    images: [{ url: "/puspa-profile.png", alt: DATA.name }],
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${DATA.name} portfolio preview`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -57,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: `${DATA.name} | BCA Student in Kathmandu, Nepal`,
-    card: "summary",
+    card: "summary_large_image",
     description: siteDescription,
-    images: ["/puspa-profile.png"],
+    images: ["/opengraph-image"],
   },
 };
 
