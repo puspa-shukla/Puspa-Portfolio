@@ -103,12 +103,9 @@ export default function HamburgerNavigation() {
           >
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Navigation
-                </p>
                 <h2
                   id="site-navigation-title"
-                  className="mt-1 text-xl font-semibold tracking-tight"
+                  className="text-xl font-semibold tracking-tight"
                 >
                   Explore
                 </h2>
