@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="mx-auto max-w-3xl">
+    <main className="mx-auto max-w-4xl">
       <BlogSection />
     </main>
   );

@@ -1,12 +1,40 @@
 import { DATA } from "@/data/resume";
+import Image from "next/image";
+import BlogImpactStats from "@/components/section/blog-impact-stats";
 
 export default function BlogSection() {
   return (
-    <div className="flex min-h-0 flex-col gap-y-4">
-      <article className="prose prose-neutral max-w-none text-pretty dark:prose-invert">
-        <h1>The Girl Who Didn’t Wait to Be Asked</h1>
-        <p className="lead">By Puspa Shukla</p>
+    <div className="flex min-h-0 flex-col gap-y-8">
+      <header className="relative isolate min-h-[32rem] overflow-hidden rounded-[1.75rem] bg-[#173b3d] text-white shadow-xl shadow-[#173b3d]/10 sm:min-h-[38rem]">
+        <Image
+          src="/ugo-nepal-vietnam.jpg"
+          alt="Puspa and fellow U-GO scholars at the global summit in Cambodia"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover object-[center_42%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#102e30]/95 via-[#102e30]/35 to-[#102e30]/10" />
+        <div className="relative flex min-h-[32rem] flex-col justify-end p-6 sm:min-h-[38rem] sm:p-10 md:p-12">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-[#f5c75e] sm:text-sm">
+            A story of showing up
+          </p>
+          <h1 className="mb-5 max-w-3xl font-serif text-[clamp(2rem,7vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
+            The Girl Who Didn’t Wait to Be Asked
+          </h1>
+          <p className="mb-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+            How one student turned an open door into a global community of
+            women learning AI together.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-white/80">
+            <span>By Puspa Shukla</span>
+            <span aria-hidden="true" className="text-[#f5c75e]">•</span>
+            <span>U-GO Global Summit · Cambodia</span>
+          </div>
+        </div>
+      </header>
 
+      <article className="prose prose-neutral max-w-none text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
         <p>
           Nobody handed me a title. Nobody put me on a stage or asked me to
           lead. I was a second-year computer applications student at Pokhara
@@ -18,6 +46,7 @@ export default function BlogSection() {
           it went for others, or I could walk through the door first.
         </p>
         <p>I walked through first.</p>
+        <BlogImpactStats />
 
         <h2>The first to finish</h2>
         <p>
@@ -163,14 +192,20 @@ export default function BlogSection() {
           Stuart Kerr, Global Director of U-GO AI at U-GO University, said this
           about my work:
         </p>
-        <blockquote>
-          <p>
+        <figure className="not-prose my-12 overflow-hidden rounded-3xl bg-[#173b3d] px-6 py-8 text-white shadow-lg shadow-[#173b3d]/10 sm:px-10 sm:py-10">
+          <figcaption className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f5c75e]">
+            In their words
+          </figcaption>
+          <blockquote className="m-0 border-0 p-0 font-serif text-2xl leading-snug text-white sm:text-3xl">
             “Puspa Shukla is one of the core reasons why the U-GO AI program
             has expanded on a global basis and has reached thousands of women
             scholars in nine different countries. She is a force of nature and
             a phenomenal person to have on your team.”
-          </p>
-        </blockquote>
+          </blockquote>
+          <figcaption className="mt-6 text-sm text-white/70">
+            Stuart Kerr · Global Director of U-GO AI, U-GO University
+          </figcaption>
+        </figure>
         <p>
           I read those words more than once. They were a gift, and I treat
           them as a promise. I went right back to work, because recognition
