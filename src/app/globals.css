@@ -42,6 +42,26 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@keyframes blog-impact-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.blog-impact-marquee-track {
+  animation: blog-impact-marquee 30s linear infinite;
+}
+
+.blog-impact-marquee:hover .blog-impact-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-impact-marquee-track {
+    animation: none;
+  }
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

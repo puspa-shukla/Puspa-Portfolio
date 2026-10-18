@@ -155,8 +155,6 @@ export default function BlogSection() {
           first means nothing if you're the only one standing at the finish
           line.
         </p>
-        <BlogImpactStats />
-
         <h2 id="open-door">The door that was always open</h2>
         <p>
           So I made myself available, with no schedule and no office hours.{" "}
@@ -376,6 +374,7 @@ export default function BlogSection() {
         </p>
       </article>
       </StoryScrollLayout>
+      <BlogImpactStats />
     </div>
   );
 }

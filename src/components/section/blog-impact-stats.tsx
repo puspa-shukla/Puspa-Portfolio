@@ -20,6 +20,13 @@ const impactStats = [
   },
 ];
 
+const impactWords = [
+  { label: "Learn it", dot: "bg-[#94b2ff]" },
+  { label: "Teach it", dot: "bg-[#ffa3e5]" },
+  { label: "Pass it on", dot: "bg-[#80deba]" },
+  { label: "Make AI work", dot: "bg-[#ffba29]" },
+];
+
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLSpanElement>(null);
@@ -80,7 +87,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
     <span
       ref={countRef}
       aria-label={`${new Intl.NumberFormat("en-US").format(value)}${suffix}`}
-      className="block text-5xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums sm:text-6xl"
+      className="block text-6xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums sm:text-7xl lg:text-[7rem]"
     >
       <span aria-hidden="true">
         {formattedCount}
@@ -92,26 +99,49 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export default function BlogImpactStats() {
   return (
-    <section
-      id="impact"
-      aria-label="The impact of the U-GO AI program"
-      className="not-prose my-12 grid overflow-hidden rounded-[14px] border border-[#c9d6d9] bg-white text-[#17343a] shadow-sm sm:grid-cols-3"
-    >
-      {impactStats.map((stat, index) => (
-        <div
-          key={stat.label}
-          className={`flex flex-col justify-center gap-4 px-6 py-8 sm:px-7 sm:py-9 ${
-            index < impactStats.length - 1
-              ? "border-b border-[#c9d6d9] sm:border-b-0 sm:border-r"
-              : ""
-          }`}
-        >
-          <CountUp value={stat.value} suffix={stat.suffix} />
-          <p className="m-0 max-w-48 text-base leading-relaxed text-[#344d4e] sm:text-[15px]">
-            {stat.label}
-          </p>
+    <div className="relative left-1/2 my-12 w-screen -translate-x-1/2 max-w-none">
+      <section
+        id="impact"
+        aria-label="The impact of the U-GO AI program"
+        className="not-prose m-0 grid w-full overflow-hidden border-y border-[#d9dedb] bg-white text-[#17343a] sm:grid-cols-3"
+      >
+        {impactStats.map((stat, index) => (
+          <div
+            key={stat.label}
+            className={`flex min-h-56 flex-col justify-center gap-5 px-8 py-10 sm:px-10 sm:py-12 lg:px-16 ${
+              index < impactStats.length - 1
+                ? "border-b border-[#d9dedb] sm:border-b-0 sm:border-r"
+                : ""
+            }`}
+          >
+            <CountUp value={stat.value} suffix={stat.suffix} />
+            <p className="m-0 max-w-sm text-lg leading-relaxed text-[#344d4e] sm:text-xl">
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </section>
+      <div className="blog-impact-marquee overflow-hidden bg-[#f0f1ed] py-5 text-[#1c3b40]">
+        <p className="sr-only">Learn it, Teach it, Pass it on, Make AI work</p>
+        <div className="blog-impact-marquee-track flex w-max" aria-hidden="true">
+          {[0, 1].map((copy) => (
+            <span
+              key={copy}
+              className="flex shrink-0 items-center gap-12 pr-12 sm:gap-16 sm:pr-16"
+            >
+              {impactWords.map((word) => (
+                <span
+                  key={word.label}
+                  className="flex shrink-0 items-center gap-8 font-mono text-base font-black uppercase tracking-[0.16em] sm:gap-12 sm:text-lg"
+                >
+                  {word.label}
+                  <i className={`size-3 rounded-full ${word.dot}`} />
+                </span>
+              ))}
+            </span>
+          ))}
         </div>
-      ))}
-    </section>
+      </div>
+    </div>
   );
 }
