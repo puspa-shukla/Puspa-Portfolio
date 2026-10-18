@@ -75,15 +75,27 @@ export default function BlogSection() {
       <StoryCategoryRibbon />
       <header
         id="all-stories"
-        className="grid scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[32rem] lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.82fr)]"
+        className="relative isolate min-h-[min(64svh,42rem)] scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10"
       >
-        <div className="flex flex-col justify-center p-5 sm:p-8 md:p-10 lg:p-12">
-          <h1 className="mb-6 max-w-3xl font-serif text-[clamp(2.2rem,5.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-white">
-            The Girl Who{" "}
-            <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">
-              Did Not Wait to Be Asked
-            </span>
-          </h1>
+        <Image
+          src="/ugo-scholar-presentation.jpg"
+          alt="Two U-GO scholars presenting together during a learning session"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-top opacity-90 md:object-[center_8%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#17343a]/85 via-[#17343a]/45 to-[#17343a]/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#17343a]/95 via-[#17343a]/40 to-transparent" />
+        <div className="relative z-10 flex min-h-[min(64svh,42rem)] flex-col justify-end p-5 pb-6 sm:p-7 md:p-9">
+          <div className="mb-4 w-fit max-w-5xl rounded-[14px] border border-white/25 bg-[#17343a]/55 px-5 py-4 shadow-2xl shadow-black/25 backdrop-blur-sm sm:px-8 sm:py-6">
+            <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.65rem,7vw,6rem)] font-semibold leading-[0.98] tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.85)]">
+              The Girl Who{" "}
+              <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">
+                Did Not Wait to Be Asked
+              </span>
+            </h1>
+          </div>
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
             <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
               3,000+ scholars reached
@@ -100,16 +112,6 @@ export default function BlogSection() {
               AI learning and community leadership
             </a>
           </div>
-        </div>
-        <div className="relative min-h-[24rem] bg-[#edf2ee] sm:min-h-[30rem] lg:min-h-full">
-          <Image
-            src="/ugo-scholar-presentation.jpg"
-            alt="Two U-GO scholars presenting together during a learning session"
-            fill
-            priority
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-contain"
-          />
         </div>
       </header>
 
