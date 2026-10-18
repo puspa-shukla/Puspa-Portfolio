@@ -5,7 +5,6 @@ import { DATA } from "@/data/resume";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
 import HackathonsSection from "@/components/section/hackathons-section";
-import ProjectsSection from "@/components/section/projects-section";
 import SkillsSection from "@/components/section/skills-section";
 import WorkSection from "@/components/section/work-section";
 import CopyEmailBtn from "@/components/ui/CopyEmailBtn";
@@ -86,11 +85,6 @@ export default function Page() {
         </div>
       </section>
       <SkillsSection />
-      <section id="projects">
-        <BlurFade delay={BLUR_FADE_DELAY * 11}>
-          <ProjectsSection />
-        </BlurFade>
-      </section>
       <section id="hackathons">
         <BlurFade delay={BLUR_FADE_DELAY * 13}>
           <HackathonsSection />

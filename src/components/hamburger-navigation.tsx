@@ -11,7 +11,7 @@ const navigationItems = [
   { label: "Learning Journey", href: "/#education" },
   { label: "Work & Community", href: "/#work" },
   { label: "Achievements", href: "/achievements" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/#contact" },
 ];
 
