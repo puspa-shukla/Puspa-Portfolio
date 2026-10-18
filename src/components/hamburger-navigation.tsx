@@ -8,8 +8,7 @@ const navigationItems = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
   { label: "Achievements", href: "/achievements" },
-  { label: "Social Work", href: "/#work" },
-  { label: "Impact", href: "/blog#impact" },
+  { label: "Social Work", href: "/social-work" },
   { label: "U-GO AI", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ];
