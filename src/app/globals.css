@@ -180,8 +180,9 @@ html:has(.home-page) {
 
 body:has(.home-page) {
   background:
-    radial-gradient(ellipse at 8% 4%, rgb(222 231 255 / 35%), transparent 34rem),
-    linear-gradient(180deg, #fbfcff 0%, #ffffff 34rem);
+    radial-gradient(ellipse at 8% 4%, rgb(205 218 255 / 48%), transparent 34rem),
+    radial-gradient(ellipse at 96% 42%, rgb(220 213 255 / 25%), transparent 38rem),
+    linear-gradient(180deg, #f7f9ff 0%, #ffffff 38rem);
 }
 
 .home-page {
@@ -195,6 +196,58 @@ body:has(.home-page) {
 
 .home-page > section {
   scroll-margin-top: 5rem;
+}
+
+.home-page > .home-section,
+.home-page > #skills {
+  position: relative;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+  border: 1px solid rgb(66 91 160 / 10%);
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgb(255 255 255 / 92%), rgb(247 249 255 / 82%));
+  box-shadow: 0 16px 44px -38px rgb(36 54 107 / 34%);
+}
+
+.home-page > .home-section:nth-of-type(odd) {
+  background: linear-gradient(135deg, rgb(247 248 255 / 95%), rgb(255 255 255 / 92%));
+}
+
+.home-page > #skills > div,
+.home-page > #skills > div > div:first-child {
+  position: relative;
+}
+
+.home-page > #skills h2 {
+  position: relative;
+  width: fit-content;
+  padding-bottom: 0.55rem;
+  color: var(--home-ink);
+}
+
+.home-page > #skills h2::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.6rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--home-blue), var(--home-cyan));
+  content: "";
+}
+
+.home-page > #skills [class~="border"][class~="bg-background"] {
+  height: 2.25rem;
+  border-color: rgb(66 91 160 / 14%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff, #f4f6ff);
+  box-shadow: 0 5px 16px -13px rgb(49 89 232 / 70%);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.home-page > #skills [class~="border"][class~="bg-background"]:hover {
+  transform: translateY(-2px);
+  border-color: rgb(49 89 232 / 35%);
+  box-shadow: 0 10px 18px -14px rgb(49 89 232 / 65%);
 }
 
 .home-hero {
@@ -388,6 +441,7 @@ body:has(.home-page) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home-page > #skills [class~="border"][class~="bg-background"],
   .home-actions button,
   .home-actions a[href="/api/resume"],
   .home-profile-photo,
