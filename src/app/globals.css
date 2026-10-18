@@ -387,7 +387,7 @@ body:has(.home-page) {
   height: 0.45rem;
   border-radius: 999px;
   background: var(--home-teal);
-  box-shadow: 0 0 0 4px rgb(255 179 0 / 18%);
+  box-shadow: 0 0 0 4px rgb(31 95 107 / 14%);
 }
 
 .home-page .home-section-title {
