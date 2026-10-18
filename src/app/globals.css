@@ -193,6 +193,27 @@ body:has(.home-page) {
   background-attachment: fixed;
 }
 
+body:has(.home-page)::before,
+body:has(.home-page)::after {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: clamp(7rem, 25vw, 30rem);
+  pointer-events: none;
+  content: "";
+}
+
+body:has(.home-page)::before {
+  left: 0;
+  background: linear-gradient(90deg, #9bcfe2 0%, #d2c1e5 46%, rgb(230 221 240 / 82%) 72%, transparent 100%);
+}
+
+body:has(.home-page)::after {
+  right: 0;
+  background: linear-gradient(270deg, #9bcfe2 0%, #d2c1e5 46%, rgb(230 221 240 / 82%) 72%, transparent 100%);
+}
+
 .home-page {
   --home-ink: #343746;
   --home-muted: #4b4d5c;
