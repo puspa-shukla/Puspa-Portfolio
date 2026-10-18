@@ -70,7 +70,7 @@ export default function HeroNetworkScene() {
       new THREE.BufferAttribute(pointPositions, 3),
     );
     const pointMaterial = new THREE.PointsMaterial({
-      color: 0x65717a,
+      color: 0x1f5f6b,
       size: 0.05,
       transparent: true,
       opacity: 0.58,
@@ -101,7 +101,7 @@ export default function HeroNetworkScene() {
       new THREE.Float32BufferAttribute(connections, 3),
     );
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x87919a,
+      color: 0x5b9aaa,
       transparent: true,
       opacity: 0.12,
       depthWrite: false,
