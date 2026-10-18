@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 import { DATA } from "@/data/resume";
+import { Award, TrendingUp, Trophy } from "lucide-react";
 
 const title = "Top 6 Out of 2,000+: The Story Behind the Result";
 const description =
@@ -114,29 +115,68 @@ export const metadata: Metadata = {
 
 export default function AchievementArticlePage() {
   return (
-    <>
+    <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
       <StoryCategoryRibbon categories={achievementCategories} allStories={null} />
-      <main className="blog-story-page mx-auto flex w-full max-w-3xl flex-col gap-10 px-1 pt-[5.5rem] text-[#17343a] sm:gap-14 sm:px-0">
-        <section id="scholarships" className="scroll-mt-24">
-          <header className="rounded-[14px] bg-[#17343a] p-6 text-white shadow-xl shadow-[#17343a]/10 sm:p-9">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb300]">
-              Scholarships
-            </p>
-            <h1 className="font-serif text-[clamp(2.1rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight">
-              {title}
-            </h1>
-            <p className="mt-5 text-sm font-medium text-white/75">
-              Oct 18, 2026 <span aria-hidden="true">&middot;</span> @puspa
-            </p>
-          </header>
+      <header
+        id="scholarships"
+        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
+      >
+        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#8ed7bc]">
+            Learning · Resilience · Achievement
+          </p>
+          <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.25rem,4.4vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-white">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-3xl font-serif text-lg leading-relaxed text-white/85 sm:text-xl">
+            “I was behind. But I never left.”
+          </p>
+          <p className="mt-6 text-sm font-medium text-white/70">
+            By Puspa Shukla · TechSkills Nepal IT Scholarship Program
+          </p>
+        </div>
+        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] sm:min-h-72 lg:min-h-full">
+          <div
+            aria-hidden="true"
+            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 sm:size-80"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 sm:size-80"
+          />
+          <div className="relative z-10 grid max-w-sm grid-cols-2 gap-3">
+            <div className="col-span-2 rounded-2xl border border-[#c9d6d9] bg-white/90 p-5 shadow-sm">
+              <Trophy aria-hidden="true" className="mb-4 size-9 text-[#1f5f6b]" />
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#1f5f6b]">
+                The result
+              </p>
+              <p className="mb-0 font-serif text-2xl font-semibold leading-snug">
+                Progress made one choice at a time.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 p-4 shadow-sm">
+              <Award aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b]" />
+              <p className="mb-0 text-2xl font-bold">Top 6</p>
+              <p className="mb-0 text-xs text-[#33525a]">finalists</p>
+            </div>
+            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 p-4 shadow-sm">
+              <TrendingUp aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b]" />
+              <p className="mb-0 text-2xl font-bold">2,000+</p>
+              <p className="mb-0 text-xs text-[#33525a]">applicants</p>
+            </div>
+          </div>
+        </div>
+      </header>
 
-          <article className="blog-story-copy prose prose-neutral mt-8 max-w-none text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
+      <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 sm:gap-14">
+        <section id="story" className="scroll-mt-24">
+          <article className="blog-story-copy prose prose-neutral mx-auto max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
             <ReactMarkdown>{story}</ReactMarkdown>
           </article>
         </section>
 
         <section id="global-representation" className="scroll-mt-24">
-          <h2 className="mb-6 font-sans text-2xl font-bold text-[#17343a] sm:text-3xl">
+          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] sm:text-4xl">
             Global Representation
           </h2>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -188,7 +228,7 @@ export default function AchievementArticlePage() {
         </section>
 
         <section id="leadership" className="scroll-mt-24 pb-8">
-          <h2 className="mb-6 font-sans text-2xl font-bold text-[#17343a] sm:text-3xl">
+          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] sm:text-4xl">
             Leadership
           </h2>
           {DATA.hackathonsAndEvents
@@ -211,6 +251,6 @@ export default function AchievementArticlePage() {
             ))}
         </section>
       </main>
-    </>
+    </div>
   );
 }
