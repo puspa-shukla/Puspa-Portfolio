@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-const categories = [
+type StoryCategory = {
+  label: string;
+  href: string;
+  target: string;
+};
+
+const blogCategories: StoryCategory[] = [
   { label: "My Journey", href: "#story", target: "story" },
   {
     label: "AI and Tech",
@@ -17,17 +23,28 @@ const categories = [
   },
 ];
 
-const allStories = { label: "All Stories", href: "#all-stories", target: "all-stories" };
+const defaultAllStories = {
+  label: "All Stories",
+  href: "#all-stories",
+  target: "all-stories",
+};
 
-export default function StoryCategoryRibbon() {
-  const [activeTarget, setActiveTarget] = useState(allStories.target);
+export default function StoryCategoryRibbon({
+  categories = blogCategories,
+  allStories = defaultAllStories,
+}: {
+  categories?: StoryCategory[];
+  allStories?: StoryCategory | null;
+}) {
+  const initialTarget = allStories?.target ?? categories[0]?.target ?? "";
+  const [activeTarget, setActiveTarget] = useState(initialTarget);
 
   useEffect(() => {
     let frame = 0;
     const updateActiveCategory = () => {
       frame = 0;
       const activationLine = window.scrollY + window.innerHeight * 0.3;
-      const targets = [allStories, ...categories]
+      const targets = [...(allStories ? [allStories] : []), ...categories]
         .flatMap((category) => {
           const element = document.getElementById(category.target);
           return element ? [{ ...category, element }] : [];
@@ -37,7 +54,7 @@ export default function StoryCategoryRibbon() {
             element.getBoundingClientRect().top + window.scrollY <= activationLine,
         );
 
-      setActiveTarget(targets.at(-1)?.target ?? allStories.target);
+      setActiveTarget(targets.at(-1)?.target ?? initialTarget);
     };
     const handleScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateActiveCategory);
@@ -51,7 +68,7 @@ export default function StoryCategoryRibbon() {
       window.removeEventListener("resize", handleScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [allStories, categories, initialTarget]);
 
   const linkClass = (target: string) =>
     `inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-xl border px-4 py-2 text-sm font-semibold tracking-[0.01em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1f5f6b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#e6f0f2] ${
@@ -66,13 +83,15 @@ export default function StoryCategoryRibbon() {
       className="story-category-ribbon fixed inset-x-0 top-0 z-[55] border-b border-[#c9d6d9] bg-[#e6f0f2]/95 shadow-sm shadow-[#17343a]/10 backdrop-blur-md"
     >
       <div className="mx-auto flex min-h-[4.5rem] w-full max-w-[100rem] items-center gap-2.5 overflow-x-auto px-4 pl-16 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 sm:pl-20 sm:pr-8 lg:pl-20 lg:pr-12">
-        <a
-          href={allStories.href}
-          aria-current={activeTarget === allStories.target ? "location" : undefined}
-          className={linkClass(allStories.target)}
-        >
-          {allStories.label}
-        </a>
+        {allStories && (
+          <a
+            href={allStories.href}
+            aria-current={activeTarget === allStories.target ? "location" : undefined}
+            className={linkClass(allStories.target)}
+          >
+            {allStories.label}
+          </a>
+        )}
         {categories.map((category) => (
           <a
             key={category.target}

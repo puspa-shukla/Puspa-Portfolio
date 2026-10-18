@@ -1,9 +1,22 @@
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 import type { Metadata } from "next";
+import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
+import { DATA } from "@/data/resume";
 
 const title = "Top 6 Out of 2,000+: The Story Behind the Result";
 const description =
   "The story behind Puspa's top-six result in a competitive tech skills scholarship: five months of setbacks, persistence, and growth.";
+
+const achievementCategories = [
+  { label: "Scholarships", href: "#scholarships", target: "scholarships" },
+  {
+    label: "Global Representation",
+    href: "#global-representation",
+    target: "global-representation",
+  },
+  { label: "Leadership", href: "#leadership", target: "leadership" },
+];
 
 const story = `Imagine working hard for five months and still coming last. Again. And again. And again.
 
@@ -101,22 +114,103 @@ export const metadata: Metadata = {
 
 export default function AchievementArticlePage() {
   return (
-    <main className="blog-story-page mx-auto flex w-full max-w-3xl flex-col gap-8 px-1 pt-[4.5rem] text-[#17343a] sm:gap-10 sm:px-0">
-      <header className="rounded-[14px] bg-[#17343a] p-6 text-white shadow-xl shadow-[#17343a]/10 sm:p-9">
-        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb300]">
-          Achievement story
-        </p>
-        <h1 className="font-serif text-[clamp(2.1rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight">
-          {title}
-        </h1>
-        <p className="mt-5 text-sm font-medium text-white/75">
-          Oct 18, 2026 <span aria-hidden="true">&middot;</span> @puspa
-        </p>
-      </header>
+    <>
+      <StoryCategoryRibbon categories={achievementCategories} allStories={null} />
+      <main className="blog-story-page mx-auto flex w-full max-w-3xl flex-col gap-10 px-1 pt-[5.5rem] text-[#17343a] sm:gap-14 sm:px-0">
+        <section id="scholarships" className="scroll-mt-24">
+          <header className="rounded-[14px] bg-[#17343a] p-6 text-white shadow-xl shadow-[#17343a]/10 sm:p-9">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#ffb300]">
+              Scholarships
+            </p>
+            <h1 className="font-serif text-[clamp(2.1rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight">
+              {title}
+            </h1>
+            <p className="mt-5 text-sm font-medium text-white/75">
+              Oct 18, 2026 <span aria-hidden="true">&middot;</span> @puspa
+            </p>
+          </header>
 
-      <article className="blog-story-copy prose prose-neutral max-w-none text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
-        <ReactMarkdown>{story}</ReactMarkdown>
-      </article>
-    </main>
+          <article className="blog-story-copy prose prose-neutral mt-8 max-w-none text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
+            <ReactMarkdown>{story}</ReactMarkdown>
+          </article>
+        </section>
+
+        <section id="global-representation" className="scroll-mt-24">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-[#17343a] sm:text-3xl">
+            Global Representation
+          </h2>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {DATA.hackathonsAndEvents
+              .filter((item) =>
+                ["U-GO Nepal Representative", "The Ripple Effect: U-GO Global Publication"].includes(item.title),
+              )
+              .map((item) => (
+                <article
+                  key={item.title}
+                  className="overflow-hidden rounded-2xl border border-[#c9d6d9] bg-white shadow-sm"
+                >
+                  {item.image && (
+                    <div className="relative h-48 bg-[#edf2ee]">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(min-width: 640px) 360px, 100vw"
+                        className="object-contain p-3"
+                      />
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b]">
+                      {item.dates} <span aria-hidden="true">&middot;</span> {item.location}
+                    </p>
+                    <h3 className="mt-2 text-xl font-bold text-[#17343a]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#33525a]">
+                      {item.description}
+                    </p>
+                    {item.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-4 inline-flex text-sm font-semibold text-[#1f5f6b] underline underline-offset-4"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+          </div>
+        </section>
+
+        <section id="leadership" className="scroll-mt-24 pb-8">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-[#17343a] sm:text-3xl">
+            Leadership
+          </h2>
+          {DATA.hackathonsAndEvents
+            .filter((item) => item.title === "U-GO AI Workshops & Advanced Courses")
+            .map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-[#c9d6d9] bg-white p-6 shadow-sm sm:p-8"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b]">
+                  AI learning and mentorship
+                </p>
+                <h3 className="mt-2 text-xl font-bold text-[#17343a] sm:text-2xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 max-w-2xl leading-relaxed text-[#33525a]">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+        </section>
+      </main>
+    </>
   );
 }
