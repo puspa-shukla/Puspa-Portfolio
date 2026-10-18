@@ -180,14 +180,14 @@ html:has(.home-page) {
 
 body:has(.home-page) {
   background:
-    radial-gradient(ellipse at 8% 4%, rgb(205 218 255 / 48%), transparent 34rem),
-    radial-gradient(ellipse at 96% 42%, rgb(220 213 255 / 25%), transparent 38rem),
-    linear-gradient(180deg, #f7f9ff 0%, #ffffff 38rem);
+    radial-gradient(ellipse at 4% 8%, rgb(179 198 255 / 58%), transparent 38rem),
+    radial-gradient(ellipse at 96% 36%, rgb(208 190 255 / 34%), transparent 42rem),
+    linear-gradient(180deg, #edf2ff 0%, #f8f9ff 55rem, #f3f7ff 100%);
 }
 
 .home-page {
   --home-ink: #142039;
-  --home-muted: #59667c;
+  --home-muted: #4b5870;
   --home-blue: #3159e8;
   --home-violet: #7055d9;
   --home-cyan: #38aeca;
@@ -202,14 +202,26 @@ body:has(.home-page) {
 .home-page > #skills {
   position: relative;
   padding: clamp(1.1rem, 3vw, 1.75rem);
-  border: 1px solid rgb(66 91 160 / 10%);
+  border: 1px solid #c4d1f5;
   border-radius: 1.25rem;
-  background: linear-gradient(135deg, rgb(255 255 255 / 92%), rgb(247 249 255 / 82%));
-  box-shadow: 0 16px 44px -38px rgb(36 54 107 / 34%);
+  background: linear-gradient(135deg, #e5edff, #f1edff 58%, #e8f6fb);
+  box-shadow: 0 18px 42px -30px rgb(36 54 107 / 30%);
 }
 
 .home-page > .home-section:nth-of-type(odd) {
-  background: linear-gradient(135deg, rgb(247 248 255 / 95%), rgb(255 255 255 / 92%));
+  background: linear-gradient(135deg, #e8eaff, #eeeaff 58%, #e7f3fb);
+}
+
+.home-page > #about,
+.home-page > #education {
+  background: linear-gradient(120deg, #e2edff, #edf0ff 62%, #e4f5fa);
+}
+
+.home-page > #work,
+.home-page > #hackathons,
+.home-page > #contact,
+.home-page > #skills {
+  background: linear-gradient(120deg, #e9e7ff, #f0eaff 62%, #e7f5fa);
 }
 
 .home-page > #skills > div,
@@ -237,7 +249,7 @@ body:has(.home-page) {
 
 .home-page > #skills [class~="border"][class~="bg-background"] {
   height: 2.25rem;
-  border-color: rgb(66 91 160 / 14%);
+  border-color: #c1cdef;
   border-radius: 999px;
   background: linear-gradient(135deg, #fff, #f4f6ff);
   box-shadow: 0 5px 16px -13px rgb(49 89 232 / 70%);
@@ -256,12 +268,12 @@ body:has(.home-page) {
   overflow: hidden;
   margin: -0.75rem -0.5rem 0;
   padding: clamp(1.1rem, 4vw, 2.25rem);
-  border: 1px solid rgb(49 89 232 / 12%);
+  border: 1px solid #aebff5;
   border-radius: 1.75rem;
   background:
-    linear-gradient(120deg, rgb(255 255 255 / 96%), rgb(247 248 255 / 90%)),
-    #fff;
-  box-shadow: 0 24px 70px -50px rgb(25 43 94 / 36%);
+    radial-gradient(ellipse at 82% 20%, rgb(173 190 255 / 68%), transparent 42%),
+    linear-gradient(120deg, #dbe8ff 0%, #e8e6ff 58%, #d9f0f5 100%);
+  box-shadow: 0 26px 64px -38px rgb(42 61 131 / 38%);
 }
 
 .home-hero::before,
@@ -275,9 +287,9 @@ body:has(.home-page) {
 .home-hero::before {
   inset: -36% -15% -28% 14%;
   background:
-    radial-gradient(ellipse at 25% 24%, rgb(67 107 255 / 14%), transparent 34%),
-    radial-gradient(ellipse at 70% 43%, rgb(129 103 231 / 12%), transparent 31%),
-    radial-gradient(ellipse at 66% 76%, rgb(91 197 215 / 9%), transparent 27%);
+    radial-gradient(ellipse at 25% 24%, rgb(67 107 255 / 24%), transparent 34%),
+    radial-gradient(ellipse at 70% 43%, rgb(129 103 231 / 21%), transparent 31%),
+    radial-gradient(ellipse at 66% 76%, rgb(91 197 215 / 18%), transparent 27%);
   filter: blur(10px);
 }
 
