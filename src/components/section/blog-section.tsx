@@ -1,7 +1,6 @@
 import { DATA } from "@/data/resume";
 import Image from "next/image";
 import BlogImpactStats from "@/components/section/blog-impact-stats";
-import StoryConstellation from "@/components/section/story-constellation";
 import StoryScrollLayout, {
   type StoryChapter,
 } from "@/components/section/story-scroll-layout";
@@ -74,27 +73,17 @@ export default function BlogSection() {
   return (
     <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
       <StoryCategoryRibbon />
-      <header id="all-stories" className="relative isolate min-h-[min(48svh,32rem)] scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10">
-        <Image
-          src="/ugo-nepal-vietnam.jpg"
-          alt="Women scholars sharing ideas around a table in a U-GO learning session"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_38%] brightness-[0.76] saturate-[0.86] sm:object-center"
-        />
-        <div className="absolute inset-0 bg-[#17343a]/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#17343a]/80 via-[#17343a]/35 to-[#17343a]/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#17343a]/85 via-[#17343a]/5 to-[#17343a]/10" />
-        <div className="absolute inset-y-0 right-0 z-0 w-[48%] opacity-55 sm:w-[44%]">
-          <StoryConstellation />
-        </div>
-        <div className="relative z-10 flex min-h-[min(48svh,32rem)] flex-col justify-end p-5 pb-6 sm:p-7 md:p-9">
-          <div className="mb-4 w-fit max-w-3xl rounded-[14px] border border-white/25 bg-[#17343a]/55 px-4 py-3 shadow-2xl shadow-black/25 backdrop-blur-sm sm:px-6 sm:py-4">
-            <h1 className="mb-0 max-w-3xl font-serif text-[clamp(2.2rem,5.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.85)]">
-              The Girl Who <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">Did Not Wait to Be Asked</span>
-            </h1>
-          </div>
+      <header
+        id="all-stories"
+        className="grid scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[32rem] lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.82fr)]"
+      >
+        <div className="flex flex-col justify-center p-5 sm:p-8 md:p-10 lg:p-12">
+          <h1 className="mb-6 max-w-3xl font-serif text-[clamp(2.2rem,5.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-white">
+            The Girl Who{" "}
+            <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">
+              Did Not Wait to Be Asked
+            </span>
+          </h1>
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
             <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
               3,000+ scholars reached
@@ -102,11 +91,25 @@ export default function BlogSection() {
             <span className="max-w-3xl rounded-xl border border-white/80 bg-[#fbf8f2] px-4 py-2 text-center leading-relaxed shadow-sm">
               9 countries: Nepal, India, Bangladesh, Pakistan, Indonesia, Philippines, Cambodia, Vietnam, Tanzania
             </span>
-            <span className="rounded-full border border-[#ffb300] bg-[#ffb300] px-3 py-1.5 shadow-sm">
+            <a
+              href="https://ugoai.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-[#ffb300] bg-[#ffb300] px-3 py-1.5 text-[#17343a] shadow-sm transition-colors hover:bg-[#ffd05a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
               AI learning and community leadership
-            </span>
+            </a>
           </div>
-
+        </div>
+        <div className="relative min-h-[24rem] bg-[#edf2ee] sm:min-h-[30rem] lg:min-h-full">
+          <Image
+            src="/ugo-scholar-presentation.jpg"
+            alt="Two U-GO scholars presenting together during a learning session"
+            fill
+            priority
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="object-contain"
+          />
         </div>
       </header>
 
