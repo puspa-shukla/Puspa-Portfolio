@@ -75,7 +75,7 @@ export default function BlogSection() {
       <StoryCategoryRibbon />
       <header
         id="all-stories"
-        className="grid scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
+        className="relative grid scroll-mt-20 rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
       >
         <div className="flex flex-col justify-center p-5 sm:p-7 md:p-9 lg:p-10">
           <div className="mb-5 max-w-4xl">
@@ -86,13 +86,20 @@ export default function BlogSection() {
               </span>
             </h1>
           </div>
-          <div className="flex flex-wrap items-start gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
+          <div className="flex flex-row flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
             <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
               3,000+ scholars reached
             </span>
-            <span className="max-w-full rounded-xl border border-white/80 bg-[#fbf8f2] px-4 py-2 leading-relaxed shadow-sm">
-              9 countries: Nepal, India, Bangladesh, Pakistan, Indonesia, Philippines, Cambodia, Vietnam, Tanzania
-            </span>
+            <details className="relative">
+              <summary className="cursor-pointer list-none rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                9 countries <span aria-hidden="true">▾</span>
+              </summary>
+              <ul className="absolute left-0 top-full z-20 mt-2 min-w-44 list-none rounded-xl border border-[#d9dedb] bg-[#fbf8f2] p-3 text-[#17343a] shadow-xl">
+                {["Nepal", "India", "Bangladesh", "Pakistan", "Indonesia", "Philippines", "Cambodia", "Vietnam", "Tanzania"].map((country) => (
+                  <li key={country} className="px-2 py-1">{country}</li>
+                ))}
+              </ul>
+            </details>
             <a
               href="https://ugoai.org/"
               target="_blank"
@@ -103,7 +110,7 @@ export default function BlogSection() {
             </a>
           </div>
         </div>
-        <div className="relative min-h-[22rem] bg-[#edf2ee] sm:min-h-[26rem] lg:min-h-[24rem]">
+        <div className="relative min-h-[22rem] overflow-hidden rounded-b-[14px] bg-[#edf2ee] sm:min-h-[26rem] lg:min-h-[24rem] lg:rounded-b-none lg:rounded-r-[14px]">
           <Image
             src="/ugo-scholar-presentation.jpg"
             alt="Two U-GO scholars presenting together; one speaks while holding her notes"
