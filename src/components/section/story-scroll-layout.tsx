@@ -121,7 +121,7 @@ export default function StoryScrollLayout({
                 href="/resume"
                 className="underline decoration-[#699b8a] decoration-2 underline-offset-4 transition-colors hover:text-[#477a6c]"
               >
-                View résumé
+                View resume
               </Link>
               <a
                 href="mailto:puspashukla321@gmail.com"

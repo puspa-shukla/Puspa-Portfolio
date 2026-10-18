@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const categories = [
   { label: "My Journey", href: "#story", target: "story" },
   {
-    label: "AI & Tech",
+    label: "AI and Tech",
     href: "#first-to-finish",
     target: "first-to-finish",
   },

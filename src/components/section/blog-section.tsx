@@ -74,7 +74,7 @@ export default function BlogSection() {
   return (
     <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
       <StoryCategoryRibbon />
-      <header id="all-stories" className="relative isolate min-h-[min(64svh,42rem)] scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10">
+      <header id="all-stories" className="relative isolate min-h-[min(48svh,32rem)] scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10">
         <Image
           src="/ugo-nepal-vietnam.jpg"
           alt="Women scholars sharing ideas around a table in a U-GO learning session"
@@ -89,21 +89,21 @@ export default function BlogSection() {
         <div className="absolute inset-y-0 right-0 z-0 w-[48%] opacity-55 sm:w-[44%]">
           <StoryConstellation />
         </div>
-        <div className="relative z-10 flex min-h-[min(64svh,42rem)] flex-col justify-end p-6 pb-8 sm:p-10 md:p-14">
-          <div className="mb-5 w-fit max-w-5xl rounded-[14px] border border-white/25 bg-[#17343a]/55 px-5 py-4 shadow-2xl shadow-black/25 backdrop-blur-sm sm:px-8 sm:py-6">
-            <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.65rem,7vw,6rem)] font-semibold leading-[0.98] tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.85)]">
-              The Girl Who <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">Didn’t Wait to Be Asked</span>
+        <div className="relative z-10 flex min-h-[min(48svh,32rem)] flex-col justify-end p-5 pb-6 sm:p-7 md:p-9">
+          <div className="mb-4 w-fit max-w-3xl rounded-[14px] border border-white/25 bg-[#17343a]/55 px-4 py-3 shadow-2xl shadow-black/25 backdrop-blur-sm sm:px-6 sm:py-4">
+            <h1 className="mb-0 max-w-3xl font-serif text-[clamp(2.2rem,5.5vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.85)]">
+              The Girl Who <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">Did Not Wait to Be Asked</span>
             </h1>
           </div>
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
             <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
               3,000+ scholars reached
             </span>
-            <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
-              9 countries
+            <span className="max-w-3xl rounded-xl border border-white/80 bg-[#fbf8f2] px-4 py-2 text-center leading-relaxed shadow-sm">
+              9 countries: Nepal, India, Bangladesh, Pakistan, Indonesia, Philippines, Cambodia, Vietnam, Tanzania
             </span>
             <span className="rounded-full border border-[#ffb300] bg-[#ffb300] px-3 py-1.5 shadow-sm">
-              AI learning Â· Community leadership
+              AI learning and community leadership
             </span>
           </div>
 
@@ -119,7 +119,7 @@ export default function BlogSection() {
         <p>
           Nobody handed me a title. Nobody put me on a stage or asked me to
           lead. I was a second-year computer applications student at Pokhara
-          University in Nepal, with a focus on AI, when U-GO
+          University in Nepal, focused on AI, when U-GO
           launched its AI training program.
         </p>
         <p>
@@ -135,7 +135,7 @@ export default function BlogSection() {
         </p>
         <p>
           From my first day in the U-GO AI community, I treated every lesson as
-          if the future of my fellow scholars depended on it. I didnâ€™t skim. I
+          if the future of my fellow scholars depended on it. I didn't skim. I
           went deep into prompt engineering and learned to use AI tools as real,
           working skills.{" "}
           <strong>
@@ -144,9 +144,9 @@ export default function BlogSection() {
           </strong>
         </p>
         <p>
-          That was the moment the scholars, and the directors of U-GO Nepal,
+          That was the moment the scholars and the directors of U-GO Nepal
           began to notice me. But I understood something right away: finishing
-          first means nothing if youâ€™re the only one standing at the finish
+          first means nothing if you're the only one standing at the finish
           line.
         </p>
         <BlogImpactStats />
@@ -155,28 +155,28 @@ export default function BlogSection() {
         <p>
           So I made myself available, with no schedule and no office hours.{" "}
           <strong>
-            Whenever a scholar needed help, for whatever she needed, I was
+            Whenever a scholar needed help with anything, I was
             there.
           </strong>
         </p>
         <p>
-          When a scholar couldnâ€™t figure out how to write a professional email,
+          When a scholar couldn't figure out how to write a professional email,
           I opened a video call and walked her through it, step by step. When
           another was lost in Google Sheets, I shared my screen and we built it
           together, cell by cell. When one was nervous about Zoom, I recorded a
           short video she could replay as many times as she wanted. When
-          someoneâ€™s internet was too weak for a call, I sent audio messages.
+          someone's internet was too weak for a call, I sent audio messages.
           When a scholar just needed a quick answer, I wrote back within
           minutes.
         </p>
         <p>
           I taught scholars to feel at home with Google Meet and Zoom, to build
-          LinkedIn profiles that told their stories, and to write rÃ©sumÃ©s line
+          LinkedIn profiles that told their stories, and to write resumes line
           by line until they could finally see their own worth on paper.
         </p>
         <p>
-          These looked like small things. They werenâ€™t. For a young woman who
-          had never had these tools explained to her, â€œhow do I attach a file?â€
+          These looked like small things. They weren't. For a young woman who
+          had never had these tools explained to her, "how do I attach a file?"
           was the question standing between her and her future. I knew that,
           because not long before, I had been sitting in the same seat.
         </p>
@@ -188,7 +188,7 @@ export default function BlogSection() {
         </p>
         <p>
           <em>
-            I wasnâ€™t paid. I wasnâ€™t praised. At the local level, my work wasnâ€™t
+            I wasn't paid. I wasn't praised. At the local level, my work wasn't
             even recognized.
           </em>
         </p>
@@ -199,10 +199,10 @@ export default function BlogSection() {
         </p>
         <p>
           But I had made myself a promise:{" "}
-          <em>do the work because itâ€™s right, not because itâ€™s rewarded.</em> I
-          believed that impact doesnâ€™t need an audience. A scholar who sends
-          her first professional email isnâ€™t thinking about who is clapping.
-          Sheâ€™s busy walking through a door that just opened.
+          <em>do the work because it's right, not because it's rewarded.</em> I
+          believed that impact doesn't need an audience. A scholar who sends
+          her first professional email isn't thinking about who is clapping.
+          She's busy walking through a door that just opened.
         </p>
 
         <h2 id="what-goes-around">What Goes Around Comes Around</h2>
@@ -214,7 +214,7 @@ export default function BlogSection() {
         <p>
           I kept answering the messages. I kept joining the calls. I kept
           sharing my screen, recording my videos, and sitting with scholars
-          until their rÃ©sumÃ©s were finished and their confidence had returned.
+          until their resumes were finished and their confidence had returned.
           I kept doing it on the days I was tired, on the days no one said thank
           you, and on the days it felt like my effort was disappearing into
           silence.
@@ -231,22 +231,24 @@ export default function BlogSection() {
           naturally: <em>why stop here?</em>
         </p>
         <p>
-          I carried the same energy to scholars in Bangladesh, Tanzania,
-          Indonesia, the Philippines, Pakistan, Cambodia, India, and Vietnam.
+          I carried the same energy to scholars in Nepal, India, Bangladesh,
+          Pakistan, Indonesia, the Philippines, Cambodia, Vietnam, and Tanzania.
           They spoke different languages, lived in different time zones, and
           came from different cultures, but they had the same hunger to rise.
           And they all found the same open door: <em>ask me anything, anytime.</em>
         </p>
         <p>
-          Today the U-GO AI program runs in <strong>nine countries</strong> and
-          has equipped <strong>more than 3,000 U-GO scholars with AI skills</strong>.
+          Today the U-GO AI program runs in <strong>nine countries</strong>:
+          Nepal, India, Bangladesh, Pakistan, Indonesia, the Philippines,
+          Cambodia, Vietnam, and Tanzania. It has equipped{" "}
+          <strong>more than 3,000 U-GO scholars with AI skills</strong>.
           The <strong>U-GO AI Tips for Scholars</strong> community has grown
-          past a thousand members, women from around the world learning from
-          one another and lifting one another up.
+          past a thousand members, with women from around the world learning
+          from one another and lifting one another up.
         </p>
         <p>
           I did all of this while still a university student, with my own
-          exams, assignments, and deadlines. I didnâ€™t wait until I felt ready.
+          exams, assignments, and deadlines. I didn't wait until I felt ready.
           I grew into leadership by practicing it.
         </p>
 
@@ -274,27 +276,30 @@ export default function BlogSection() {
         </p>
         <figure className="not-prose my-12 overflow-hidden rounded-3xl bg-[#173b3d] px-6 py-8 text-white shadow-lg shadow-[#173b3d]/10 sm:px-10 sm:py-10">
           <figcaption className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f5c75e]">
-            In their words
+            Stuart Kerr on U-GO AI community leadership
           </figcaption>
           <blockquote className="m-0 border-0 p-0 font-serif text-2xl leading-snug text-white sm:text-3xl">
-            â€œPuspa Shukla is one of the core reasons why the U-GO AI program
+            "Puspa Shukla is one of the core reasons why the U-GO AI program
             has expanded on a global basis and has reached thousands of women
             scholars in nine different countries. She is a force of nature and
-            a phenomenal person to have on your team.â€
+            a phenomenal person to have on your team."
           </blockquote>
           <figcaption className="mt-6 text-sm text-white/70">
-            Stuart Kerr Â· Global Director of U-GO AI, U-GO University
+            Stuart Kerr - Global Director of U-GO AI, U-GO University
           </figcaption>
+          <a href="https://ugoai.org/" target="_blank" rel="noreferrer" className="mt-5 inline-flex font-semibold text-[#f5c75e] underline underline-offset-4">
+            Visit U-GO AI
+          </a>
         </figure>
         <p>
           I read those words more than once. They were a gift, and I treat
           them as a promise. I went right back to work, because recognition
-          isnâ€™t a finish line. Itâ€™s a reason to keep going.
+          isn't a finish line. It's a reason to keep going.
         </p>
 
         <h2 id="ripple-effect">The ripple effect</h2>
         <p>
-          U-GO doesnâ€™t require its scholars to give back, but it encourages us
+          U-GO doesn't require its scholars to give back, but it encourages us
           to pay it forward, to lift our families, our communities, and other
           young women pursuing education. I decided that would be how I live.
         </p>
@@ -303,8 +308,8 @@ export default function BlogSection() {
             One woman who learns a skill is a story. One woman who teaches
             that skill is a movement.
           </strong>{" "}
-          When I teach ten scholars and each of them teaches ten more, Iâ€™m no
-          longer just a student with a laptop in Pokhara. Iâ€™m the first stone
+          When I teach ten scholars and each of them teaches ten more, I'm no
+          longer just a student with a laptop in Pokhara. I'm the first stone
           dropped in the water, and the ripples travel to places I will never
           see.
         </p>
@@ -312,7 +317,7 @@ export default function BlogSection() {
         <h2 id="story-lessons">What my story taught me</h2>
         <ul>
           <li>
-            <strong>Donâ€™t wait to be asked.</strong> The people who change
+            <strong>Don't wait to be asked.</strong> The people who change
             things begin before the invitation comes.
           </li>
           <li>
@@ -325,7 +330,7 @@ export default function BlogSection() {
             without applause is the work that builds character.
           </li>
           <li>
-            <strong>Donâ€™t expect anything back.</strong> Give freely and
+            <strong>Don't expect anything back.</strong> Give freely and
             generously, then watch what happens.
           </li>
           <li>
@@ -345,13 +350,13 @@ export default function BlogSection() {
           I picture myself building programs that reach hundreds of thousands
           of women instead of thousands. I picture myself leading teams across
           continents, shaping how the next generation learns AI and stays safe
-          in a digital world, and opening doors that were once locked. And Iâ€™ll
+          in a digital world, and opening doors that were once locked. And I'll
           bring the same open door with me.
         </p>
 
         <h2 id="work-together">Work with me</h2>
         <p>
-          If youâ€™re a founder, a program director, an educator, or a team that
+          If you're a founder, a program director, an educator, or a team that
           needs someone who shows up before being asked, who serves without
           being told, who brings people together across borders, and who
           delivers when it counts, I would love to hear from you.
@@ -359,7 +364,7 @@ export default function BlogSection() {
         <p>I was the first to finish. I was never the last to help.</p>
         <p>
           <strong>
-            Letâ€™s work together.{" "}
+            Let's work together.{" "}
             <a href={`mailto:${DATA.contact.email}`}>{DATA.contact.email}</a>
           </strong>
         </p>
