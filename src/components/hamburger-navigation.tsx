@@ -5,13 +5,12 @@ import { Menu, X } from "lucide-react";
 
 const navigationItems = [
   { label: "Home", href: "/#hero" },
-  { label: "About Me", href: "/#about" },
-  { label: "Values, Interests & Goals", href: "/#about" },
-  { label: "Blog & Personal Reflections", href: "/blog" },
-  { label: "Learning Journey", href: "/#education" },
-  { label: "Work & Community", href: "/#work" },
-  { label: "Achievements", href: "/achievements" },
+  { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Social Work and Volunteering", href: "/#work" },
+  { label: "Impact", href: "/blog#impact" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ];
 
