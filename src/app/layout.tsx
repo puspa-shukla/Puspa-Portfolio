@@ -11,7 +11,7 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
   : process.env.VERCEL_ENV === "production"
-    ? "https://puspa-shukla.vercel.app"
+    ? "https://www.puspashukla.com.np"
     : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : process.env.URL
@@ -118,7 +118,10 @@ export default function RootLayout({
                 }}
               />
             </div>
-            <div className="relative z-10 mx-auto w-full px-4 py-12 pb-24 sm:px-6 sm:py-24 max-w-2xl sm:max-w-3xl ">
+            <div
+              data-site-content
+              className="relative z-10 mx-auto w-full px-4 py-12 pb-24 sm:px-6 sm:py-24 max-w-2xl sm:max-w-3xl "
+            >
               {children}
             </div>
             <Navbar />
