@@ -42,7 +42,11 @@ export default function Page() {
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-40 shrink-0 rounded-full border shadow-lg ring-4 ring-muted md:ml-auto md:size-60">
-                <AvatarImage src="/puspa-home-profile.jpeg" alt="Puspa" />
+                <AvatarImage
+                  src="/puspa-profile-circle.jpeg"
+                  alt="Puspa"
+                  className="h-full w-full object-cover"
+                />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
             </BlurFade>
