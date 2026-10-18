@@ -75,32 +75,22 @@ export default function BlogSection() {
       <StoryCategoryRibbon />
       <header
         id="all-stories"
-        className="relative isolate min-h-[min(64svh,42rem)] scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10"
+        className="grid scroll-mt-20 overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
       >
-        <Image
-          src="/ugo-scholar-presentation.jpg"
-          alt="Two U-GO scholars presenting together during a learning session"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top opacity-90 md:object-[center_8%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#17343a]/85 via-[#17343a]/45 to-[#17343a]/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#17343a]/95 via-[#17343a]/40 to-transparent" />
-        <div className="relative z-10 flex min-h-[min(64svh,42rem)] flex-col justify-end p-5 pb-6 sm:p-7 md:p-9">
-          <div className="mb-4 w-fit max-w-5xl rounded-[14px] border border-white/25 bg-[#17343a]/55 px-5 py-4 shadow-2xl shadow-black/25 backdrop-blur-sm sm:px-8 sm:py-6">
-            <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.65rem,7vw,6rem)] font-semibold leading-[0.98] tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.85)]">
+        <div className="flex flex-col justify-center p-5 sm:p-7 md:p-9 lg:p-10">
+          <div className="mb-5 max-w-4xl">
+            <h1 className="mb-0 font-serif text-[clamp(2.25rem,4.4vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-white">
               The Girl Who{" "}
               <span className="text-[#ffb300] underline decoration-[#ffb300]/90 decoration-2 underline-offset-[0.18em]">
                 Did Not Wait to Be Asked
               </span>
             </h1>
           </div>
-          <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
+          <div className="flex flex-wrap items-start gap-2 text-xs font-semibold text-[#17343a] sm:text-sm">
             <span className="rounded-full border border-white/80 bg-[#fbf8f2] px-3 py-1.5 shadow-sm">
               3,000+ scholars reached
             </span>
-            <span className="max-w-3xl rounded-xl border border-white/80 bg-[#fbf8f2] px-4 py-2 text-center leading-relaxed shadow-sm">
+            <span className="max-w-full rounded-xl border border-white/80 bg-[#fbf8f2] px-4 py-2 leading-relaxed shadow-sm">
               9 countries: Nepal, India, Bangladesh, Pakistan, Indonesia, Philippines, Cambodia, Vietnam, Tanzania
             </span>
             <a
@@ -112,6 +102,16 @@ export default function BlogSection() {
               AI learning and community leadership
             </a>
           </div>
+        </div>
+        <div className="relative min-h-[22rem] bg-[#edf2ee] sm:min-h-[26rem] lg:min-h-[24rem]">
+          <Image
+            src="/ugo-scholar-presentation.jpg"
+            alt="Two U-GO scholars presenting together; one speaks while holding her notes"
+            fill
+            priority
+            sizes="(min-width: 1024px) 38vw, 100vw"
+            className="object-contain"
+          />
         </div>
       </header>
 
