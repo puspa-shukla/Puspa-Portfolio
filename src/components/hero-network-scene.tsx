@@ -70,10 +70,10 @@ export default function HeroNetworkScene() {
       new THREE.BufferAttribute(pointPositions, 3),
     );
     const pointMaterial = new THREE.PointsMaterial({
-      color: 0x5178ff,
-      size: 0.045,
+      color: 0x45a9a3,
+      size: 0.06,
       transparent: true,
-      opacity: 0.72,
+      opacity: 0.88,
       sizeAttenuation: true,
       depthWrite: false,
     });
@@ -82,7 +82,7 @@ export default function HeroNetworkScene() {
     const connections: number[] = [];
     for (let first = 0; first < points.length; first += 1) {
       for (let second = first + 1; second < points.length; second += 1) {
-        if (points[first].distanceTo(points[second]) < 2.05) {
+        if (points[first].distanceTo(points[second]) < 2.25) {
           connections.push(
             points[first].x,
             points[first].y,
@@ -101,9 +101,9 @@ export default function HeroNetworkScene() {
       new THREE.Float32BufferAttribute(connections, 3),
     );
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x7868dc,
+      color: 0xc72481,
       transparent: true,
-      opacity: 0.16,
+      opacity: 0.23,
       depthWrite: false,
     });
     network.add(new THREE.LineSegments(lineGeometry, lineMaterial));
@@ -145,9 +145,14 @@ export default function HeroNetworkScene() {
       frameId = window.requestAnimationFrame(render);
       if (now - lastFrame < 40) return;
       lastFrame = now;
-      network.rotation.y += (targetX - network.rotation.y) * 0.035;
-      network.rotation.x += (targetY - network.rotation.x) * 0.035;
-      network.position.y = Math.sin(now * 0.00018) * 0.06;
+      network.rotation.y +=
+        (targetX + Math.sin(now * 0.0002) * 0.055 - network.rotation.y) *
+        0.035;
+      network.rotation.x +=
+        (targetY + Math.cos(now * 0.00016) * 0.025 - network.rotation.x) *
+        0.035;
+      network.position.x = Math.sin(now * 0.00012) * 0.09;
+      network.position.y = Math.sin(now * 0.0003) * 0.12;
       renderer.render(scene, camera);
     };
     const stopAnimation = () => {
