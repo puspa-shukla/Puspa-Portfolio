@@ -179,10 +179,18 @@ html:has(.home-page) {
 }
 
 body:has(.home-page) {
-  background:
-    radial-gradient(ellipse at 4% 8%, rgb(155 208 228 / 38%), transparent 38rem),
-    radial-gradient(ellipse at 96% 36%, rgb(211 194 230 / 42%), transparent 42rem),
-    linear-gradient(180deg, #f2eff6 0%, #faf8fc 55rem, #f4f1f8 100%);
+  background: linear-gradient(
+    90deg,
+    #9bcfe2 0%,
+    #d2c1e5 6%,
+    #eee7f3 14%,
+    #faf8fc 25%,
+    #faf8fc 75%,
+    #eee7f3 86%,
+    #d2c1e5 94%,
+    #9bcfe2 100%
+  );
+  background-attachment: fixed;
 }
 
 .home-page {
