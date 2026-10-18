@@ -68,15 +68,15 @@ export default function StoryScrollLayout({
         className="hidden lg:sticky lg:top-20 lg:block"
       >
         <div className="overflow-hidden rounded-[14px] border border-[#c9d6d9] bg-white shadow-sm">
-          <div className="relative aspect-[4/4.5] overflow-hidden bg-[#e6f0f2]">
+          <div className="relative aspect-[3/2] overflow-hidden bg-[#e6f0f2]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeChapter.image}
                 className="absolute inset-0"
-                initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.025 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={shouldReduceMotion ? undefined : { opacity: 0 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <Image
                   src={activeChapter.image}
@@ -84,23 +84,23 @@ export default function StoryScrollLayout({
                   fill
                   unoptimized
                   sizes="(max-width: 1024px) 0px, 35vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </motion.div>
             </AnimatePresence>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#17343a]/95 via-[#17343a]/40 to-transparent p-6 pt-24 text-white">
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#ffb300]">
+          </div>
+          <div className="space-y-4 p-5">
+            <div className="space-y-2">
+              <p className="mb-0 text-xs font-bold uppercase tracking-[0.2em] text-[#9a6a00]">
                 The story, in motion
               </p>
               <p
                 aria-live="polite"
-                className="text-xl font-semibold tracking-tight"
+                className="mb-0 text-xl font-semibold tracking-tight text-[#17343a]"
               >
                 {activeChapter.label}
               </p>
             </div>
-          </div>
-          <div className="space-y-4 p-5">
             <p className="text-sm leading-relaxed text-muted-foreground">
               Student. AI educator. IT support practitioner. I turn initiative
               into practical outcomes for people and teams.
