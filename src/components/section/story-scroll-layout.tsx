@@ -82,6 +82,7 @@ export default function StoryScrollLayout({
                   src={activeChapter.image}
                   alt={activeChapter.imageAlt}
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 0px, 35vw"
                   className="object-cover"
                 />

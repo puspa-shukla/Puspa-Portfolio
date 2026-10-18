@@ -109,6 +109,7 @@ export default function BlogSection() {
             alt="Two U-GO scholars presenting together; one speaks while holding her notes"
             fill
             priority
+            unoptimized
             sizes="(min-width: 1024px) 38vw, 100vw"
             className="object-contain"
           />
