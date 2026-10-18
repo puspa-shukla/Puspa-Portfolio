@@ -87,7 +87,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
     <span
       ref={countRef}
       aria-label={`${new Intl.NumberFormat("en-US").format(value)}${suffix}`}
-      className="block text-6xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums sm:text-7xl lg:text-[7rem]"
+      className="block text-6xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums sm:text-7xl lg:text-[5.5rem]"
     >
       <span aria-hidden="true">
         {formattedCount}
@@ -99,7 +99,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export default function BlogImpactStats() {
   return (
-    <div className="blog-impact-band relative left-1/2 my-12 w-screen max-w-none">
+    <div className="blog-impact-band relative left-1/2 my-8 w-screen max-w-none">
       <section
         id="impact"
         aria-label="The impact of the U-GO AI program"
@@ -108,7 +108,7 @@ export default function BlogImpactStats() {
         {impactStats.map((stat, index) => (
           <div
             key={stat.label}
-            className={`flex min-h-56 flex-col justify-center gap-5 px-8 py-10 sm:px-10 sm:py-12 lg:px-16 ${
+            className={`flex min-h-44 flex-col justify-center gap-4 px-8 py-7 sm:px-10 sm:py-8 lg:px-16 ${
               index < impactStats.length - 1
                 ? "border-b border-[#d9dedb] sm:border-b-0 sm:border-r"
                 : ""
@@ -121,7 +121,7 @@ export default function BlogImpactStats() {
           </div>
         ))}
       </section>
-      <div className="blog-impact-marquee overflow-hidden bg-[#f0f1ed] py-5 text-[#1c3b40]">
+      <div className="blog-impact-marquee overflow-hidden bg-[#f0f1ed] py-3 text-[#1c3b40]">
         <p className="sr-only">Learn it, Teach it, Pass it on, Make AI work</p>
         <div className="blog-impact-marquee-track flex w-max" aria-hidden="true">
           {[0, 1].map((copy) => (
