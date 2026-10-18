@@ -48,13 +48,13 @@ export default function Navbar() {
                     aria-current={isActive ? "page" : undefined}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="group rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
                   >
                     <DockIcon
-                      className={`size-full cursor-pointer rounded-3xl border bg-background p-0 backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:border-blue-400/50 dark:hover:bg-blue-500/10 dark:hover:text-blue-200 ${
+                      className={`size-full cursor-pointer rounded-3xl border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted group-focus-visible:text-foreground ${
                         isActive
-                          ? "border-blue-300 bg-blue-50 text-blue-700 dark:border-blue-400/50 dark:bg-blue-500/10 dark:text-blue-200"
-                          : "border-border text-muted-foreground"
+                          ? "border-border bg-muted text-foreground"
+                          : "border-border"
                       }`}
                     >
                       <item.icon className="size-full rounded-sm overflow-hidden object-contain" />
@@ -90,9 +90,13 @@ export default function Navbar() {
                       title={name}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className="rounded-full transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="group rounded-full transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
                     >
-                      <DockIcon className="size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:scale-105 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:border-blue-400/50 dark:hover:bg-blue-500/10 dark:hover:text-blue-200">
+                      <DockIcon className={`size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:scale-105 hover:border-border hover:bg-muted ${
+                        name === "LinkedIn"
+                          ? "group-focus-visible:text-[#0a66c2]"
+                          : "group-focus-visible:text-foreground"
+                      }`}>
                         <IconComponent className="size-full rounded-sm overflow-hidden object-contain" />
                       </DockIcon>
                     </a>
@@ -114,7 +118,7 @@ export default function Navbar() {
           />
           <Tooltip>
             <TooltipTrigger asChild>
-              <DockIcon className="size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:border-blue-400/50 dark:hover:bg-blue-500/10 dark:hover:text-blue-200">
+              <DockIcon className="group size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted has-[:focus-visible]:text-amber-600 dark:has-[:focus-visible]:text-amber-400">
                 <ModeToggle className="size-full cursor-pointer" />
               </DockIcon>
             </TooltipTrigger>
