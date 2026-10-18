@@ -179,38 +179,13 @@ html:has(.home-page) {
 }
 
 body:has(.home-page) {
-  background: #f7f9f9;
-  background-attachment: fixed;
-}
-
-body:has(.home-page)::before,
-body:has(.home-page)::after {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  width: clamp(7rem, 25vw, 30rem);
-  pointer-events: none;
-  content: "";
-}
-
-body:has(.home-page)::before {
-  left: 0;
-  background: linear-gradient(90deg, #45a9a3 0%, rgb(69 169 163 / 76%) 36%, rgb(69 169 163 / 28%) 72%, transparent 100%);
-}
-
-body:has(.home-page)::after {
-  right: 0;
-  background: linear-gradient(270deg, #c72481 0%, rgb(199 36 129 / 72%) 36%, rgb(199 36 129 / 24%) 72%, transparent 100%);
+  background: #fff;
 }
 
 .home-page {
-  --home-ink: #203b3b;
-  --home-muted: #455b5b;
-  --home-teal: #45a9a3;
-  --home-pink: #c72481;
-  --home-teal-soft: #e4f4f2;
-  --home-pink-soft: #f8e8f1;
+  --home-ink: #202124;
+  --home-muted: #5f6368;
+  --home-slate: #53616b;
   color: var(--home-ink);
 }
 
@@ -222,26 +197,26 @@ body:has(.home-page)::after {
 .home-page > #skills {
   position: relative;
   padding: clamp(1.1rem, 3vw, 1.75rem);
-  border: 1px solid rgb(69 169 163 / 28%);
+  border: 1px solid #e5e7eb;
   border-radius: 1.25rem;
-  background: linear-gradient(125deg, var(--home-teal-soft), #fff 55%, var(--home-pink-soft));
-  box-shadow: 0 18px 42px -30px rgb(32 88 85 / 35%);
+  background: #fff;
+  box-shadow: 0 18px 42px -30px rgb(31 41 55 / 20%);
 }
 
 .home-page > .home-section:nth-of-type(odd) {
-  background: linear-gradient(125deg, #e3f3f1, #f8eaf2 62%, #f4e2ed);
+  background: #fafafa;
 }
 
 .home-page > #about,
 .home-page > #education {
-  background: linear-gradient(120deg, #d9efed, #f7eaf2 72%, #e5f4f1);
+  background: #fff;
 }
 
 .home-page > #work,
 .home-page > #hackathons,
 .home-page > #contact,
 .home-page > #skills {
-  background: linear-gradient(120deg, #faeaf3, #f5e1ec 62%, #e0f1ef);
+  background: #fafafa;
 }
 
 .home-page > #skills > div,
@@ -263,23 +238,23 @@ body:has(.home-page)::after {
   width: 2.6rem;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--home-teal), var(--home-pink));
+  background: var(--home-slate);
   content: "";
 }
 
 .home-page > #skills [class~="border"][class~="bg-background"] {
   height: 2.25rem;
-  border-color: rgb(69 169 163 / 36%);
+  border-color: #e5e7eb;
   border-radius: 999px;
-  background: linear-gradient(135deg, #fff, #e9f5f3);
-  box-shadow: 0 5px 16px -13px rgb(32 88 85 / 48%);
+  background: #fff;
+  box-shadow: 0 5px 16px -13px rgb(31 41 55 / 25%);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .home-page > #skills [class~="border"][class~="bg-background"]:hover {
   transform: translateY(-2px);
-  border-color: var(--home-teal);
-  box-shadow: 0 10px 18px -14px rgb(32 88 85 / 55%);
+  border-color: #9ca3af;
+  box-shadow: 0 10px 18px -14px rgb(31 41 55 / 30%);
 }
 
 .home-hero {
@@ -288,42 +263,15 @@ body:has(.home-page)::after {
   overflow: hidden;
   margin: -0.75rem -0.5rem 0;
   padding: clamp(1.1rem, 4vw, 2.25rem);
-  border: 1px solid rgb(69 169 163 / 42%);
+  border: 1px solid #e5e7eb;
   border-radius: 1.75rem;
-  background:
-    radial-gradient(ellipse at 82% 20%, rgb(199 36 129 / 14%), transparent 42%),
-    radial-gradient(ellipse at 10% 88%, rgb(69 169 163 / 20%), transparent 40%),
-    linear-gradient(120deg, #fff 0%, #f1f9f8 55%, #fff4f9 100%);
-  box-shadow: 0 26px 64px -38px rgb(32 88 85 / 34%);
-}
-
-.home-hero::before,
-.home-hero::after {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  content: "";
-}
-
-.home-hero::before {
-  inset: -36% -15% -28% 14%;
-  background:
-    radial-gradient(ellipse at 25% 24%, rgb(69 169 163 / 20%), transparent 34%),
-    radial-gradient(ellipse at 70% 43%, rgb(199 36 129 / 18%), transparent 31%),
-    radial-gradient(ellipse at 66% 76%, rgb(69 169 163 / 16%), transparent 27%);
-  filter: blur(10px);
-  animation: home-ambient-drift 14s ease-in-out infinite alternate;
-}
-
-.home-hero::after {
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(115deg, transparent 50%, rgb(255 255 255 / 28%));
+  background: #fff;
+  box-shadow: 0 26px 64px -38px rgb(31 41 55 / 22%);
 }
 
 .home-hero-network {
   z-index: 1;
-  opacity: 0.88;
+  opacity: 0.42;
   mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
 }
 
@@ -332,7 +280,7 @@ body:has(.home-page)::after {
 }
 
 .home-title-accent {
-  background: linear-gradient(110deg, #368e89, #45a9a3 45%, #c72481);
+  background: linear-gradient(110deg, #374151, #111827);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -346,16 +294,16 @@ body:has(.home-page)::after {
   border: 1px solid transparent;
   border-radius: 999px;
   padding: 0.68rem 1.1rem;
-  background: linear-gradient(110deg, #32837e, #b11f70);
+  background: linear-gradient(110deg, #374151, #111827);
   color: #fff;
-  box-shadow: 0 8px 20px -12px rgb(32 88 85 / 55%);
+  box-shadow: 0 8px 20px -12px rgb(31 41 55 / 40%);
   text-decoration: none;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
 .home-actions button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px -12px rgb(32 88 85 / 48%);
+  box-shadow: 0 12px 24px -12px rgb(31 41 55 / 40%);
   filter: saturate(1.08);
 }
 
@@ -367,24 +315,24 @@ body:has(.home-page)::after {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  border: 1px solid rgb(69 169 163 / 48%);
+  border: 1px solid #d1d5db;
   border-radius: 999px;
   padding: 0.68rem 1.1rem;
   background: rgb(255 255 255 / 78%);
   color: var(--home-ink);
-  text-decoration-color: rgb(69 169 163 / 70%);
+  text-decoration-color: #9ca3af;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .home-actions a[href="/api/resume"]:hover {
   transform: translateY(-2px);
-  border-color: var(--home-teal);
+  border-color: #6b7280;
   background: #fff;
 }
 
 .home-actions :is(button, a):focus-visible,
 .home-scroll-cue:focus-visible {
-  outline: 3px solid rgb(199 36 129 / 72%);
+  outline: 3px solid rgb(83 97 107 / 58%);
   outline-offset: 3px;
 }
 
@@ -393,8 +341,8 @@ body:has(.home-page)::after {
   z-index: 2;
   padding: 0.35rem;
   border-radius: 999px;
-  background: linear-gradient(145deg, #45a9a3, #fff 45%, #c72481);
-  box-shadow: 0 18px 42px -26px rgb(32 88 85 / 45%);
+  background: #e5e7eb;
+  box-shadow: 0 18px 42px -26px rgb(31 41 55 / 36%);
 }
 
 .home-profile-photo {
@@ -405,7 +353,7 @@ body:has(.home-page)::after {
 
 .home-profile-photo:hover {
   transform: translateY(-3px) scale(1.015);
-  box-shadow: 0 18px 38px -20px rgb(199 36 129 / 32%);
+  box-shadow: 0 18px 38px -20px rgb(31 41 55 / 25%);
 }
 
 .home-scroll-cue {
@@ -425,15 +373,15 @@ body:has(.home-page)::after {
 }
 
 .home-scroll-cue:hover {
-  color: #a51d69;
+  color: #374151;
 }
 
 .home-scroll-dot {
   width: 0.45rem;
   height: 0.45rem;
   border-radius: 999px;
-  background: var(--home-pink);
-  box-shadow: 0 0 0 4px rgb(199 36 129 / 16%);
+  background: var(--home-slate);
+  box-shadow: 0 0 0 4px rgb(83 97 107 / 12%);
 }
 
 .home-page .home-section-title {
@@ -450,7 +398,7 @@ body:has(.home-page)::after {
   width: 2.6rem;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--home-teal), var(--home-pink));
+  background: var(--home-slate);
   content: "";
 }
 
@@ -459,8 +407,8 @@ body:has(.home-page)::after {
 }
 
 .home-page #about .prose a {
-  color: #a51d69;
-  text-decoration-color: rgb(167 29 105 / 55%);
+  color: #374151;
+  text-decoration-color: rgb(55 65 81 / 48%);
 }
 
 @media (max-width: 767px) {
@@ -475,10 +423,6 @@ body:has(.home-page)::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-hero::before {
-    animation: none;
-  }
-
   .home-page > #skills [class~="border"][class~="bg-background"],
   .home-actions button,
   .home-actions a[href="/api/resume"],
@@ -486,11 +430,6 @@ body:has(.home-page)::after {
   .home-scroll-cue {
     transition: none;
   }
-}
-
-@keyframes home-ambient-drift {
-  from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
-  to { transform: translate3d(1.5%, 1%, 0) scale(1.08); }
 }
 
 .story-category-ribbon a {
