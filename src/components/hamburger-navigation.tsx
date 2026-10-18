@@ -18,6 +18,7 @@ const navigationItems = [
 export default function HamburgerNavigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [activeHref, setActiveHref] = useState("/#hero");
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
@@ -28,6 +29,16 @@ export default function HamburgerNavigation() {
       setClosing(false);
     }, 180);
   }, []);
+
+  useEffect(() => {
+    const updateActiveHref = () => {
+      setActiveHref(pathname === "/" ? `/${window.location.hash || "#hero"}` : pathname);
+    };
+
+    updateActiveHref();
+    window.addEventListener("hashchange", updateActiveHref);
+    return () => window.removeEventListener("hashchange", updateActiveHref);
+  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -145,9 +156,8 @@ export default function HamburgerNavigation() {
               <ul className="space-y-1">
                 {navigationItems.map((item, index) => {
                   const targetPath = item.href.split("#")[0] || "/";
-                  const isActive =
-                    pathname === targetPath &&
-                    (!item.href.includes("#") || item.href === "/#hero");
+                  const isActive = activeHref === item.href ||
+                    (targetPath !== "/" && pathname === targetPath);
 
                   return (
                     <li key={item.label}>
@@ -155,9 +165,9 @@ export default function HamburgerNavigation() {
                         href={item.href}
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMenu}
-                        className={`group flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-all duration-200 hover:translate-x-1 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-blue-500/10 dark:hover:text-blue-200 ${
+                        className={`group flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-all duration-200 hover:translate-x-1 hover:bg-[#e6f0f2] hover:text-[#1f5f6b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9aaa] ${
                           isActive
-                            ? "bg-blue-50 text-blue-800 dark:bg-blue-500/10 dark:text-blue-200"
+                            ? "bg-[#e6f0f2] text-[#1f5f6b]"
                             : "text-foreground"
                         }`}
                       >
