@@ -71,7 +71,7 @@ export const DATA = {
       },
       GitHub: {
         name: "GitHub",
-        url: "https://github.com/puspashukla321-web",
+        url: "https://github.com/puspa-shukla",
         icon: Icons.github,
         navbar: true,
       },
@@ -184,7 +184,7 @@ export const DATA = {
   projects: [
     {
       title: "Currency Converter",
-      href: "https://puspashukla321-web.github.io/CurrencyConverter/?From=USD&from=NPR",
+      href: "https://puspa-shukla.github.io/CurrencyConverter/?From=USD&from=NPR",
       dates: "Web project",
       active: true,
       description:
@@ -194,12 +194,12 @@ export const DATA = {
         {
           icon: <Icons.globe className="size-3.5" />,
           type: "Live Demo",
-          href: "https://puspashukla321-web.github.io/CurrencyConverter/?From=USD&from=NPR",
+          href: "https://puspa-shukla.github.io/CurrencyConverter/?From=USD&from=NPR",
         },
         {
           icon: <Icons.github className="size-3.5" />,
           type: "View Source",
-          href: "https://github.com/puspashukla321-web/CurrencyConverter",
+          href: "https://github.com/puspa-shukla/CurrencyConverter",
         },
       ],
       image: "/currency-converter.png",
@@ -207,7 +207,7 @@ export const DATA = {
     },
     {
       title: "Tic Tac Toe Game",
-      href: "https://puspashukla321-web.github.io/TicTacToe/",
+      href: "https://puspa-shukla.github.io/TicTacToe/",
       dates: "Web project",
       active: true,
       description:
@@ -217,12 +217,12 @@ export const DATA = {
         {
           icon: <Icons.globe className="size-3.5" />,
           type: "Live Demo",
-          href: "https://puspashukla321-web.github.io/TicTacToe/",
+          href: "https://puspa-shukla.github.io/TicTacToe/",
         },
         {
           icon: <Icons.github className="size-3.5" />,
           type: "View Source",
-          href: "https://github.com/puspashukla321-web/TicTacToe",
+          href: "https://github.com/puspa-shukla/TicTacToe",
         },
       ],
       image: "/tic-tac-toe.png",
@@ -230,7 +230,7 @@ export const DATA = {
     },
     {
       title: "Rock, Paper, Scissors Game",
-      href: "https://puspashukla321-web.github.io/ScissorPaperRock/",
+      href: "https://puspa-shukla.github.io/ScissorPaperRock/",
       dates: "Web project",
       active: true,
       description:
@@ -240,12 +240,12 @@ export const DATA = {
         {
           icon: <Icons.globe className="size-3.5" />,
           type: "Live Demo",
-          href: "https://puspashukla321-web.github.io/ScissorPaperRock/",
+          href: "https://puspa-shukla.github.io/ScissorPaperRock/",
         },
         {
           icon: <Icons.github className="size-3.5" />,
           type: "View Source",
-          href: "https://github.com/puspashukla321-web/ScissorPaperRock",
+          href: "https://github.com/puspa-shukla/ScissorPaperRock",
         },
       ],
       image: "/scissor-paper-rock.png",
@@ -268,7 +268,7 @@ export const DATA = {
         {
           icon: <Icons.github className="size-3.5" />,
           type: "View Source",
-          href: "https://github.com/puspashukla321-web/RouteWay-System",
+          href: "https://github.com/puspa-shukla/RouteWay-System",
         },
       ],
       image: "/routeway-system.png",
