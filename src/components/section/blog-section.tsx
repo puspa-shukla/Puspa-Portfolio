@@ -26,12 +26,6 @@ const chapters: StoryChapter[] = [
     imageAlt: "Puspa working at a computer during hands-on IT training",
   },
   {
-    id: "what-goes-around",
-    label: "Keep showing up. Let impact travel.",
-    image: "/ugo-ai-session.png",
-    imageAlt: "Scholars joining a U-GO AI online session",
-  },
-  {
     id: "beyond-borders",
     label: "One open door can cross borders.",
     image: "/ugo-nepal-vietnam.jpg",
@@ -195,45 +189,23 @@ export default function BlogSection() {
 
         <h2 id="unseen-work">The work nobody saw</h2>
         <p>
-          This is the part of the story that never shows up in a report.
+          This is the work that never showed up in a report. {" "}
+          <em>I wasn't paid, praised, or recognized locally.</em> There were
+          no certificates for late-night calls or applause for the hundredth
+          screen-share. Some days I wondered if anyone noticed, but I kept
+          answering messages, joining calls, and helping scholars finish their
+          resumes—even when I was tired and no one said thank you.
         </p>
         <p>
-          <em>
-            I wasn't paid. I wasn't praised. At the local level, my work wasn't
-            even recognized.
-          </em>
+          I made myself a promise: <em>do the work because it's right, not
+          because it's rewarded.</em> I never kept score or waited for a reward.
+          I kept showing up, one scholar at a time, because impact doesn't need
+          an audience—and opening a door for someone matters more than applause.
         </p>
         <p>
-          There were no certificates for the late-night calls and no applause
-          for the hundredth screen-share. Some days I wondered whether anyone
-          noticed, or whether it mattered at all.
-        </p>
-        <p>
-          But I had made myself a promise:{" "}
-          <em>do the work because it's right, not because it's rewarded.</em> I
-          believed that impact doesn't need an audience. A scholar who sends
-          her first professional email isn't thinking about who is clapping.
-          She's busy walking through a door that just opened.
-        </p>
-
-        <h2 id="what-goes-around">What Goes Around Comes Around</h2>
-        <p>
-          Nobody paid me for this. Nobody clapped. For a long time, almost
-          nobody even noticed.
-        </p>
-        <p>I kept going anyway.</p>
-        <p>
-          I kept answering the messages. I kept joining the calls. I kept
-          sharing my screen, recording my videos, and sitting with scholars
-          until their resumes were finished and their confidence had returned.
-          I kept doing it on the days I was tired, on the days no one said thank
-          you, and on the days it felt like my effort was disappearing into
-          silence.
-        </p>
-        <p>
-          I never kept score, and I never waited for a reward. I just kept
-          doing the work, one scholar at a time, because I believed that if you
-          give with an honest heart, it will find its way back to you.
+          I believed that when you give with an honest heart, it finds its way
+          back to you. Later, the quiet work returned as recognition on a global
+          stage. <strong>What goes around comes around.</strong>
         </p>
 
         <h2 id="beyond-borders">Beyond the borders</h2>
