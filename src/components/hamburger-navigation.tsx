@@ -1,56 +1,23 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const navigationItems = [
-  {
-    label: "Home",
-    description: "Your first impression and what makes you unique.",
-    href: "/#hero",
-  },
-  {
-    label: "My Story",
-    description: "Your journey, values, ambitions, and what drives you.",
-    href: "/#about",
-  },
-  {
-    label: "Portfolio",
-    description: "AI projects, coding, technical skills, and work samples.",
-    href: "/projects",
-  },
-  {
-    label: "Achievements",
-    description: "Milestones, certifications, recognition, and accomplishments.",
-    href: "/achievements",
-  },
-  {
-    label: "Social Impact",
-    description: "Disaster relief, blood donation, volunteering, and community service.",
-    href: "/social-work",
-  },
-  {
-    label: "U-GO AI",
-    description: "Your AI leadership, scholar community, and collaborative work.",
-    href: "/blog",
-  },
-  {
-    label: "Insights",
-    description: "Your blog, lessons learned, opinions, and ideas about technology.",
-    href: "/content-creation",
-  },
-  {
-    label: "Contact",
-    description: "Connect with you for jobs, collaborations, and opportunities.",
-    href: "/#contact",
-  },
+  { label: "Home", href: "/#hero" },
+  { label: "My Story", href: "/#about" },
+  { label: "Portfolio", href: "/projects" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Social Impact", href: "/social-work" },
+  { label: "U-GO AI", href: "/blog" },
+  { label: "Insights", href: "/content-creation" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function HamburgerNavigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
-  const [activeHref, setActiveHref] = useState("/#hero");
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
@@ -61,20 +28,6 @@ export default function HamburgerNavigation() {
       setClosing(false);
     }, 180);
   }, []);
-
-  useEffect(() => {
-    const updateActiveHref = () => {
-      setActiveHref(
-        pathname === "/"
-          ? `/${window.location.hash || "#hero"}`
-          : pathname,
-      );
-    };
-
-    updateActiveHref();
-    window.addEventListener("hashchange", updateActiveHref);
-    return () => window.removeEventListener("hashchange", updateActiveHref);
-  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -147,84 +100,71 @@ export default function HamburgerNavigation() {
 
       {menuOpen && (
         <div
-          className={`fixed inset-0 z-[70] overflow-y-auto bg-[#050606] text-[#f5f7f6] motion-reduce:animate-none ${
+          className={`fixed inset-0 z-[70] motion-reduce:animate-none ${
             closing
               ? "animate-out fade-out duration-150"
               : "animate-in fade-in-0 duration-200"
           }`}
         >
+          <button
+            type="button"
+            aria-label="Close navigation menu"
+            onClick={closeMenu}
+            className="absolute inset-0 cursor-default bg-black/30 backdrop-blur-[2px]"
+          />
           <aside
             id="site-navigation-menu"
             ref={menuPanelRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="site-navigation-title"
-            className={`relative flex min-h-dvh w-full flex-col border-t border-white/10 bg-[#050606] px-2.5 pb-5 pt-2.5 sm:px-4 motion-reduce:animate-none ${
+            className={`relative flex h-dvh w-[min(88vw,22rem)] flex-col border-r border-border bg-card p-6 text-card-foreground shadow-2xl motion-reduce:animate-none sm:p-8 ${
               closing
                 ? "animate-out slide-out-to-left-4 duration-150"
-                : "animate-in fade-in-0 duration-200"
+                : "animate-in slide-in-from-left-4 duration-200"
             }`}
           >
-            <div className="flex min-h-9 justify-end">
-              <h2 id="site-navigation-title" className="sr-only">
-                Main navigation
+            <div className="mb-8 flex items-center justify-between">
+              <h2
+                id="site-navigation-title"
+                className="text-xl font-semibold tracking-tight"
+              >
+                Explore
               </h2>
               <button
                 type="button"
                 data-menu-close
                 aria-label="Close navigation menu"
                 onClick={closeMenu}
-                className="inline-flex size-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9aaa] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050606]"
+                className="inline-flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <X aria-hidden="true" className="size-5" />
               </button>
             </div>
-            <nav aria-label="Main navigation" className="min-h-0 flex-1">
-              <ul className="space-y-0.5">
+            <nav aria-label="Main navigation" className="overflow-y-auto">
+              <ul className="space-y-1">
                 {navigationItems.map((item, index) => {
                   const targetPath = item.href.split("#")[0] || "/";
-                  const isActive = activeHref === item.href ||
-                    (targetPath !== "/" && pathname === targetPath);
+                  const isActive =
+                    pathname === targetPath &&
+                    (!item.href.includes("#") || item.href === "/#hero");
 
                   return (
                     <li key={item.label}>
                       <a
                         href={item.href}
                         aria-current={isActive ? "page" : undefined}
-                        aria-describedby={`navigation-description-${index + 1}`}
                         onClick={closeMenu}
-                        className={`group grid min-h-[4.75rem] grid-cols-[2.5rem_minmax(0,1fr)_1.25rem] items-center gap-2 rounded-xl px-2.5 py-2.5 text-left transition-colors duration-200 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9aaa] ${
+                        className={`group flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-all duration-200 hover:translate-x-1 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-blue-500/10 dark:hover:text-blue-200 ${
                           isActive
-                            ? "bg-[#1f5f6b]/20 text-white"
-                            : "text-[#f5f7f6]"
+                            ? "bg-blue-50 text-blue-800 dark:bg-blue-500/10 dark:text-blue-200"
+                            : "text-foreground"
                         }`}
                       >
-                        <span
-                          className={`text-base tabular-nums ${
-                            isActive ? "text-[#5b9aaa]" : "text-[#c3c9c8]"
-                          }`}
-                        >
+                        <span className="w-6 shrink-0 text-xs tabular-nums text-muted-foreground">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="min-w-0">
-                          <span className="block text-base font-semibold leading-6">
-                            {item.label}
-                          </span>
-                          <span
-                            id={`navigation-description-${index + 1}`}
-                            className="mt-0.5 block text-sm leading-5 text-[#b8c0be] sm:text-base sm:leading-6"
-                          >
-                            {item.description}
-                          </span>
-                        </span>
-                        <ArrowUpRight
-                          aria-hidden="true"
-                          className={`size-4 transition-opacity ${
-                            isActive
-                              ? "text-[#5b9aaa] opacity-100"
-                              : "text-[#5b9aaa] opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-                          }`}
-                        />
+                        <span>{item.label}</span>
                       </a>
                     </li>
                   );
