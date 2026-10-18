@@ -276,7 +276,7 @@ body:has(.home-page) {
 
 .home-hero-network {
   z-index: 1;
-  opacity: 0.34;
+  opacity: 0.42;
   mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%);
 }
 
@@ -424,7 +424,11 @@ body:has(.home-page) {
   }
 
   .home-hero-network {
-    display: none;
+    left: 38%;
+    right: auto;
+    width: 62%;
+    opacity: 0.18;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
   }
 }
 
