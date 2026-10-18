@@ -52,6 +52,16 @@
   animation: blog-impact-marquee 30s linear infinite;
 }
 
+.blog-impact-band {
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  .blog-impact-band {
+    transform: translateX(-69.5%);
+  }
+}
+
 .blog-impact-marquee:hover .blog-impact-marquee-track {
   animation-play-state: paused;
 }

@@ -99,7 +99,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export default function BlogImpactStats() {
   return (
-    <div className="relative left-1/2 my-12 w-screen -translate-x-1/2 max-w-none">
+    <div className="blog-impact-band relative left-1/2 my-12 w-screen max-w-none">
       <section
         id="impact"
         aria-label="The impact of the U-GO AI program"

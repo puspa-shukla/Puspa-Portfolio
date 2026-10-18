@@ -256,6 +256,8 @@ export default function BlogSection() {
           I grew into leadership by practicing it.
         </p>
 
+        <BlogImpactStats />
+
         <h2 id="world-noticed">Then the world noticed</h2>
         <p>
           And then, at the <strong>U-GO Global Summit in Cambodia</strong>, it
@@ -374,7 +376,6 @@ export default function BlogSection() {
         </p>
       </article>
       </StoryScrollLayout>
-      <BlogImpactStats />
     </div>
   );
 }
