@@ -3,9 +3,9 @@ import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 
 const socialWorkCategories = [
   { label: "My beginning", href: "#beginning", target: "beginning" },
-  { label: "Small actions", href: "#small-actions", target: "small-actions" },
-  { label: "Flood support", href: "#flood-support", target: "flood-support" },
-  { label: "Blood donation", href: "#blood-donation", target: "blood-donation" },
+  { label: "Hunger Relief", href: "#small-actions", target: "small-actions" },
+  { label: "Disaster Relief", href: "#flood-support", target: "flood-support" },
+  { label: "Blood for life", href: "#blood-donation", target: "blood-donation" },
   { label: "What I’m learning", href: "#learning", target: "learning" },
   { label: "The journey continues", href: "#continues", target: "continues" },
 ];
