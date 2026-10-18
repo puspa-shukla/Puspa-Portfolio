@@ -20,7 +20,7 @@ export default function HeroNetworkScene() {
     const smallScreen = window.matchMedia("(max-width: 767px)").matches;
     const lowPowerDevice = (navigator.hardwareConcurrency || 8) <= 2;
     const saveData = (navigator as SaveDataNavigator).connection?.saveData;
-    if (reducedMotion || lowPowerDevice || saveData) return;
+    const animate = !reducedMotion && !lowPowerDevice && !saveData;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -44,32 +44,32 @@ export default function HeroNetworkScene() {
     sculpture.position.set(smallScreen ? 0 : 2.65, 0, -0.25);
     scene.add(sculpture);
 
-    const coreGeometry = new THREE.IcosahedronGeometry(1.45, 1);
+    const coreGeometry = new THREE.IcosahedronGeometry(1.6, 1);
     const coreMaterial = new THREE.MeshBasicMaterial({
       color: 0x1f5f6b,
       wireframe: true,
       transparent: true,
-      opacity: 0.16,
+      opacity: 0.28,
       depthWrite: false,
     });
     sculpture.add(new THREE.Mesh(coreGeometry, coreMaterial));
 
-    const orbitGeometry = new THREE.TorusGeometry(2.05, 0.008, 4, 112);
+    const orbitGeometry = new THREE.TorusGeometry(2.2, 0.01, 4, 112);
     const orbitMaterial = new THREE.MeshBasicMaterial({
       color: 0x5b9aaa,
       transparent: true,
-      opacity: 0.27,
+      opacity: 0.46,
       depthWrite: false,
     });
     const orbitA = new THREE.Mesh(orbitGeometry, orbitMaterial);
     orbitA.rotation.set(0.95, 0.18, -0.28);
     sculpture.add(orbitA);
 
-    const orbitBGeometry = new THREE.TorusGeometry(1.82, 0.006, 4, 112);
+    const orbitBGeometry = new THREE.TorusGeometry(1.88, 0.008, 4, 112);
     const orbitBMaterial = new THREE.MeshBasicMaterial({
       color: 0x1f5f6b,
       transparent: true,
-      opacity: 0.17,
+      opacity: 0.34,
       depthWrite: false,
     });
     const orbitB = new THREE.Mesh(orbitBGeometry, orbitBMaterial);
@@ -96,9 +96,9 @@ export default function HeroNetworkScene() {
     const pointGeometry = new THREE.BufferGeometry().setFromPoints(points);
     const pointMaterial = new THREE.PointsMaterial({
       color: 0x1f5f6b,
-      size: 0.052,
+      size: 0.066,
       transparent: true,
-      opacity: 0.62,
+      opacity: 0.82,
       sizeAttenuation: true,
       depthWrite: false,
     });
@@ -128,7 +128,7 @@ export default function HeroNetworkScene() {
     const connectionMaterial = new THREE.LineBasicMaterial({
       color: 0x5b9aaa,
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.2,
       depthWrite: false,
     });
     sculpture.add(
@@ -219,7 +219,7 @@ export default function HeroNetworkScene() {
       frameId = 0;
     };
     const startAnimation = () => {
-      if (visible && !document.hidden && !frameId) {
+      if (animate && visible && !document.hidden && !frameId) {
         frameId = window.requestAnimationFrame(render);
       }
     };
