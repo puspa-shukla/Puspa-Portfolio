@@ -13,7 +13,7 @@ const Resume = () => {
       </a>
       <div
         aria-hidden="true"
-        className="invisible absolute left-0 top-full z-[60] mt-3 h-[min(65vh,34rem)] w-[min(85vw,22rem)] origin-top-left translate-y-2 overflow-hidden rounded-xl border border-neutral-200 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 md:left-full md:top-1/2 md:mt-0 md:ml-3 md:origin-left md:-translate-y-1/2 md:translate-x-2 md:group-hover:-translate-y-1/2 md:group-hover:translate-x-0 md:group-focus-within:-translate-y-1/2 md:group-focus-within:translate-x-0"
+        className="invisible absolute left-0 top-full z-[60] mt-3 h-[min(65vh,34rem)] w-[min(85vw,22rem)] origin-top-left translate-y-2 overflow-hidden rounded-xl border border-neutral-200 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
       >
         <div className="w-[200%] origin-top-left scale-50 bg-white p-5 text-left text-neutral-900">
         <div className="border-b border-neutral-800 pb-3 text-center">

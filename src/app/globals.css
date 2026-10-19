@@ -710,6 +710,52 @@ html.dark body:has(.home-page) {
     0 18px 36px -18px rgb(0 0 0 / 80%) !important;
 }
 
+/* ---------- Achievements: cards pop out on hover, tap or keyboard focus ---------- */
+#hackathons .rounded-2xl.bg-card {
+  position: relative;
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+#hackathons .rounded-2xl.bg-card:hover,
+#hackathons .rounded-2xl.bg-card:focus-within,
+#hackathons .rounded-2xl.bg-card:focus-visible {
+  z-index: 2;
+  border-color: #5b9aaa;
+  transform: translateY(-6px) scale(1.015);
+  box-shadow:
+    0 2px 0 rgb(31 95 107 / 25%),
+    0 14px 24px -14px rgb(23 52 58 / 35%),
+    0 32px 56px -28px rgb(23 52 58 / 45%);
+}
+
+#hackathons .rounded-2xl.bg-card:active {
+  transform: translateY(-3px) scale(1.008);
+  transition-duration: 90ms;
+}
+
+.dark #hackathons .rounded-2xl.bg-card:hover,
+.dark #hackathons .rounded-2xl.bg-card:focus-within,
+.dark #hackathons .rounded-2xl.bg-card:focus-visible {
+  border-color: #ffb300;
+  box-shadow:
+    0 2px 0 rgb(255 179 0 / 35%),
+    0 14px 24px -14px rgb(0 0 0 / 60%),
+    0 32px 56px -28px rgb(0 0 0 / 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hackathons .rounded-2xl.bg-card,
+  #hackathons .rounded-2xl.bg-card:hover,
+  #hackathons .rounded-2xl.bg-card:focus-within,
+  #hackathons .rounded-2xl.bg-card:active {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Sections receive focus from the navigator; no outline around whole cards. */
 .home-page > section:focus {
   outline: none;
