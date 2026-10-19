@@ -104,9 +104,9 @@ export default function HamburgerNavigation() {
           setClosing(false);
           setMenuOpen(true);
         }}
-        className="fixed left-4 top-4 z-[60] inline-flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-[#5b9aaa] hover:bg-[#e6f0f2] hover:text-[#1f5f6b] hover:shadow-md focus-visible:bg-[#e6f0f2] focus-visible:text-[#1f5f6b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9aaa] focus-visible:ring-offset-2 sm:left-6 sm:top-6"
+        className="btn-3d group fixed left-4 top-4 z-[60] inline-flex size-11 items-center justify-center rounded-full text-[#17343a] hover:text-[#1f5f6b] dark:text-[#e6f0f2] dark:hover:text-[#ffb300] sm:left-6 sm:top-6"
       >
-        <Menu aria-hidden="true" className="size-5" />
+        <Menu aria-hidden="true" className="size-5 transition-transform duration-200 group-hover:scale-110" />
       </button>
 
       {menuOpen && (
@@ -147,9 +147,9 @@ export default function HamburgerNavigation() {
                 data-menu-close
                 aria-label="Close navigation menu"
                 onClick={closeMenu}
-                className="inline-flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="btn-3d group inline-flex size-10 items-center justify-center rounded-full text-muted-foreground hover:text-foreground"
               >
-                <X aria-hidden="true" className="size-5" />
+                <X aria-hidden="true" className="size-5 transition-transform duration-300 group-hover:rotate-90" />
               </button>
             </div>
             <nav aria-label="Main navigation" className="overflow-y-auto">
@@ -160,7 +160,11 @@ export default function HamburgerNavigation() {
                     (targetPath !== "/" && pathname === targetPath);
 
                   return (
-                    <li key={item.label}>
+                    <li
+                      key={item.label}
+                      className="animate-in fade-in-0 slide-in-from-left-3 duration-300 motion-reduce:animate-none"
+                      style={{ animationDelay: `${60 + index * 35}ms`, animationFillMode: "both" }}
+                    >
                       <a
                         href={item.href}
                         aria-current={isActive ? "page" : undefined}

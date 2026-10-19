@@ -611,6 +611,222 @@ html.dark body:has(.home-page) {
   }
 }
 
+/* ---------- 3D buttons (dock, menu, back-to-top) ---------- */
+/* Text color is left to utility classes so brand hover colors still apply. */
+.btn-3d {
+  --btn-edge: #b7c8cc;
+  border: 1px solid #c9d6d9;
+  background: linear-gradient(180deg, #ffffff 0%, #edf3f4 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 95%),
+    inset 0 -2px 0 rgb(23 52 58 / 7%),
+    0 2px 0 var(--btn-edge),
+    0 8px 16px -10px rgb(23 52 58 / 45%);
+  transform: perspective(320px) translateY(0) rotateX(0deg);
+  transition:
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 200ms ease,
+    background 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-3d:hover,
+.group:hover > .btn-3d {
+  transform: perspective(320px) translateY(-3px) rotateX(10deg);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 95%),
+    inset 0 -2px 0 rgb(23 52 58 / 7%),
+    0 4px 0 var(--btn-edge),
+    0 16px 22px -12px rgb(23 52 58 / 50%);
+}
+
+.btn-3d:active,
+.group:active > .btn-3d {
+  transform: perspective(320px) translateY(2px) rotateX(0deg);
+  box-shadow:
+    inset 0 2px 5px rgb(23 52 58 / 20%),
+    0 0 0 var(--btn-edge),
+    0 2px 4px -2px rgb(23 52 58 / 40%);
+  transition-duration: 80ms;
+}
+
+.btn-3d[data-active="true"] {
+  --btn-edge: #133f47;
+  border-color: #1f5f6b;
+  background: linear-gradient(180deg, #2f7380 0%, #1f5f6b 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 25%),
+    inset 0 -2px 0 rgb(0 0 0 / 15%),
+    0 2px 0 var(--btn-edge),
+    0 10px 18px -10px rgb(31 95 107 / 70%);
+}
+
+.dark .btn-3d {
+  --btn-edge: #08181b;
+  border-color: rgb(255 255 255 / 10%);
+  background: linear-gradient(180deg, #28494f 0%, #17343a 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 12%),
+    inset 0 -2px 0 rgb(0 0 0 / 25%),
+    0 2px 0 var(--btn-edge),
+    0 10px 18px -10px rgb(0 0 0 / 75%);
+}
+
+.dark .btn-3d:hover,
+.dark .group:hover > .btn-3d {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 14%),
+    inset 0 -2px 0 rgb(0 0 0 / 25%),
+    0 4px 0 var(--btn-edge),
+    0 18px 24px -12px rgb(0 0 0 / 80%);
+}
+
+.dark .btn-3d[data-active="true"] {
+  --btn-edge: #b37d00;
+  border-color: #ffb300;
+  background: linear-gradient(180deg, #ffc433 0%, #ffb300 100%);
+}
+
+.btn-3d:focus-visible,
+.group:focus-visible > .btn-3d {
+  outline: 2px solid #ffb300;
+  outline-offset: 3px;
+}
+
+/* Dock tray */
+.dock-tray {
+  border-color: #c9d6d9 !important;
+  background: linear-gradient(180deg, rgb(244 248 249 / 92%) 0%, rgb(226 236 238 / 92%) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 80%),
+    0 18px 36px -18px rgb(23 52 58 / 45%) !important;
+}
+
+.dark .dock-tray {
+  border-color: rgb(255 255 255 / 10%) !important;
+  background: linear-gradient(180deg, rgb(26 52 58 / 92%) 0%, rgb(13 33 37 / 92%) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 8%),
+    0 18px 36px -18px rgb(0 0 0 / 80%) !important;
+}
+
+/* Sections receive focus from the navigator; no outline around whole cards. */
+.home-page > section:focus {
+  outline: none;
+}
+
+/* ---------- Home: section navigator ---------- */
+.section-rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(0.75rem, 2.5vw, 2rem);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transform: translateY(-50%);
+}
+
+.section-rail a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 0.3rem 0.2rem;
+  border-radius: 999px;
+  color: #33525a;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-rail-label {
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.section-rail a:hover .section-rail-label,
+.section-rail a:focus-visible .section-rail-label,
+.section-rail a[aria-current="true"] .section-rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-rail-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  flex-shrink: 0;
+  border: 2px solid #9fb7bd;
+  border-radius: 999px;
+  background: #fbf8f2;
+  transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.section-rail a:hover .section-rail-dot {
+  transform: scale(1.25);
+  border-color: #1f5f6b;
+}
+
+.section-rail a[aria-current="true"] {
+  color: #17343a;
+}
+
+.section-rail a[aria-current="true"] .section-rail-dot {
+  transform: scale(1.35);
+  border-color: #1f5f6b;
+  background: #1f5f6b;
+  box-shadow: 0 0 0 4px rgb(31 95 107 / 18%);
+}
+
+.section-rail a:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 2px;
+}
+
+.dark .section-rail a {
+  color: #b5cbd0;
+}
+
+.dark .section-rail a[aria-current="true"] {
+  color: #fff;
+}
+
+.dark .section-rail-dot {
+  border-color: #5b7a81;
+  background: #0d2125;
+}
+
+.dark .section-rail a[aria-current="true"] .section-rail-dot {
+  border-color: #ffb300;
+  background: #ffb300;
+  box-shadow: 0 0 0 4px rgb(255 179 0 / 20%);
+}
+
+@media (max-width: 1099px) {
+  .section-rail {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-3d,
+  .section-rail-label,
+  .section-rail-dot {
+    transition: none;
+  }
+
+  .btn-3d:hover,
+  .group:hover > .btn-3d,
+  .btn-3d:active,
+  .group:active > .btn-3d {
+    transform: none;
+  }
+}
+
 /* ---------- Achievements timeline: scroll-driven rail ---------- */
 .timeline-rail-track {
   background: linear-gradient(to bottom, var(--border) 0%, var(--border) 96%, transparent);

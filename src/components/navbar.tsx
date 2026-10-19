@@ -40,7 +40,7 @@ export default function Navbar() {
       <HamburgerNavigation />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
         <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
-        <Dock className="z-50 pointer-events-auto relative mx-auto flex h-full items-center px-1 bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5 border rounded-full transform-gpu overflow-x-auto overflow-y-hidden max-w-[95vw] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-1 sm:gap-2">
+        <Dock className="dock-tray z-50 pointer-events-auto relative mx-auto flex h-full items-center px-1.5 backdrop-blur-3xl border rounded-full transform-gpu overflow-x-auto overflow-y-hidden max-w-[95vw] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-1 sm:gap-2">
           {DATA.navbar.map((item) => {
             const isExternal = item.href.startsWith("http");
             const isActive =
@@ -57,13 +57,14 @@ export default function Navbar() {
                     aria-current={isActive ? "page" : undefined}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="group rounded-full [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
+                    className="group rounded-full [-webkit-tap-highlight-color:transparent] focus-visible:outline-none"
                   >
                     <DockIcon
-                      className={`size-full cursor-pointer rounded-3xl border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted hover:text-foreground active:text-foreground group-focus-visible:text-foreground ${
+                      active={isActive}
+                      className={`btn-3d size-full cursor-pointer p-0 ${
                         isActive
-                          ? "border-border bg-muted text-foreground"
-                          : "border-border"
+                          ? "text-white dark:text-[#17343a]"
+                          : "text-muted-foreground hover:text-foreground active:text-foreground group-focus-visible:text-foreground"
                       }`}
                     >
                       <item.icon className="size-full rounded-sm overflow-hidden object-contain" />
@@ -83,7 +84,7 @@ export default function Navbar() {
           })}
           <Separator
             orientation="vertical"
-            className="h-2/3 m-auto w-px bg-border"
+            className="h-2/3 m-auto w-px bg-[#c9d6d9] dark:bg-white/10"
           />
           {Object.entries(DATA.contact.social)
             .filter(([_, social]) => social.navbar)
@@ -99,9 +100,9 @@ export default function Navbar() {
                       title={name}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className="group rounded-full [-webkit-tap-highlight-color:transparent] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
+                      className="group rounded-full [-webkit-tap-highlight-color:transparent] focus-visible:outline-none"
                     >
-                      <DockIcon className={`size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:scale-105 hover:border-border hover:bg-muted ${
+                      <DockIcon className={`btn-3d size-full cursor-pointer p-0 text-muted-foreground ${
                         SOCIAL_BRAND_COLORS[name] ??
                         "hover:text-foreground active:text-foreground group-focus-visible:text-foreground"
                       }`}>
@@ -126,7 +127,7 @@ export default function Navbar() {
           />
           <Tooltip>
             <TooltipTrigger asChild>
-              <DockIcon className="group size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted [-webkit-tap-highlight-color:transparent] hover:text-amber-600 active:text-amber-600 dark:hover:text-amber-400 dark:active:text-amber-400 has-[:focus-visible]:text-amber-600 dark:has-[:focus-visible]:text-amber-400">
+              <DockIcon className="btn-3d group size-full cursor-pointer p-0 text-muted-foreground hover:text-amber-600 active:text-amber-600 dark:hover:text-amber-400 dark:active:text-amber-400 has-[:focus-visible]:text-amber-600 dark:has-[:focus-visible]:text-amber-400">
                 <ModeToggle className="size-full cursor-pointer" />
               </DockIcon>
             </TooltipTrigger>

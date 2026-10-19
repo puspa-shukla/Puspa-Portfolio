@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import BlurFade from "@/components/magicui/blur-fade";
 import HeroNetworkScene from "@/components/hero-network-scene";
+import HomeScrollNav from "@/components/home-scroll-nav";
 import PortraitThemeSwitch from "@/components/portrait-theme-switch";
 import { DATA } from "@/data/resume";
 import ContactSection from "@/components/section/contact-section";
@@ -16,6 +17,7 @@ const BLUR_FADE_DELAY = 0.04;
 export default function Page() {
   return (
     <main className="home-page min-h-dvh flex flex-col gap-14 relative md:px-0">
+      <HomeScrollNav />
       <section id="hero" className="home-hero">
         <HeroNetworkScene />
         <div className="relative z-10 w-full space-y-8">
@@ -33,7 +35,7 @@ export default function Page() {
               </BlurFade>
               <BlurFade
                 delay={BLUR_FADE_DELAY * 3}
-                className="home-actions z-20 mt-3 flex flex-wrap items-center gap-3"
+                className="home-actions z-20 mt-3 flex flex-col items-start gap-3 md:mt-7"
               >
                 <CopyEmailBtn />
                 <Resume />

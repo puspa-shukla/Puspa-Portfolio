@@ -14,6 +14,7 @@ interface DockProps {
 interface DockIconProps {
   className?: string;
   children?: ReactNode;
+  active?: boolean;
 }
 
 const DEFAULT_MAGNIFICATION = 60;
@@ -47,7 +48,7 @@ const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, dist
   );
 };
 
-const DockIcon = ({ className, children }: DockIconProps) => {
+const DockIcon = ({ className, children, active }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const context = useContext(DockContext);
 
@@ -75,6 +76,7 @@ const DockIcon = ({ className, children }: DockIconProps) => {
     <motion.div
       ref={ref}
       style={{ width: containerSize, height: containerSize }}
+      data-active={active ? "true" : undefined}
       className={cn("relative flex aspect-square items-center justify-center rounded-full shrink-0", className)}
     >
       <motion.div

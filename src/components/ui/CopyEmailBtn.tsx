@@ -31,8 +31,9 @@ const CopyEmailBtn = () => {
         </button>
       </TooltipTrigger>
       <TooltipContent
-        side="top"
-        sideOffset={8}
+        side="right"
+        align="center"
+        sideOffset={10}
         collisionPadding={12}
         className="z-[70] rounded-xl border border-border bg-card px-3 py-2 text-card-foreground shadow-[0_18px_50px_-20px_rgba(0,0,0,0.35)]"
       >
