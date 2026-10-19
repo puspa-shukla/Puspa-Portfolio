@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import BlurFade from "@/components/magicui/blur-fade";
 import HeroNetworkScene from "@/components/hero-network-scene";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import PortraitThemeSwitch from "@/components/portrait-theme-switch";
 import { DATA } from "@/data/resume";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
@@ -40,16 +40,7 @@ export default function Page() {
               </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <div className="home-portrait-frame">
-                <Avatar className="home-profile-photo size-40 shrink-0 rounded-full border shadow-lg ring-4 ring-muted md:ml-auto md:size-60">
-                  <AvatarImage
-                    src="/puspa-profile-circle.jpeg"
-                    alt="Puspa"
-                    className="h-full w-full object-cover"
-                  />
-                  <AvatarFallback>{DATA.initials}</AvatarFallback>
-                </Avatar>
-              </div>
+              <PortraitThemeSwitch initials={DATA.initials} />
             </BlurFade>
           </div>
         </div>

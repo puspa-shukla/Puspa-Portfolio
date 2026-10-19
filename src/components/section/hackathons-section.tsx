@@ -78,8 +78,8 @@ export default function HackathonsSection() {
             >
               <TimelineConnectItem className="flex items-start justify-center">
                 {isUgoAiSession ? (
-                  <div className="size-10 bg-card z-10 flex shrink-0 items-center justify-center rounded-full border shadow ring-2 ring-border">
-                    <Award className="size-5 text-primary" aria-hidden="true" />
+                  <div className="size-10 z-10 flex shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#1f5f6b] to-[#17343a] shadow">
+                    <Award className="size-5 text-[#ffb300]" aria-hidden="true" />
                   </div>
                 ) : hackathon.image ? (
                   <img

@@ -104,7 +104,7 @@ export default function HamburgerNavigation() {
           setClosing(false);
           setMenuOpen(true);
         }}
-        className="fixed left-4 top-4 z-[60] inline-flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:hover:border-blue-400/60 dark:hover:text-blue-300 sm:left-6 sm:top-6"
+        className="fixed left-4 top-4 z-[60] inline-flex size-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-[#5b9aaa] hover:bg-[#e6f0f2] hover:text-[#1f5f6b] hover:shadow-md focus-visible:bg-[#e6f0f2] focus-visible:text-[#1f5f6b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9aaa] focus-visible:ring-offset-2 sm:left-6 sm:top-6"
       >
         <Menu aria-hidden="true" className="size-5" />
       </button>

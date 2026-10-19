@@ -390,6 +390,179 @@ body:has(.home-page) {
   box-shadow: 0 0 0 4px rgb(31 95 107 / 14%);
 }
 
+/* Portrait theme switch: the photo is the knob of a sliding pill. */
+.home-theme-switch {
+  --knob: 9.5rem;
+  position: relative;
+  display: flex;
+  width: calc(var(--knob) * 2.15);
+  max-width: 100%;
+  align-items: center;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #1f5f6b 0%, #2f7380 55%, #5b9aaa 100%);
+  box-shadow: 0 22px 44px -26px rgb(23 52 58 / 55%), inset 0 0 0 1px rgb(255 255 255 / 12%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 450ms ease, box-shadow 450ms ease;
+}
+
+.home-theme-switch[data-state="dark"] {
+  background: linear-gradient(110deg, #ffd05a 0%, #ffb300 100%);
+  box-shadow: 0 22px 44px -24px rgb(255 179 0 / 45%), inset 0 0 0 1px rgb(255 255 255 / 25%);
+}
+
+.home-theme-switch:focus-visible {
+  outline: 3px solid var(--home-teal-light);
+  outline-offset: 4px;
+}
+
+.home-theme-switch-knob {
+  position: relative;
+  z-index: 2;
+  width: var(--knob);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px -12px rgb(0 0 0 / 45%);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.home-theme-switch-knob:active {
+  cursor: grabbing;
+}
+
+.home-theme-switch .home-profile-photo {
+  border-color: #fff;
+}
+
+.home-theme-switch[data-state="dark"] .home-profile-photo {
+  border-color: #17343a;
+  background: #17343a;
+}
+
+.home-theme-switch-label {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transform: translateY(-50%);
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.home-theme-switch-label--light {
+  right: 1.4rem;
+  color: rgb(255 255 255 / 92%);
+}
+
+.home-theme-switch-label--dark {
+  left: 1.4rem;
+  color: #17343a;
+  opacity: 0;
+}
+
+.home-theme-switch[data-state="dark"] .home-theme-switch-label--light {
+  opacity: 0;
+}
+
+.home-theme-switch[data-state="dark"] .home-theme-switch-label--dark {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .home-theme-switch {
+    --knob: 11rem;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-theme-switch {
+    --knob: 8.5rem;
+    width: 100%;
+  }
+}
+
+/* ---------- Home page: contrasting dark theme ---------- */
+html.dark body:has(.home-page) {
+  background: #0d2125;
+}
+
+.dark .home-page {
+  --home-ink: #eef5f6;
+  --home-muted: #b5cbd0;
+  --home-teal: #ffb300;
+  --home-teal-light: #ffd05a;
+  --home-teal-wash: #17343a;
+  --home-highlight: #ffb300;
+  --home-highlight-wash: #17343a;
+  --home-line: rgb(255 255 255 / 12%);
+  /* Tint shared UI tokens so cards and chips match the teal palette. */
+  --card: #0f262a;
+  --background: #0f262a;
+  --muted: #1f3f45;
+  --accent: #1f3f45;
+  --muted-foreground: #b5cbd0;
+  --border: rgb(255 255 255 / 12%);
+}
+
+.dark .home-page > .home-section,
+.dark .home-page > #skills,
+.dark .home-page > #about,
+.dark .home-page > #education {
+  background: #132c31;
+  box-shadow: 0 18px 42px -30px rgb(0 0 0 / 60%);
+}
+
+.dark .home-page > #work,
+.dark .home-page > #hackathons,
+.dark .home-page > #contact,
+.dark .home-page > #skills {
+  background: #17343a;
+}
+
+.dark .home-hero {
+  background: linear-gradient(120deg, #132c31 0%, #17343a 65%, #1f4f58 100%);
+  box-shadow: 0 26px 64px -38px rgb(0 0 0 / 70%);
+}
+
+.dark .home-title-accent {
+  background: linear-gradient(110deg, #ffb300, #ffd05a);
+  background-clip: text;
+}
+
+.dark .home-actions button {
+  color: #17343a;
+  font-weight: 700;
+}
+
+.dark .home-actions button:hover {
+  background: #ffc433;
+}
+
+.dark .home-actions a[href="/api/resume"] {
+  background: transparent;
+}
+
+.dark .home-actions a[href="/api/resume"]:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+.dark .home-page > #skills [class~="border"][class~="bg-background"] {
+  background: #132c31;
+}
+
+.home-page,
+.home-page > section,
+.home-hero {
+  transition: background 450ms ease, color 450ms ease;
+}
+
 .home-page .home-section-title {
   position: relative;
   width: fit-content;
@@ -435,6 +608,86 @@ body:has(.home-page) {
   .home-profile-photo,
   .home-scroll-cue {
     transition: none;
+  }
+}
+
+/* ---------- Achievements timeline: scroll-driven rail ---------- */
+.timeline-rail-track {
+  background: linear-gradient(to bottom, var(--border) 0%, var(--border) 96%, transparent);
+}
+
+.timeline-rail-fill {
+  background: linear-gradient(to bottom, #1f5f6b 0%, #5b9aaa 55%, #ffb300 100%);
+  box-shadow: 0 0 12px rgb(91 154 170 / 45%);
+}
+
+.timeline-rail-head {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: -0.35rem 0 0 -0.35rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #ffb300;
+  box-shadow: 0 0 0 4px rgb(255 179 0 / 22%), 0 0 18px rgb(255 179 0 / 65%);
+}
+
+.dark .timeline-rail-head {
+  border-color: #17343a;
+}
+
+.timeline-node {
+  border-radius: 999px;
+  padding: 3px;
+  background: var(--border);
+  transition: background 400ms ease, transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms ease;
+}
+
+.timeline-node > :not(.timeline-node-halo) {
+  position: relative;
+  z-index: 1;
+  transition: opacity 400ms ease, filter 400ms ease;
+}
+
+.timeline-node[data-active="false"] > :not(.timeline-node-halo) {
+  filter: grayscale(0.6);
+  opacity: 0.7;
+}
+
+.timeline-node[data-active="true"] {
+  background: conic-gradient(from 210deg, #1f5f6b, #5b9aaa, #ffb300, #1f5f6b);
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px -10px rgb(31 95 107 / 55%);
+}
+
+.timeline-node-halo {
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 179 0 / 0%);
+  pointer-events: none;
+}
+
+.timeline-node[data-active="true"] .timeline-node-halo {
+  animation: timeline-halo 2.4s ease-out 1;
+}
+
+@keyframes timeline-halo {
+  0% { border-color: rgb(255 179 0 / 70%); transform: scale(0.85); opacity: 1; }
+  100% { border-color: rgb(255 179 0 / 0%); transform: scale(1.35); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-node,
+  .timeline-node > :not(.timeline-node-halo) {
+    transition: none;
+  }
+
+  .timeline-node[data-active="true"] {
+    transform: none;
+  }
+
+  .timeline-node[data-active="true"] .timeline-node-halo {
+    animation: none;
   }
 }
 

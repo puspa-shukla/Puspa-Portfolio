@@ -14,6 +14,15 @@ import {
 } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 
+// Real brand colors shown on hover, tap (active) and keyboard focus.
+const SOCIAL_BRAND_COLORS: Record<string, string> = {
+  LinkedIn:
+    "hover:text-[#0a66c2] active:text-[#0a66c2] group-focus-visible:text-[#0a66c2]",
+  GitHub:
+    "hover:text-[#181717] active:text-[#181717] group-focus-visible:text-[#181717] dark:hover:text-white dark:active:text-white dark:group-focus-visible:text-white",
+  X: "hover:text-black active:text-black group-focus-visible:text-black dark:hover:text-white dark:active:text-white dark:group-focus-visible:text-white",
+};
+
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -48,10 +57,10 @@ export default function Navbar() {
                     aria-current={isActive ? "page" : undefined}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="group rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
+                    className="group rounded-full [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
                   >
                     <DockIcon
-                      className={`size-full cursor-pointer rounded-3xl border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted group-focus-visible:text-foreground ${
+                      className={`size-full cursor-pointer rounded-3xl border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted hover:text-foreground active:text-foreground group-focus-visible:text-foreground ${
                         isActive
                           ? "border-border bg-muted text-foreground"
                           : "border-border"
@@ -90,12 +99,11 @@ export default function Navbar() {
                       title={name}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className="group rounded-full transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
+                      className="group rounded-full [-webkit-tap-highlight-color:transparent] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2"
                     >
                       <DockIcon className={`size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:scale-105 hover:border-border hover:bg-muted ${
-                        name === "LinkedIn"
-                          ? "group-focus-visible:text-[#0a66c2]"
-                          : "group-focus-visible:text-foreground"
+                        SOCIAL_BRAND_COLORS[name] ??
+                        "hover:text-foreground active:text-foreground group-focus-visible:text-foreground"
                       }`}>
                         <IconComponent className="size-full rounded-sm overflow-hidden object-contain" />
                       </DockIcon>
@@ -118,7 +126,7 @@ export default function Navbar() {
           />
           <Tooltip>
             <TooltipTrigger asChild>
-              <DockIcon className="group size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted has-[:focus-visible]:text-amber-600 dark:has-[:focus-visible]:text-amber-400">
+              <DockIcon className="group size-full cursor-pointer rounded-3xl border border-border bg-background p-0 text-muted-foreground backdrop-blur-3xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:bg-muted [-webkit-tap-highlight-color:transparent] hover:text-amber-600 active:text-amber-600 dark:hover:text-amber-400 dark:active:text-amber-400 has-[:focus-visible]:text-amber-600 dark:has-[:focus-visible]:text-amber-400">
                 <ModeToggle className="size-full cursor-pointer" />
               </DockIcon>
             </TooltipTrigger>
