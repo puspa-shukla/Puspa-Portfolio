@@ -4,6 +4,7 @@ import HeroNetworkScene from "@/components/hero-network-scene";
 import HomeScrollNav from "@/components/home-scroll-nav";
 import PortraitThemeSwitch from "@/components/portrait-theme-switch";
 import { DATA } from "@/data/resume";
+import AboutSummary from "@/components/section/about-summary";
 import ContactSection from "@/components/section/contact-section";
 import EducationSection from "@/components/section/education-section";
 import HackathonsSection from "@/components/section/hackathons-section";
@@ -62,7 +63,7 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              {DATA.professionalSummary}
+              <AboutSummary text={DATA.professionalSummary} />
             </div>
           </BlurFade>
         </div>

@@ -693,6 +693,155 @@ html.dark body:has(.home-page) {
   outline-offset: 3px;
 }
 
+/* Menu button: first-visit attention pulse + hint bubble */
+/* Until the menu is opened: two soft pulses, then a pause (6s cycle). */
+.menu-trigger[data-unexplored="true"]::after {
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgb(31 95 107 / 0%);
+  animation: menu-pulse 6s ease-out 1s infinite;
+  pointer-events: none;
+  content: "";
+}
+
+.dark .menu-trigger[data-unexplored="true"]::after {
+  animation-name: menu-pulse-dark;
+}
+
+@keyframes menu-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(31 95 107 / 50%); }
+  15% { box-shadow: 0 0 0 14px rgb(31 95 107 / 0%); }
+  16% { box-shadow: 0 0 0 0 rgb(31 95 107 / 50%); }
+  31%, 100% { box-shadow: 0 0 0 14px rgb(31 95 107 / 0%); }
+}
+
+@keyframes menu-pulse-dark {
+  0% { box-shadow: 0 0 0 0 rgb(255 179 0 / 55%); }
+  15% { box-shadow: 0 0 0 14px rgb(255 179 0 / 0%); }
+  16% { box-shadow: 0 0 0 0 rgb(255 179 0 / 55%); }
+  31%, 100% { box-shadow: 0 0 0 14px rgb(255 179 0 / 0%); }
+}
+
+/* Amber "new" dot on the button */
+.menu-dot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #ffb300;
+  box-shadow: 0 2px 6px rgb(255 179 0 / 55%);
+}
+
+.dark .menu-dot {
+  border-color: #17343a;
+}
+
+.menu-hint {
+  animation: menu-hint-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.menu-hint span {
+  display: inline-block;
+  animation: menu-hint-nudge 1.2s ease-in-out 600ms 3;
+}
+
+@keyframes menu-hint-in {
+  from { opacity: 0; transform: translateX(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes menu-hint-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+
+/* Menu drawer items */
+.menu-item {
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-item-arrow {
+  color: #5b9aaa;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+  transform: translateX(3px);
+  border-color: #c9d6d9;
+  background: #f3f8f9;
+}
+
+.menu-item:hover .menu-item-arrow,
+.menu-item:focus-visible .menu-item-arrow,
+.menu-item[data-active="true"] .menu-item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu-item:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 2px;
+}
+
+.menu-item[data-active="true"] {
+  border-color: #1f5f6b;
+  background: linear-gradient(180deg, #2f7380 0%, #1f5f6b 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 22%),
+    0 2px 0 #133f47,
+    0 10px 18px -12px rgb(31 95 107 / 70%);
+}
+
+.menu-item[data-active="true"] :is(.menu-item-hint, span:first-child),
+.menu-item[data-active="true"] .menu-item-arrow {
+  color: rgb(255 255 255 / 80%);
+}
+
+.dark .menu-item:hover,
+.dark .menu-item:focus-visible {
+  border-color: rgb(255 255 255 / 12%);
+  background: rgb(255 255 255 / 5%);
+}
+
+.dark .menu-item[data-active="true"] {
+  border-color: #ffb300;
+  background: linear-gradient(180deg, #ffc433 0%, #ffb300 100%);
+  color: #17343a;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%), 0 2px 0 #b37d00;
+}
+
+.dark .menu-item[data-active="true"] :is(.menu-item-hint, span:first-child),
+.dark .menu-item[data-active="true"] .menu-item-arrow {
+  color: rgb(23 52 58 / 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-trigger[data-unexplored="true"]::after,
+  .menu-hint,
+  .menu-hint span {
+    animation: none;
+  }
+
+  .menu-item,
+  .menu-item-arrow {
+    transition: none;
+  }
+
+  .menu-item:hover,
+  .menu-item:focus-visible {
+    transform: none;
+  }
+}
+
 /* Dock tray */
 .dock-tray {
   border-color: #c9d6d9 !important;
@@ -753,6 +902,188 @@ html.dark body:has(.home-page) {
   #hackathons .rounded-2xl.bg-card:active {
     transform: none;
     transition: none;
+  }
+}
+
+/* ---------- About / Work / Education: pop-out cards ---------- */
+.home-page > #about,
+.pop-card {
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.home-page > #about:hover,
+.home-page > #about:focus-within,
+.pop-card:hover,
+.pop-card:focus-within,
+.pop-card[data-state="open"] {
+  border-color: #5b9aaa;
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 0 rgb(31 95 107 / 22%),
+    0 12px 22px -14px rgb(23 52 58 / 32%),
+    0 26px 46px -26px rgb(23 52 58 / 40%);
+}
+
+.pop-card:active {
+  transform: translateY(-2px);
+  transition-duration: 90ms;
+}
+
+.dark .home-page > #about:hover,
+.dark .home-page > #about:focus-within,
+.dark .pop-card:hover,
+.dark .pop-card:focus-within,
+.dark .pop-card[data-state="open"] {
+  border-color: #ffb300;
+  box-shadow:
+    0 2px 0 rgb(255 179 0 / 30%),
+    0 12px 22px -14px rgb(0 0 0 / 60%),
+    0 26px 46px -26px rgb(0 0 0 / 70%);
+}
+
+/* 3D pill used for "View responsibilities" / "View details" */
+.pill-3d {
+  border: 1px solid #b9cfd4;
+  background: linear-gradient(180deg, #ffffff 0%, #e6f0f2 100%);
+  color: #1f5f6b;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 90%),
+    0 2px 0 #b7c8cc,
+    0 6px 12px -8px rgb(23 52 58 / 40%);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+button:hover .pill-3d,
+.pop-card:hover .pill-3d {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 90%),
+    0 3px 0 #b7c8cc,
+    0 10px 16px -10px rgb(23 52 58 / 45%);
+}
+
+button:active .pill-3d {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 4px rgb(23 52 58 / 18%), 0 0 0 #b7c8cc;
+  transition-duration: 70ms;
+}
+
+[data-state="open"] .pill-3d {
+  border-color: #1f5f6b;
+  background: linear-gradient(180deg, #2f7380 0%, #1f5f6b 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 25%),
+    0 2px 0 #133f47,
+    0 8px 14px -8px rgb(31 95 107 / 60%);
+}
+
+button:focus-visible .pill-3d {
+  outline: 2px solid #ffb300;
+  outline-offset: 3px;
+}
+
+.dark .pill-3d {
+  border-color: rgb(255 255 255 / 12%);
+  background: linear-gradient(180deg, #28494f 0%, #17343a 100%);
+  color: #e6f0f2;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 12%),
+    0 2px 0 #08181b,
+    0 6px 12px -8px rgb(0 0 0 / 70%);
+}
+
+.dark [data-state="open"] .pill-3d {
+  border-color: #ffb300;
+  background: linear-gradient(180deg, #ffc433 0%, #ffb300 100%);
+  color: #17343a;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%), 0 2px 0 #b37d00;
+}
+
+/* Tool chips lift slightly on hover */
+.tool-chip {
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.tool-chip:hover {
+  transform: translateY(-2px);
+  border-color: #5b9aaa;
+  box-shadow: 0 6px 12px -8px rgb(23 52 58 / 40%);
+}
+
+/* Opened details reveal line by line */
+.reveal-list[data-state="open"] :is(h3, li, .tool-chip) {
+  animation: reveal-line 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reveal-list[data-state="open"] li:nth-child(2),
+.reveal-list[data-state="open"] .tool-chip:nth-child(n + 2) { animation-delay: 70ms; }
+.reveal-list[data-state="open"] li:nth-child(3),
+.reveal-list[data-state="open"] .tool-chip:nth-child(n + 5) { animation-delay: 140ms; }
+.reveal-list[data-state="open"] .tool-chip:nth-child(n + 9) { animation-delay: 210ms; }
+
+@keyframes reveal-line {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* About: key facts get an underline that draws in on view */
+.about-key {
+  background-color: transparent;
+  background-image: linear-gradient(90deg, #5b9aaa, #1f5f6b);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  color: var(--home-ink);
+  font-weight: 600;
+  transition: background-size 700ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease;
+}
+
+.about-summary[data-in-view="true"] .about-key {
+  background-size: 100% 2px;
+}
+
+.about-key:hover {
+  color: #1f5f6b;
+  background-image: linear-gradient(90deg, #ffb300, #ffd05a);
+}
+
+.dark .about-key {
+  background-image: linear-gradient(90deg, #ffb300, #ffd05a);
+}
+
+.dark .about-key:hover {
+  color: #ffd05a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page > #about,
+  .pop-card,
+  .pill-3d,
+  .tool-chip,
+  .about-key {
+    transition: none;
+  }
+
+  .home-page > #about:hover,
+  .home-page > #about:focus-within,
+  .pop-card:hover,
+  .pop-card:focus-within,
+  .pop-card[data-state="open"],
+  .pop-card:active,
+  .tool-chip:hover {
+    transform: none;
+  }
+
+  .reveal-list[data-state="open"] :is(h3, li, .tool-chip) {
+    animation: none;
+  }
+
+  .about-key {
+    background-size: 100% 2px;
   }
 }
 

@@ -77,7 +77,7 @@ export default function WorkSection() {
           <AccordionItem
             key={work.company}
             value={work.company}
-            className="group grid w-full min-w-0 gap-2 rounded-xl border border-border bg-card p-4 shadow-sm transition-all hover:border-primary/60 hover:shadow-md data-[state=open]:border-primary data-[state=open]:ring-1 data-[state=open]:ring-primary/20"
+            className="pop-card group grid w-full min-w-0 gap-2 rounded-xl border border-border bg-card p-4 shadow-sm"
           >
             <div className="flex w-full items-center gap-3">
               <a
@@ -89,7 +89,7 @@ export default function WorkSection() {
               >
                 <LogoImage src={work.logoUrl} alt={`${work.company} logo`} />
               </a>
-              <AccordionTrigger className="group/trigger w-full min-w-0 flex-1 cursor-pointer rounded-lg p-2 text-left transition-colors hover:bg-muted/50 hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&>svg]:hidden">
+              <AccordionTrigger className="group/trigger w-full min-w-0 flex-1 cursor-pointer rounded-lg p-2 text-left [-webkit-tap-highlight-color:transparent] hover:no-underline focus-visible:outline-none [&>svg]:hidden">
                 <div className="flex w-full items-center justify-between gap-x-4 text-left">
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <div className="truncate font-semibold leading-tight">
@@ -106,7 +106,7 @@ export default function WorkSection() {
                       </span>
                     </div>
                   )}
-                  <span className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-2.5 py-1.5 text-[10px] font-semibold text-primary sm:text-xs">
+                  <span className="pill-3d ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-semibold sm:text-xs">
                     <span className="group-data-[state=open]:hidden">View responsibilities &amp; tools</span>
                     <span className="hidden group-data-[state=open]:inline">Hide details</span>
                     <ChevronDown className="size-3.5 transition-transform group-data-[state=open]:rotate-180" aria-hidden="true" />
@@ -114,7 +114,7 @@ export default function WorkSection() {
                 </div>
               </AccordionTrigger>
             </div>
-            <AccordionContent className="mt-2 space-y-4 px-2 pb-2 text-sm text-muted-foreground">
+            <AccordionContent className="reveal-list mt-2 space-y-4 px-2 pb-2 text-sm text-muted-foreground">
             <div className="space-y-2">
               <h3 className="font-semibold text-foreground">What I Did</h3>
               <PointList items={work.work} accentClassName="bg-foreground/80" />
@@ -143,7 +143,7 @@ export default function WorkSection() {
                     return (
                       <div
                         key={tool}
-                        className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground"
+                        className="tool-chip inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground"
                       >
                         <Icon className="size-3.5 shrink-0" />
                         <span>{tool}</span>

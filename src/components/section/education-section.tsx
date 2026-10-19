@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { DATA } from "@/data/resume";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 function LogoImage({
@@ -72,7 +72,7 @@ export default function EducationSection() {
         <AccordionItem
           key={education.school}
           value={education.school}
-          className="w-full border-b-0 grid gap-2"
+          className="pop-card group w-full grid gap-2 rounded-xl border border-border bg-card p-4 shadow-sm"
         >
           <div className="group/education flex w-full items-center justify-between gap-3 text-left">
             <div className="flex min-w-0 flex-1 items-center gap-x-4">
@@ -90,46 +90,32 @@ export default function EducationSection() {
                 />
               </a>
               <div className="flex min-w-0 flex-1 flex-col gap-1">
-                <div className="flex min-w-0 items-center gap-2">
-                  <span className="truncate text-base font-semibold leading-tight text-foreground">
-                    {education.school}
-                  </span>
-                  <AccordionTrigger
-                    aria-label={`Toggle education details for ${education.school}`}
-                    className="group relative inline-flex size-5 w-5 flex-none items-center justify-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&>svg]:hidden"
-                  >
-                    <span className="relative inline-flex size-5 items-center justify-center">
-                      <ChevronRight
-                        className={cn(
-                          "absolute size-3.5 stroke-2 transition-all duration-300 ease-out",
-                          "translate-x-0 opacity-0",
-                          "group-hover/education:translate-x-1 group-hover/education:opacity-100",
-                          "group-focus-visible:translate-x-1 group-focus-visible:opacity-100",
-                          "group-data-[state=open]:translate-x-0 group-data-[state=open]:opacity-0",
-                        )}
-                        aria-hidden="true"
-                      />
-                      <ChevronDown
-                        className={cn(
-                          "absolute size-3.5 stroke-2 transition-all duration-200",
-                          "rotate-0 opacity-0",
-                          "group-data-[state=open]:rotate-180 group-data-[state=open]:opacity-100",
-                        )}
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </AccordionTrigger>
-                </div>
+                <span className="truncate text-base font-semibold leading-tight text-foreground">
+                  {education.school}
+                </span>
                 <div className="font-sans text-base text-muted-foreground sm:text-lg">
                   {education.program} - {education.specialization}
                 </div>
+                <AccordionTrigger
+                  aria-label={`Toggle education details for ${education.school}`}
+                  className="mt-1.5 w-fit flex-none p-0 [-webkit-tap-highlight-color:transparent] hover:no-underline focus-visible:outline-none [&>svg]:hidden"
+                >
+                  <span className="pill-3d inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-semibold sm:text-xs">
+                    <span className="group-data-[state=open]:hidden">View details</span>
+                    <span className="hidden group-data-[state=open]:inline">Hide details</span>
+                    <ChevronDown
+                      className="size-3.5 transition-transform group-data-[state=open]:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </AccordionTrigger>
               </div>
             </div>
             <div className="shrink-0 text-right text-xs tabular-nums text-muted-foreground">
               {education.start} - {education.end}
             </div>
           </div>
-          <AccordionContent className="mt-4 space-y-4 text-sm text-muted-foreground">
+          <AccordionContent className="reveal-list mt-2 space-y-4 text-sm text-muted-foreground">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h3 className="font-semibold text-foreground">Education Details</h3>
