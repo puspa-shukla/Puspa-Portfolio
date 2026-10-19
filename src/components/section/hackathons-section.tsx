@@ -179,7 +179,7 @@ export default function HackathonsSection() {
                     </OpenAndDownloadLink>
                     <div className="flex flex-col justify-center p-5 sm:p-8">
                       <p className="text-sm font-semibold text-primary">
-                        {hackathon.dates} Â· U-GO Global Publication
+                        {hackathon.dates} · U-GO Global Publication
                       </p>
                       <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         The Ripple Effect
@@ -209,7 +209,7 @@ export default function HackathonsSection() {
                     </div>
                     <div className="flex flex-col justify-center p-5 sm:p-8">
                       <p className="text-sm font-semibold text-primary">
-                        {hackathon.dates} Â· Vietnam
+                        {hackathon.dates} · Vietnam
                       </p>
                       <h3 className="mt-2 text-2xl font-bold tracking-tight underline decoration-primary/50 decoration-2 underline-offset-4 transition-colors group-hover:text-primary sm:text-3xl">
                         U-Go Nepal Representative
@@ -254,7 +254,7 @@ export default function HackathonsSection() {
                         filename="Puspa-Shukla-TechSkills-Certificate.jpeg"
                         className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        Awarded the designation of System &amp; Network Support Specialist Â· View and download certificate
+                        Awarded the designation of System &amp; Network Support Specialist · View and download certificate
                         <Download className="size-4" />
                       </OpenAndDownloadLink>
                     </div>
