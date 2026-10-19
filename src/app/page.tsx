@@ -1,7 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import BlurFade from "@/components/magicui/blur-fade";
 import HeroNetworkScene from "@/components/hero-network-scene";
-import CardTilt from "@/components/card-tilt";
 import HomeScrollNav from "@/components/home-scroll-nav";
 import PortraitThemeSwitch from "@/components/portrait-theme-switch";
 import { DATA } from "@/data/resume";
@@ -19,7 +18,6 @@ export default function Page() {
   return (
     <main className="home-page min-h-dvh flex flex-col gap-14 relative md:px-0">
       <HomeScrollNav />
-      <CardTilt />
       <section id="hero" className="home-hero">
         <HeroNetworkScene />
         <div className="relative z-10 w-full space-y-8">
