@@ -1036,7 +1036,7 @@ export default function ContactExperience() {
           ref={setAnchor("write")}
           className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)]"
         >
-          <div className="contact-card scroll-mt-24 rounded-2xl p-5 sm:p-8">
+          <div className="contact-card contact-card-light scroll-mt-24 rounded-2xl p-5 sm:p-8">
             <div role="status" aria-live="polite" className="empty:hidden mb-5">
               {status === "success" && (
                 <div className="contact-alert contact-alert-success flex gap-3 rounded-xl p-4">
