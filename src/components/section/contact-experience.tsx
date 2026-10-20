@@ -235,7 +235,7 @@ function ReachCard({
         </span>
       </span>
       <span className="contact-reach3d-text">
-        <span className="contact-heading text-base font-semibold sm:text-lg">
+        <span className="contact-heading text-base font-semibold">
           {link.label}
           <span className="sr-only"> (opens in a new tab)</span>
         </span>
@@ -1275,8 +1275,8 @@ export default function ContactExperience() {
         </StepHeader>
         {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
             one pops out and opens in a new tab. */}
-        <div ref={setAnchor("reach")} className="contact-card rounded-3xl p-3 sm:p-4">
-          <ul className="contact-reach3d-grid grid gap-3 sm:grid-cols-3 sm:gap-4">
+        <div ref={setAnchor("reach")} className="contact-card w-full max-w-3xl rounded-3xl p-2.5 sm:p-3">
+          <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-3 sm:gap-3">
             {DIRECT_LINKS.map((link, index) => (
               <li key={link.label} className="contact-reach3d-cell relative">
                 <ReachCard
