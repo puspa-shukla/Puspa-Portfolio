@@ -1695,6 +1695,7 @@ html.dark body:has(.contact-page) {
 .contact-brand-github { --brand: #181717; --brand-on: #ffffff; }
 .contact-brand-facebook { --brand: #1877f2; --brand-on: #ffffff; }
 .contact-brand-instagram { --brand: #e1306c; --brand-on: #ffffff; }
+.contact-brand-tiktok { --brand: #010101; --brand-on: #ffffff; }
 /* On the dark page GitHub flips to white so it stays visible. */
 .dark .contact-brand-github { --brand: #f0f3f6; --brand-on: #181717; }
 
@@ -2240,17 +2241,8 @@ html.dark body:has(.contact-page) {
 
 /* The four choices sit together in one softly tinted panel, like the other
    sections on the page. */
-.contact-choices-panel {
-  border: 1px solid var(--c-line);
-  border-radius: 1.5rem;
-  background: var(--c-surface);
-  box-shadow: 0 18px 42px -30px rgb(23 52 58 / 22%);
-  padding: 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .contact-choices-panel { padding: 1rem; }
-}
+/* The cards sit straight on the page, like the form card below. */
+.contact-choices-panel { padding: 0; }
 
 
 
@@ -2264,8 +2256,12 @@ html.dark body:has(.contact-page) {
   overflow: hidden;
   border: 1px solid var(--c-line);
   border-radius: 1rem;
-  /* A light warm cream that echoes the page background. */
-  background: #fbf8f2;
+  border-radius: 1.25rem;
+  background: var(--c-surface);
+  box-shadow:
+    0 1px 2px rgb(23 52 58 / 6%),
+    0 14px 30px -24px rgb(23 52 58 / 45%);
+  padding: 1.5rem;
   padding: 1.25rem;
   text-align: left;
   box-shadow: 0 1px 2px rgb(23 52 58 / 5%);
@@ -2277,7 +2273,10 @@ html.dark body:has(.contact-page) {
   -webkit-tap-highlight-color: transparent;
 }
 
-.dark .contact-choice { background: #0f262a; }
+.dark .contact-choice {
+  border-color: rgb(255 255 255 / 10%);
+  background: #132c31;
+}
 
 .contact-choice:hover {
   border-color: color-mix(in srgb, var(--tone) 40%, var(--c-line));
@@ -2287,10 +2286,40 @@ html.dark body:has(.contact-page) {
 
 .contact-choice:active { transform: translateY(0); }
 
+/* Chosen: a strong contrasting deep teal with white text and gold accents
+   (gold with dark text in dark mode). */
 .contact-choice[aria-pressed="true"] {
-  border-color: var(--tone);
-  background: color-mix(in srgb, var(--tone) 7%, var(--c-surface));
-  box-shadow: 0 0 0 1px var(--tone), 0 18px 32px -24px color-mix(in srgb, var(--tone) 60%, transparent);
+  border-color: #1f5f6b;
+  background: linear-gradient(160deg, #23727f 0%, #1f5f6b 45%, #17343a 100%);
+  box-shadow: 0 24px 40px -24px rgb(31 95 107 / 80%);
+}
+
+.contact-choice[aria-pressed="true"] .contact-heading { color: #ffffff; }
+.contact-choice[aria-pressed="true"] .contact-muted { color: rgb(255 255 255 / 80%); }
+.contact-choice[aria-pressed="true"] .contact-choice-cta { color: #ffc23a; }
+
+.contact-choice[aria-pressed="true"] .contact-choice-icon,
+.contact-choice[aria-pressed="true"] .contact-choice-check {
+  border-color: #ffc23a;
+  background: #ffc23a;
+  color: #17343a;
+}
+
+.dark .contact-choice[aria-pressed="true"] {
+  border-color: #ffb300;
+  background: #ffb300;
+  box-shadow: 0 20px 36px -22px rgb(0 0 0 / 80%);
+}
+
+.dark .contact-choice[aria-pressed="true"] .contact-heading { color: #17343a; }
+.dark .contact-choice[aria-pressed="true"] .contact-muted { color: rgb(23 52 58 / 80%); }
+.dark .contact-choice[aria-pressed="true"] .contact-choice-cta { color: #17343a; }
+
+.dark .contact-choice[aria-pressed="true"] .contact-choice-icon,
+.dark .contact-choice[aria-pressed="true"] .contact-choice-check {
+  border-color: #17343a;
+  background: #17343a;
+  color: #ffb300;
 }
 
 .contact-choice:focus-visible {
@@ -2310,8 +2339,7 @@ html.dark body:has(.contact-page) {
   transition: background 250ms ease, color 250ms ease;
 }
 
-.contact-choice:hover .contact-choice-icon,
-.contact-choice[aria-pressed="true"] .contact-choice-icon {
+.contact-choice:not([aria-pressed="true"]):hover .contact-choice-icon {
   background: var(--tone);
   color: var(--c-surface);
 }
@@ -2328,12 +2356,6 @@ html.dark body:has(.contact-page) {
   transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
-.contact-choice[aria-pressed="true"] .contact-choice-check {
-  border-color: var(--tone);
-  background: var(--tone);
-  color: var(--c-surface);
-}
-
 .contact-choice-cta {
   display: inline-flex;
   align-items: center;
@@ -2346,8 +2368,20 @@ html.dark body:has(.contact-page) {
   letter-spacing: 0.02em;
 }
 
-.contact-choice-cta svg { transition: transform 250ms ease; }
-.contact-choice:hover .contact-choice-cta svg { transform: translateX(3px); }
+.contact-choice-cta svg {
+  box-sizing: content-box;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  padding: 0.3rem;
+  transition: transform 250ms ease, background 250ms ease, color 250ms ease;
+}
+
+.contact-choice:not([aria-pressed="true"]):hover .contact-choice-cta svg {
+  border-color: var(--tone);
+  background: var(--tone);
+  color: var(--c-surface);
+  transform: translateX(3px);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .contact-choice,
