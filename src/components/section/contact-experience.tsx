@@ -1269,34 +1269,13 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-direct-title" className="contact-step -mt-6 flex flex-col gap-4 sm:-mt-8">
+      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-4">
         <h2 id="contact-direct-title" className="sr-only">
           Other ways to reach me
         </h2>
-        {/* A thin, flat strip that slides left to right across the full width of
-            the screen. The wrapper stays in the content column so the kitty
-            sits in line with the page. */}
-        <div ref={setAnchor("reach")} aria-hidden="true">
-          <div className="contact-marquee">
-          <div className="contact-marquee-track">
-            {Array.from({ length: 2 }, (_, copy) => (
-              <span key={copy} className="contact-marquee-run">
-                {Array.from({ length: 8 }, (_, index) => (
-                  <span key={index} className="contact-marquee-item">
-                    <span className="contact-marquee-label">Reach me at</span>
-                    <span><b className="contact-dot-linkedin" />LinkedIn</span>
-                    <span><b className="contact-dot-github" />GitHub</span>
-                    <span><b className="contact-dot-gmail" />Gmail</span>
-                  </span>
-                ))}
-              </span>
-            ))}
-          </div>
-          </div>
-        </div>
         {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
             one pops out and opens in a new tab. */}
-        <div className="contact-card rounded-3xl p-2.5 sm:p-3">
+        <div ref={setAnchor("reach")} className="contact-card rounded-3xl p-2.5 sm:p-3">
           <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-[1.45fr_1fr_1fr] sm:gap-3">
             {DIRECT_LINKS.map((link, index) => (
               <li key={link.label} className="contact-reach3d-cell relative">

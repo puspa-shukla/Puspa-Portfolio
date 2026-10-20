@@ -1855,95 +1855,6 @@ html.dark body:has(.contact-page) {
   color: var(--brand-on);
 }
 
-/* "Reach me at" strip: flat and straight, sliding left to right; pauses on hover. */
-.contact-marquee {
-  /* Break out of the content column to run from one screen edge to the other;
-     the page clips anything under the scrollbar. */
-  position: relative;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  overflow: hidden;
-  /* Soft gold edges top and bottom: highlighted, but light. */
-  border-block: 2px solid #f3c470;
-  background: var(--c-surface);
-  box-shadow:
-    0 -6px 16px -12px rgb(245 165 36 / 45%),
-    0 6px 16px -12px rgb(245 165 36 / 45%);
-  padding: 0.8rem 0;
-}
-
-.contact-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: contact-marquee-right 40s linear infinite;
-}
-
-.contact-marquee:hover .contact-marquee-track { animation-play-state: paused; }
-
-/* The track holds the run twice; sliding from -50% to 0 loops seamlessly. */
-@keyframes contact-marquee-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-.contact-marquee-run { display: flex; }
-
-.contact-marquee-item {
-  display: inline-flex;
-  align-items: center;
-  padding-right: 2.5rem;
-  color: var(--c-ink);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.contact-marquee-item > span:not(.contact-marquee-label) {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0 1.25rem;
-  line-height: 1;
-}
-
-/* Thin dividers between the channels keep the strip tidy. */
-.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid var(--c-line); }
-
-.contact-marquee-label {
-  margin-right: 1rem;
-  border: 1px solid #f3c470;
-  border-radius: 9999px;
-  background: #fff4dc;
-  padding: 0.35rem 0.8rem;
-  color: #9a5b00;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.dark .contact-marquee { border-color: rgb(255 194 58 / 55%); }
-
-.dark .contact-marquee-label {
-  border-color: rgb(255 194 58 / 45%);
-  background: rgb(255 194 58 / 12%);
-  color: #ffc23a;
-}
-
-.contact-marquee-item b {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 9999px;
-}
-
-.contact-dot-linkedin { background: #0a66c2; }
-.contact-dot-github { background: #181717; }
-.dark .contact-dot-github { background: #f0f3f6; }
-.contact-dot-gmail { background: #ea4335; }
-
 /* Leave room for the Copy button beside the email address. */
 .contact-brand-email .contact-reach3d-text { padding-right: 4.25rem; }
 
@@ -2328,7 +2239,6 @@ html.dark body:has(.contact-page) {
   .contact-kitty-menu,
   .contact-reach3d-float,
   .contact-reach3d[data-popped] .contact-reach3d-icon,
-  .contact-marquee-track,
   .contact-talk {
     animation: none;
   }
