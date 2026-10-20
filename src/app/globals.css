@@ -1862,12 +1862,12 @@ html.dark body:has(.contact-page) {
   width: 100vw;
   transform: translateX(-50%);
   overflow: hidden;
-  /* Bold, highlighted edges top and bottom. */
-  border-block: 2px solid var(--c-teal);
+  /* Soft gold edges top and bottom: highlighted, but light. */
+  border-block: 2px solid #f3c470;
   background: var(--c-surface);
   box-shadow:
-    0 -6px 16px -12px color-mix(in srgb, var(--c-teal) 60%, transparent),
-    0 6px 16px -12px color-mix(in srgb, var(--c-teal) 60%, transparent);
+    0 -6px 16px -12px rgb(245 165 36 / 45%),
+    0 6px 16px -12px rgb(245 165 36 / 45%);
   padding: 0.8rem 0;
 }
 
@@ -1911,10 +1911,11 @@ html.dark body:has(.contact-page) {
 
 .contact-marquee-label {
   margin-right: 1rem;
+  border: 1px solid #f3c470;
   border-radius: 9999px;
-  background: var(--c-teal);
+  background: #fff4dc;
   padding: 0.35rem 0.8rem;
-  color: #ffffff;
+  color: #9a5b00;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1922,7 +1923,13 @@ html.dark body:has(.contact-page) {
   text-transform: uppercase;
 }
 
-.dark .contact-marquee-label { color: #17343a; }
+.dark .contact-marquee { border-color: rgb(255 194 58 / 55%); }
+
+.dark .contact-marquee-label {
+  border-color: rgb(255 194 58 / 45%);
+  background: rgb(255 194 58 / 12%);
+  color: #ffc23a;
+}
 
 .contact-marquee-item b {
   width: 0.45rem;
