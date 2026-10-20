@@ -2011,6 +2011,40 @@ html.dark body:has(.contact-page) {
     0 24px 36px -16px color-mix(in srgb, var(--brand) 75%, transparent);
 }
 
+/* App tabs styled like the site's dock buttons: a light, raised square with a
+   grey symbol that shows its real brand colour on hover, focus or tap. */
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
+  border: 1px solid #dfe7e9;
+  background: linear-gradient(180deg, #ffffff 0%, #eef3f4 100%);
+  color: #5f6467;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 2px 0 #d6dfe1,
+    0 10px 18px -12px rgb(23 52 58 / 40%);
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1), color 200ms ease, box-shadow 250ms ease;
+}
+
+.dark .contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
+  border-color: rgb(255 255 255 / 10%);
+  background: linear-gradient(180deg, #24434a 0%, #17343a 100%);
+  color: #c7d3d6;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 10%) inset,
+    0 2px 0 #0d2125,
+    0 10px 18px -12px rgb(0 0 0 / 70%);
+}
+
+.contact-reach3d.contact-reach3d-tile:hover .contact-reach3d-icon,
+.contact-reach3d.contact-reach3d-tile:focus-visible .contact-reach3d-icon,
+.contact-reach3d.contact-reach3d-tile[data-popped] .contact-reach3d-icon { color: var(--brand); }
+
+/* Multicolour logos (Gmail, TikTok) stay grey until hovered or tapped. */
+.contact-reach3d-tile:not(:hover):not(:focus-visible):not([data-popped]) .contact-glyph-multi { fill: currentColor; }
+.contact-reach3d-tile:not(:hover):not(:focus-visible):not([data-popped]) .contact-glyph-offset { opacity: 0; }
+
+.contact-brand-tiktok { --brand: #010101; }
+.dark .contact-brand-tiktok { --brand: #f0f3f6; }
+
 .contact-reach3d.contact-reach3d-tile .contact-reach3d-text {
   max-width: 100%;
   align-items: center;
