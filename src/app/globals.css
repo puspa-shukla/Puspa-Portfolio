@@ -1701,6 +1701,8 @@ html.dark body:has(.contact-page) {
 .contact-reach3d-grid { perspective: 1000px; }
 
 .contact-reach3d {
+  --brand: var(--brand-fallback, #1f5f6b);
+  --brand-on: #ffffff;
   position: relative;
   display: flex;
   height: 100%;
@@ -1864,12 +1866,11 @@ html.dark body:has(.contact-page) {
   width: 100vw;
   transform: translateX(-50%);
   overflow: hidden;
-  /* Soft gold edges top and bottom: highlighted, but light. */
-  border-block: 2px solid #f3c470;
-  background: var(--c-surface);
-  box-shadow:
-    0 -6px 16px -12px rgb(245 165 36 / 45%),
-    0 6px 16px -12px rgb(245 165 36 / 45%);
+  /* A light blush band with a thin crimson edge above and gold below:
+     it stands apart from the page while staying light. */
+  border-top: 1.5px solid #e86a82;
+  border-bottom: 1.5px solid #f2c063;
+  background: #fdf0ea;
   padding: 0.8rem 0;
 }
 
@@ -1893,11 +1894,11 @@ html.dark body:has(.contact-page) {
   display: inline-flex;
   align-items: center;
   padding-right: 2.5rem;
-  color: var(--c-ink);
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  color: #3a1520;
 }
 
 .contact-marquee-item > span:not(.contact-marquee-label) {
@@ -1909,15 +1910,11 @@ html.dark body:has(.contact-page) {
 }
 
 /* Thin dividers between the channels keep the strip tidy. */
-.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid var(--c-line); }
+.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid rgb(58 21 32 / 15%); }
 
 .contact-marquee-label {
-  margin-right: 1rem;
-  border: 1px solid #f3c470;
-  border-radius: 9999px;
-  background: #fff4dc;
-  padding: 0.35rem 0.8rem;
-  color: #9a5b00;
+  margin-right: 0.5rem;
+  color: rgb(58 21 32 / 45%);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1925,13 +1922,8 @@ html.dark body:has(.contact-page) {
   text-transform: uppercase;
 }
 
-.dark .contact-marquee { border-color: rgb(255 194 58 / 55%); }
-
-.dark .contact-marquee-label {
-  border-color: rgb(255 194 58 / 45%);
-  background: rgb(255 194 58 / 12%);
-  color: #ffc23a;
-}
+/* The band stays light in dark mode too, so its text and dots keep their colours. */
+.dark .contact-marquee .contact-dot-github { background: #181717; }
 
 .contact-marquee-item b {
   width: 0.45rem;
@@ -1953,13 +1945,87 @@ html.dark body:has(.contact-page) {
 .dark .contact-brand-facebook .contact-reach3d-cta { color: #6aa8ff; }
 .dark .contact-brand-instagram .contact-reach3d-cta { color: #ff7aa8; }
 
-/* Small heading above each group of contact cards. */
+/* The two boxes: "Reach me other ways" and "Find me on social media". */
+.contact-reach-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 2rem;
+  padding: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  .contact-reach-box { padding: 1.4rem; }
+}
+
+/* Inside each box the apps sit side by side as home-screen style tabs: a
+   rounded square filled with the app's logo, its name underneath. */
+.contact-tile-grid {
+  flex: 1;
+  align-content: center;
+  justify-items: center;
+  gap: 1.25rem 0.75rem;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.contact-reach3d.contact-reach3d-tile {
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  padding: 0.35rem;
+  text-align: center;
+}
+
+.contact-reach3d.contact-reach3d-tile:hover,
+.contact-reach3d.contact-reach3d-tile:focus-visible,
+.contact-reach3d.contact-reach3d-tile[data-popped] {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-sheen,
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-cta { display: none; }
+
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
+  width: clamp(4.25rem, 6.5vw, 5.5rem);
+  border-radius: 26%;
+}
+
+.contact-reach3d.contact-reach3d-tile:hover .contact-reach3d-icon {
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 30%) inset,
+    0 22px 34px -14px color-mix(in srgb, var(--brand) 75%, transparent);
+}
+
+.contact-reach3d.contact-reach3d-tile[data-popped] .contact-reach3d-icon {
+  box-shadow:
+    0 0 0 3px var(--c-surface),
+    0 0 0 5px var(--brand),
+    0 24px 36px -16px color-mix(in srgb, var(--brand) 75%, transparent);
+}
+
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-text {
+  max-width: 100%;
+  align-items: center;
+  padding-right: 0;
+}
+
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:first-child { font-size: 0.95rem; }
+.contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:last-child { font-size: 0.75rem; }
+
+/* Heading at the top of each box, with a thin rule under it. */
 .contact-reach-head {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 0.75rem;
-  padding-inline: 0.25rem;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-bottom: 1px solid var(--c-line);
+  padding: 0 0.25rem 0.9rem;
 }
 
 /* Leave room for the Copy button beside the email address. */

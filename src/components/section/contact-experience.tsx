@@ -170,6 +170,8 @@ const DIRECT_LINKS = [
     href: gmailComposeUrl(),
     glyph: GmailGlyph,
     brand: "contact-brand-email",
+    color: "#ea4335",
+    tile: "#ffffff",
   },
   {
     label: "LinkedIn",
@@ -178,6 +180,8 @@ const DIRECT_LINKS = [
     href: DATA.contact.social.LinkedIn.url,
     glyph: LinkedinGlyph,
     brand: "contact-brand-linkedin",
+    color: "#0a66c2",
+    tile: "#0a66c2",
   },
   {
     label: "GitHub",
@@ -186,6 +190,8 @@ const DIRECT_LINKS = [
     href: DATA.contact.social.GitHub.url,
     glyph: GithubGlyph,
     brand: "contact-brand-github",
+    color: "#181717",
+    tile: "",
   },
 ];
 
@@ -225,6 +231,8 @@ const SOCIAL_LINKS = [
     href: "https://www.facebook.com/puspa.shukla.257558",
     glyph: FacebookGlyph,
     brand: "contact-brand-facebook",
+    color: "#1877f2",
+    tile: "#1877f2",
   },
   {
     label: "Instagram",
@@ -233,6 +241,8 @@ const SOCIAL_LINKS = [
     href: "https://www.instagram.com/shuklapuspa105/",
     glyph: InstagramGlyph,
     brand: "contact-brand-instagram",
+    color: "#e1306c",
+    tile: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%)",
   },
 ];
 
@@ -244,7 +254,16 @@ function ReachCard({
   popped,
   onOpen,
 }: {
-  link: (typeof DIRECT_LINKS)[number];
+  link: {
+    label: string;
+    handle: string;
+    action: string;
+    href: string;
+    glyph: () => ReactNode;
+    brand: string;
+    color: string;
+    tile: string;
+  };
   index: number;
   popped: boolean;
   onOpen: () => void;
@@ -281,12 +300,15 @@ function ReachCard({
       onPointerCancel={settle}
       onClick={onOpen}
       data-popped={popped ? "" : undefined}
-      style={{ "--i": index } as CSSProperties}
-      className={`contact-reach3d ${link.brand} group`}
+      style={{ "--i": index, "--brand-fallback": link.color } as CSSProperties}
+      className={`contact-reach3d contact-reach3d-tile ${link.brand} group`}
     >
       <span aria-hidden="true" className="contact-reach3d-sheen" />
       <span className="contact-reach3d-float">
-        <span className="contact-reach3d-icon">
+        <span
+          className="contact-reach3d-icon"
+          style={link.tile ? { background: link.tile } : undefined}
+        >
           <Glyph />
         </span>
       </span>
@@ -1351,17 +1373,18 @@ export default function ContactExperience() {
           </div>
           </div>
         </div>
-        {/* Two groups of 3D cards. Each tilts toward the pointer; the chosen one
-            pops out and opens in a new tab. */}
-        <div className="flex flex-col gap-3">
-          <div className="contact-reach-head">
-            <h3 className="contact-heading text-base font-semibold sm:text-lg">Reach me other ways</h3>
-            <p className="contact-muted text-sm">Email, professional network and code.</p>
-          </div>
-          <div className="contact-card rounded-3xl p-2.5 sm:p-3">
-            <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-3 sm:gap-3">
+        {/* Two boxes side by side: other ways to reach me, and social media.
+            Each card tilts toward the pointer; the chosen one pops out and
+            opens in a new tab. */}
+        <div className="grid items-stretch gap-4 lg:grid-cols-2">
+          <div className="contact-card contact-reach-box">
+            <div className="contact-reach-head">
+              <h3 className="contact-heading text-base font-semibold sm:text-lg">Reach me other ways</h3>
+              <p className="contact-muted text-sm">Email, professional network and code.</p>
+            </div>
+            <ul className="contact-reach3d-grid contact-tile-grid grid grid-cols-3">
               {DIRECT_LINKS.map((link, index) => (
-                <li key={link.label} className="contact-reach3d-cell relative">
+                <li key={link.label} className="contact-reach3d-cell flex flex-col items-center gap-1.5">
                   <ReachCard
                     link={link}
                     index={index}
@@ -1372,7 +1395,7 @@ export default function ContactExperience() {
                     <button
                       type="button"
                       onClick={() => void copyEmail()}
-                      className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
+                      className="contact-app-copy inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
                     >
                       <Copy aria-hidden="true" className="size-3" />
                       Copy
@@ -1383,17 +1406,15 @@ export default function ContactExperience() {
               ))}
             </ul>
           </div>
-        </div>
 
-        <div className="mt-4 flex flex-col gap-3">
-          <div className="contact-reach-head">
-            <h3 className="contact-heading text-base font-semibold sm:text-lg">Find me on social media</h3>
-            <p className="contact-muted text-sm">Say hi, follow along and see what I&apos;m up to.</p>
-          </div>
-          <div className="contact-card rounded-3xl p-2.5 sm:p-3">
-            <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+          <div className="contact-card contact-reach-box">
+            <div className="contact-reach-head">
+              <h3 className="contact-heading text-base font-semibold sm:text-lg">Find me on social media</h3>
+              <p className="contact-muted text-sm">Say hi, follow along and see what I&apos;m up to.</p>
+            </div>
+            <ul className="contact-reach3d-grid contact-tile-grid grid grid-cols-2">
               {SOCIAL_LINKS.map((link, index) => (
-                <li key={link.label} className="contact-reach3d-cell relative">
+                <li key={link.label} className="contact-reach3d-cell flex flex-col items-center gap-1.5">
                   <ReachCard
                     link={link}
                     index={index + DIRECT_LINKS.length}
