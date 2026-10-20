@@ -14,12 +14,15 @@ import dynamic from "next/dynamic";
 import {
   ArrowRight,
   ArrowUp,
+  BriefcaseBusiness,
   ArrowUpRight,
   Check,
   CircleAlert,
   CircleCheck,
   Copy,
   Hand,
+  Handshake,
+  Lightbulb,
   LoaderCircle,
   MousePointerClick,
   Mail,
@@ -28,6 +31,7 @@ import {
   PenLine,
   Plus,
   Send,
+  type LucideIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
 import { DATA } from "@/data/resume";
@@ -47,7 +51,8 @@ const KittyScene = dynamic(() => import("./kitty-scene"), { ssr: false });
 const CHOICES: {
   inquiry: InquiryType;
   label: string;
-  emoji: string;
+  icon: LucideIcon;
+  tone: string;
   hint: string;
   reply: string;
   action: KittyAction;
@@ -55,7 +60,8 @@ const CHOICES: {
   {
     inquiry: "Project Idea",
     label: "I have an idea",
-    emoji: "💡",
+    icon: Lightbulb,
+    tone: "contact-tone-idea",
     hint: "Project suggestions, AI ideas, things to build",
     reply: "Ooh, an idea! Tell me about it.",
     action: "tilt",
@@ -63,7 +69,8 @@ const CHOICES: {
   {
     inquiry: "Collaboration",
     label: "Let's collaborate",
-    emoji: "🤝",
+    icon: Handshake,
+    tone: "contact-tone-collab",
     hint: "Software projects, AI experiments, community work",
     reply: "Something to build together? I'm listening!",
     action: "wave",
@@ -71,7 +78,8 @@ const CHOICES: {
   {
     inquiry: "Career Opportunity",
     label: "I have an opportunity",
-    emoji: "✨",
+    icon: BriefcaseBusiness,
+    tone: "contact-tone-opportunity",
     hint: "Internships, jobs, mentorship, partnerships",
     reply: "That sounds exciting. Let's get Puspa involved.",
     action: "hop",
@@ -79,7 +87,8 @@ const CHOICES: {
   {
     inquiry: "General Conversation",
     label: "I just want to say hi",
-    emoji: "👋",
+    icon: Hand,
+    tone: "contact-tone-hello",
     hint: "Questions, introductions, networking",
     reply: "Hi right back! What would you like to talk about?",
     action: "nod",
@@ -966,10 +975,11 @@ export default function ContactExperience() {
         <StepHeader index="01" id="contact-choices-title" title="What's on your mind?">
           Choose a starting point and I&apos;ll set up the form for you.
         </StepHeader>
-        <div ref={setAnchor("choices")} className="contact-card rounded-2xl p-3 sm:p-4">
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div ref={setAnchor("choices")}>
+          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {CHOICES.map((choice) => {
               const selected = inquiry === choice.inquiry;
+              const Icon = choice.icon;
               return (
                 <li key={choice.inquiry}>
                   <button
@@ -980,23 +990,23 @@ export default function ContactExperience() {
                     onPointerLeave={() => setAttention(false)}
                     onFocus={() => setAttention(true)}
                     onBlur={() => setAttention(false)}
-                    className="contact-option flex h-full w-full items-start gap-3 rounded-xl p-4 text-left"
+                    className={`contact-choice ${choice.tone}`}
                   >
-                    <span
-                      aria-hidden="true"
-                      className="contact-option-icon inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-lg"
-                    >
-                      {choice.emoji}
+                    <span className="flex w-full items-start justify-between">
+                      <span aria-hidden="true" className="contact-choice-icon">
+                        <Icon className="size-5" strokeWidth={2} />
+                      </span>
+                      <span aria-hidden="true" className="contact-choice-check">
+                        <Check className="size-3" strokeWidth={3} />
+                      </span>
                     </span>
-                    <span className="flex min-w-0 flex-col gap-0.5">
-                      <span className="contact-heading font-semibold">{choice.label}</span>
-                      <span className="contact-muted text-sm leading-snug">{choice.hint}</span>
+                    <span className="contact-heading mt-4 text-[1.05rem] font-semibold leading-snug">
+                      {choice.label}
                     </span>
-                    <span
-                      aria-hidden="true"
-                      className="contact-option-check ml-auto inline-flex size-5 shrink-0 items-center justify-center rounded-full"
-                    >
-                      <Check className="size-3" strokeWidth={3} />
+                    <span className="contact-muted mt-1 text-sm leading-relaxed">{choice.hint}</span>
+                    <span aria-hidden="true" className="contact-choice-cta">
+                      {selected ? "Selected" : "Start here"}
+                      <ArrowRight className="size-4" />
                     </span>
                   </button>
                 </li>
