@@ -11,7 +11,7 @@ const navigationItems = [
   { label: "Achievements", href: "/achievements", hint: "Recognition and milestones" },
   { label: "Social Impact", href: "/social-work", hint: "Community and volunteer work" },
   { label: "U-GO AI", href: "/blog", hint: "My AI learning and leadership story" },
-  { label: "Insights", href: "/content-creation", hint: "Writing and content" },
+  { label: "Insights", href: "/insights", hint: "Reflections on tech, AI, and leadership" },
   { label: "Contact", href: "/contact", hint: "Get in touch" },
 ];
 

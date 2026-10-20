@@ -82,7 +82,7 @@ export default function StoryCategoryRibbon({
       aria-label="Story categories"
       className="story-category-ribbon fixed inset-x-0 top-0 z-[55] border-b border-[#c9d6d9] bg-[#e6f0f2]/95 shadow-sm shadow-[#17343a]/10 backdrop-blur-md"
     >
-      <div className="mx-auto flex min-h-[4.5rem] w-full max-w-[100rem] items-center gap-2.5 overflow-x-auto px-4 pl-16 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 sm:pl-20 sm:pr-8 lg:pl-20 lg:pr-12">
+      <div className="mx-auto flex min-h-[4.5rem] w-full max-w-[100rem] items-center gap-2.5 overflow-x-auto py-2 pl-[4.5rem] pr-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 sm:pl-[9.5rem] sm:pr-8 lg:px-[9.5rem] [&>a:first-child]:ml-auto [&>a:last-child]:mr-auto">
         {allStories && (
           <a
             href={allStories.href}
