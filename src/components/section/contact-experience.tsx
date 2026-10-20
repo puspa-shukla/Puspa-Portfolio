@@ -1067,9 +1067,9 @@ export default function ContactExperience() {
         </StepHeader>
         <div
           ref={setAnchor("write")}
-          className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)]"
+          className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)]"
         >
-          <div className="contact-card scroll-mt-24 rounded-2xl p-5 sm:p-8">
+          <div className="contact-card scroll-mt-24 rounded-[1.25rem] p-5 sm:p-8">
             <div role="status" aria-live="polite" className="empty:hidden mb-5">
               {status === "success" && (
                 <div className="contact-alert contact-alert-success flex gap-3 rounded-xl p-4">
@@ -1290,7 +1290,7 @@ export default function ContactExperience() {
             </form>
           </div>
 
-          <aside aria-labelledby="contact-feedback-title" className="contact-card contact-card-warm rounded-2xl p-5 sm:p-6">
+          <aside aria-labelledby="contact-feedback-title" className="contact-card contact-card-warm flex flex-col rounded-[1.25rem] p-5 sm:p-6">
             <h3 id="contact-feedback-title" className="contact-heading text-lg font-semibold tracking-tight">
               Help me make this better.
             </h3>
@@ -1320,6 +1320,10 @@ export default function ContactExperience() {
                 );
               })}
             </ul>
+            <p className="contact-muted mt-5 flex items-center gap-2 border-t lg:mt-auto border-[var(--c-warm-line)] pt-4 text-xs">
+              <MessageCircleMore aria-hidden="true" className="size-4 shrink-0" />
+              Every note is read personally.
+            </p>
           </aside>
         </div>
       </section>
@@ -1373,7 +1377,7 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-4">
+      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-5">
         <h2 id="contact-direct-title" className="sr-only">
           Other ways to reach me
         </h2>
