@@ -1879,105 +1879,66 @@ html.dark body:has(.contact-page) {
   color: var(--brand-on);
 }
 
-/* "Other ways to reach me" as two crossed 3D ribbons that drift left to right. */
-.contact-ribbons {
-  position: relative;
-  height: 6.5rem;
-  margin-inline: -1rem;
-  perspective: 900px;
-  overflow-x: clip;
-}
-
-@media (min-width: 640px) {
-  .contact-ribbons { height: 7.5rem; margin-inline: -2rem; }
-}
-
-.contact-ribbon {
-  position: absolute;
-  left: -2%;
-  right: -2%;
-  top: 50%;
-  display: flex;
+/* "Reach me at" strip: thin, flat, sliding left to right; pauses on hover. */
+.contact-marquee {
   overflow: hidden;
-  transform-style: preserve-3d;
-}
-
-/* Front: a deep teal band with a lit top edge and a shaded underside. */
-.contact-ribbon-front {
-  z-index: 1;
-  padding: 0.85rem 0;
-  background: linear-gradient(180deg, #2a7482 0%, #1f5f6b 45%, #17343a 100%);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 25%),
-    inset 0 -3px 0 rgb(0 0 0 / 25%),
-    0 22px 34px -18px rgb(23 52 58 / 70%);
-  transform: translateY(-50%) rotateX(14deg) rotate(-2.5deg);
-}
-
-/* Back: an amber band crossing behind, slightly darker so it reads as further away. */
-.contact-ribbon-back {
+  border-block: 1px solid var(--c-line);
   padding: 0.55rem 0;
-  background: linear-gradient(180deg, #ffc23a 0%, #f5a524 55%, #d98a10 100%);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 45%),
-    0 14px 24px -16px rgb(150 90 0 / 60%);
-  transform: translateY(-50%) translateZ(-40px) rotateX(-10deg) rotate(3deg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
-.contact-ribbon-track {
+.contact-marquee-track {
   display: flex;
   width: max-content;
-  animation: contact-ribbon-right 32s linear infinite;
+  animation: contact-marquee-right 36s linear infinite;
 }
 
-.contact-ribbon-back .contact-ribbon-track { animation-duration: 46s; }
+.contact-marquee:hover .contact-marquee-track { animation-play-state: paused; }
 
 /* The track holds the run twice; sliding from -50% to 0 loops seamlessly. */
-@keyframes contact-ribbon-right {
+@keyframes contact-marquee-right {
   from { transform: translateX(-50%); }
   to { transform: translateX(0); }
 }
 
-.contact-ribbon-run { display: flex; }
+.contact-marquee-run { display: flex; }
 
-.contact-ribbon-item {
+.contact-marquee-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
-  padding-right: 0.9rem;
+  gap: 1.5rem;
+  padding-right: 3rem;
+  color: var(--c-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+}
+
+.contact-marquee-item > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.contact-marquee-label {
+  color: var(--c-muted);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.contact-ribbon-item i { font-style: normal; }
-
-.contact-ribbon-front .contact-ribbon-item {
-  color: #ffffff;
-  font-size: clamp(1.15rem, 2.6vw, 1.75rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+.contact-marquee-item b {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
 }
 
-.contact-ribbon-front .contact-ribbon-item i { color: #ffc23a; }
-
-.contact-ribbon-back .contact-ribbon-item {
-  color: #17343a;
-  font-size: clamp(0.8rem, 1.6vw, 0.95rem);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.contact-ribbon-back .contact-ribbon-item i { color: rgb(23 52 58 / 55%); }
-
-.dark .contact-ribbon-front {
-  background: linear-gradient(180deg, #2a7482 0%, #1f5f6b 50%, #133f47 100%);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 25%),
-    inset 0 -3px 0 rgb(0 0 0 / 30%),
-    0 0 0 1px rgb(255 255 255 / 8%),
-    0 22px 34px -18px rgb(0 0 0 / 80%);
-}
+.contact-dot-linkedin { background: #0a66c2; }
+.contact-dot-github { background: #181717; }
+.dark .contact-dot-github { background: #f0f3f6; }
+.contact-dot-gmail { background: #ea4335; }
 
 /* Leave room for the Copy button beside the email address on phones. */
 @media (max-width: 639px) {
@@ -2360,7 +2321,7 @@ html.dark body:has(.contact-page) {
   .contact-kitty-menu,
   .contact-reach3d-float,
   .contact-reach3d[data-popped] .contact-reach3d-icon,
-  .contact-ribbon-track,
+  .contact-marquee-track,
   .contact-talk {
     animation: none;
   }

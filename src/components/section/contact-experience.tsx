@@ -1270,43 +1270,29 @@ export default function ContactExperience() {
       </section>
 
       <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-5">
-        <h2 id="contact-direct-title" className="sr-only">
-          Other ways to reach me
-        </h2>
-        {/* Two crossed 3D ribbons drifting left to right: the title on a dark
-            band in front, the three channels on an amber band behind it. */}
-        <div aria-hidden="true" className="contact-ribbons">
-          <div className="contact-ribbon contact-ribbon-back">
-            <div className="contact-ribbon-track">
-              {Array.from({ length: 2 }, (_, copy) => (
-                <span key={copy} className="contact-ribbon-run">
-                  {Array.from({ length: 4 }, (_, index) => (
-                    <span key={index} className="contact-ribbon-item">
-                      Email <i>•</i> LinkedIn <i>•</i> GitHub <i>•</i>
-                    </span>
-                  ))}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="contact-ribbon contact-ribbon-front">
-            <div className="contact-ribbon-track">
-              {Array.from({ length: 2 }, (_, copy) => (
-                <span key={copy} className="contact-ribbon-run">
-                  {Array.from({ length: 4 }, (_, index) => (
-                    <span key={index} className="contact-ribbon-item">
-                      Other ways to reach me <i>✦</i>
-                    </span>
-                  ))}
-                </span>
-              ))}
-            </div>
+        <StepHeader index="03" id="contact-direct-title" title="Other ways to reach me">
+          Not a form person? Find me here.
+        </StepHeader>
+        {/* A thin, flat strip that slides left to right. */}
+        <div ref={setAnchor("reach")} aria-hidden="true" className="contact-marquee">
+          <div className="contact-marquee-track">
+            {Array.from({ length: 2 }, (_, copy) => (
+              <span key={copy} className="contact-marquee-run">
+                {Array.from({ length: 4 }, (_, index) => (
+                  <span key={index} className="contact-marquee-item">
+                    <span className="contact-marquee-label">Reach me at</span>
+                    <span><b className="contact-dot-linkedin" />LinkedIn</span>
+                    <span><b className="contact-dot-github" />GitHub</span>
+                    <span><b className="contact-dot-gmail" />Gmail</span>
+                  </span>
+                ))}
+              </span>
+            ))}
           </div>
         </div>
-        <p className="contact-muted text-sm sm:text-base">Not a form person? Find me here.</p>
         {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
             one pops out and opens in a new tab. */}
-        <div ref={setAnchor("reach")} className="contact-card rounded-3xl p-2.5 sm:p-3">
+        <div className="contact-card rounded-3xl p-2.5 sm:p-3">
           <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-3 sm:gap-3">
             {DIRECT_LINKS.map((link, index) => (
               <li key={link.label} className="contact-reach3d-cell relative">
