@@ -1693,6 +1693,8 @@ html.dark body:has(.contact-page) {
 .contact-brand-email { --brand: #ea4335; --brand-on: #ffffff; }
 .contact-brand-linkedin { --brand: #0a66c2; --brand-on: #ffffff; }
 .contact-brand-github { --brand: #181717; --brand-on: #ffffff; }
+.contact-brand-facebook { --brand: #1877f2; --brand-on: #ffffff; }
+.contact-brand-instagram { --brand: #e1306c; --brand-on: #ffffff; }
 /* On the dark page GitHub flips to white so it stays visible. */
 .dark .contact-brand-github { --brand: #f0f3f6; --brand-on: #181717; }
 
@@ -1941,6 +1943,24 @@ html.dark body:has(.contact-page) {
 .contact-dot-github { background: #181717; }
 .dark .contact-dot-github { background: #f0f3f6; }
 .contact-dot-gmail { background: #ea4335; }
+
+/* Instagram's icon is its warm gradient square. */
+.contact-brand-instagram .contact-reach3d-icon {
+  background:
+    radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+.dark .contact-brand-facebook .contact-reach3d-cta { color: #6aa8ff; }
+.dark .contact-brand-instagram .contact-reach3d-cta { color: #ff7aa8; }
+
+/* Small heading above each group of contact cards. */
+.contact-reach-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  padding-inline: 0.25rem;
+}
 
 /* Leave room for the Copy button beside the email address. */
 .contact-brand-email .contact-reach3d-text { padding-right: 4.25rem; }

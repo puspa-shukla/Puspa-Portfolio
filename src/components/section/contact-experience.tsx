@@ -189,6 +189,53 @@ const DIRECT_LINKS = [
   },
 ];
 
+function FacebookGlyph() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="w-[58%]">
+      <path
+        fill="currentColor"
+        d="M14 8.5V6.6c0-.8.5-1.1 1-1.1h2.4V2h-3.3C10.6 2 9.8 4.6 9.8 6.3v2.2H7.5V12h2.3v10H14V12h3.1l.4-3.5H14z"
+      />
+    </svg>
+  );
+}
+
+function InstagramGlyph() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      className="w-[60%]"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+const SOCIAL_LINKS = [
+  {
+    label: "Facebook",
+    handle: "Puspa Shukla",
+    action: "Follow on Facebook",
+    href: "https://www.facebook.com/puspa.shukla.257558",
+    glyph: FacebookGlyph,
+    brand: "contact-brand-facebook",
+  },
+  {
+    label: "Instagram",
+    handle: "@shuklapuspa105",
+    action: "Follow on Instagram",
+    href: "https://www.instagram.com/shuklapuspa105/",
+    glyph: InstagramGlyph,
+    brand: "contact-brand-instagram",
+  },
+];
+
 // A contact card that tilts in 3D toward the pointer (or finger), with a soft
 // light that follows it. The app icon floats above the card.
 function ReachCard({
@@ -1304,32 +1351,59 @@ export default function ContactExperience() {
           </div>
           </div>
         </div>
-        {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
-            one pops out and opens in a new tab. */}
-        <div className="contact-card rounded-3xl p-2.5 sm:p-3">
-          <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-3 sm:gap-3">
-            {DIRECT_LINKS.map((link, index) => (
-              <li key={link.label} className="contact-reach3d-cell relative">
-                <ReachCard
-                  link={link}
-                  index={index}
-                  popped={popped === link.label}
-                  onOpen={() => popLink(link.label)}
-                />
-                {link.label === "Email" && (
-                  <button
-                    type="button"
-                    onClick={() => void copyEmail()}
-                    className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
-                  >
-                    <Copy aria-hidden="true" className="size-3" />
-                    Copy
-                    <span className="sr-only"> email address</span>
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
+        {/* Two groups of 3D cards. Each tilts toward the pointer; the chosen one
+            pops out and opens in a new tab. */}
+        <div className="flex flex-col gap-3">
+          <div className="contact-reach-head">
+            <h3 className="contact-heading text-base font-semibold sm:text-lg">Reach me other ways</h3>
+            <p className="contact-muted text-sm">Email, professional network and code.</p>
+          </div>
+          <div className="contact-card rounded-3xl p-2.5 sm:p-3">
+            <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-3 sm:gap-3">
+              {DIRECT_LINKS.map((link, index) => (
+                <li key={link.label} className="contact-reach3d-cell relative">
+                  <ReachCard
+                    link={link}
+                    index={index}
+                    popped={popped === link.label}
+                    onOpen={() => popLink(link.label)}
+                  />
+                  {link.label === "Email" && (
+                    <button
+                      type="button"
+                      onClick={() => void copyEmail()}
+                      className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
+                    >
+                      <Copy aria-hidden="true" className="size-3" />
+                      Copy
+                      <span className="sr-only"> email address</span>
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="contact-reach-head">
+            <h3 className="contact-heading text-base font-semibold sm:text-lg">Find me on social media</h3>
+            <p className="contact-muted text-sm">Say hi, follow along and see what I&apos;m up to.</p>
+          </div>
+          <div className="contact-card rounded-3xl p-2.5 sm:p-3">
+            <ul className="contact-reach3d-grid grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+              {SOCIAL_LINKS.map((link, index) => (
+                <li key={link.label} className="contact-reach3d-cell relative">
+                  <ReachCard
+                    link={link}
+                    index={index + DIRECT_LINKS.length}
+                    popped={popped === link.label}
+                    onOpen={() => popLink(link.label)}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
     </div>
