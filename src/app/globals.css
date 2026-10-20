@@ -2221,22 +2221,15 @@ html.dark body:has(.contact-page) {
 }
 
 /* "What's on your mind?" choices: clean cards, each with its own accent. */
-.contact-tone-idea { --tone: #c97a06; }
-.contact-tone-collab { --tone: #1f8a8a; }
-.contact-tone-opportunity { --tone: #4f63d8; }
-.contact-tone-hello { --tone: #d6476c; }
-
-.dark .contact-tone-idea { --tone: #ffc23a; }
-.dark .contact-tone-collab { --tone: #5fd0c0; }
-.dark .contact-tone-opportunity { --tone: #9aa8ff; }
-.dark .contact-tone-hello { --tone: #ff8fab; }
+/* One accent for all four, the page's own teal (gold in dark mode). */
+.contact-choice { --tone: var(--c-teal); }
 
 /* The four choices sit together in one softly tinted panel, like the other
    sections on the page. */
 .contact-choices-panel {
   border: 1px solid var(--c-line);
   border-radius: 1.5rem;
-  background: color-mix(in srgb, var(--c-teal) 5%, var(--c-surface));
+  background: var(--c-surface);
   box-shadow: 0 18px 42px -30px rgb(23 52 58 / 22%);
   padding: 0.75rem;
 }
@@ -2245,7 +2238,7 @@ html.dark body:has(.contact-page) {
   .contact-choices-panel { padding: 1rem; }
 }
 
-.dark .contact-choices-panel { background: #0f262a; }
+
 
 .contact-choice {
   position: relative;
@@ -2257,7 +2250,8 @@ html.dark body:has(.contact-page) {
   overflow: hidden;
   border: 1px solid var(--c-line);
   border-radius: 1rem;
-  background: var(--c-surface);
+  /* A light warm cream that echoes the page background. */
+  background: #fbf8f2;
   padding: 1.25rem;
   text-align: left;
   box-shadow: 0 1px 2px rgb(23 52 58 / 5%);
@@ -2269,26 +2263,13 @@ html.dark body:has(.contact-page) {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* A thin accent line along the top edge, drawn in on hover and when selected. */
-.contact-choice::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 3px;
-  background: var(--tone);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+.dark .contact-choice { background: #0f262a; }
 
 .contact-choice:hover {
   border-color: color-mix(in srgb, var(--tone) 40%, var(--c-line));
   box-shadow: 0 18px 32px -22px color-mix(in srgb, var(--tone) 60%, transparent);
   transform: translateY(-3px);
 }
-
-.contact-choice:hover::before,
-.contact-choice[aria-pressed="true"]::before { transform: scaleX(1); }
 
 .contact-choice:active { transform: translateY(0); }
 
@@ -2356,7 +2337,6 @@ html.dark body:has(.contact-page) {
 
 @media (prefers-reduced-motion: reduce) {
   .contact-choice,
-  .contact-choice::before,
   .contact-choice-cta svg { transition: none; }
 
   .contact-choice:hover { transform: none; }
