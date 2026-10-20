@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="contact-page blog-page-shell mx-auto w-full max-w-none px-4 pb-28 pt-0 sm:px-8 lg:px-12">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 pt-[4.5rem] sm:gap-12">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 pt-[4.5rem] sm:gap-12">
         <ContactExperience />
       </div>
     </main>
