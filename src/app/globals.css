@@ -2073,7 +2073,16 @@ html.dark body:has(.contact-page) {
 /* The merged box: no padding of its own; each half carries the spacing and a
    thin divider separates them (side by side on wide screens, stacked on phones). */
 .contact-card.contact-reach-box.contact-reach-merged {
+  /* Runs from one screen edge to the other, like the strip above it; the
+     content inside stays in line with the rest of the page. */
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   overflow: hidden;
+  border-inline: 0;
+  border-radius: 0;
+  box-shadow: none;
   padding: 0;
 }
 

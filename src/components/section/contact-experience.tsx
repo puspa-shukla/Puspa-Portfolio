@@ -1407,11 +1407,23 @@ export default function ContactExperience() {
         {/* One box, two halves side by side: other ways to reach me, and social
             media. Each half has its own dot grid that fades out behind its heading. */}
         <div className="contact-card contact-reach-box contact-reach-merged">
-          <div className="grid lg:grid-cols-2">
+          {/* On wide screens one dot grid spans the whole band. */}
+          <div aria-hidden="true" className="contact-reach-dots hidden lg:block">
+            <FlickeringGrid
+              className="h-full w-full"
+              color="rgb(150, 150, 150)"
+              squareSize={3}
+              gridGap={4}
+              flickerChance={0.12}
+              maxOpacity={0.28}
+            />
+          </div>
+          <div className="px-4 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
           <div className="contact-reach-half relative isolate">
             {/* Soft grey flickering dots fill the box below its heading, so the
                 heading itself stays on a clean background. */}
-            <div aria-hidden="true" className="contact-reach-dots">
+            <div aria-hidden="true" className="contact-reach-dots lg:hidden">
               <FlickeringGrid
                 className="h-full w-full"
                 color="rgb(150, 150, 150)"
@@ -1453,7 +1465,7 @@ export default function ContactExperience() {
           <div className="contact-reach-half relative isolate">
             {/* Soft grey flickering dots fill the box below its heading, so the
                 heading itself stays on a clean background. */}
-            <div aria-hidden="true" className="contact-reach-dots">
+            <div aria-hidden="true" className="contact-reach-dots lg:hidden">
               <FlickeringGrid
                 className="h-full w-full"
                 color="rgb(150, 150, 150)"
@@ -1479,6 +1491,7 @@ export default function ContactExperience() {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
           </div>
         </div>
