@@ -97,8 +97,8 @@ const CHOICES: {
 ];
 
 // The places the kitty sits as the visitor scrolls, in page order: on the talk
-// button, then on top of each step's card.
-const SPOTS = ["hero", "choices", "write", "reach"] as const;
+// button, then on top of each step's card (form, topics, then other ways).
+const SPOTS = ["hero", "write", "choices", "reach"] as const;
 type Spot = (typeof SPOTS)[number];
 
 const SPOT_LINES: Record<Spot, string> = {
@@ -685,7 +685,7 @@ export default function ContactExperience() {
     if (status === "success") setStatus("idle");
     playKitty(choice.action);
     say(choice.reply);
-    setAnnouncement(`${choice.reply} The form below is set to “${choice.inquiry}”.`);
+    setAnnouncement(`${choice.reply} The form above is set to “${choice.inquiry}”.`);
     // Give the kitty a moment to react before moving to the form.
     const instant = reduceMotion();
     window.setTimeout(
@@ -1061,57 +1061,8 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section
-        id="contact-choices"
-        aria-labelledby="contact-choices-title"
-        className="contact-step flex scroll-mt-24 flex-col gap-5"
-      >
-        <StepHeader index="01" id="contact-choices-title" title="What's on your mind?">
-          Choose a starting point and I&apos;ll set up the form for you.
-        </StepHeader>
-        <div ref={setAnchor("choices")} className="contact-choices-panel">
-          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-            {CHOICES.map((choice) => {
-              const selected = inquiry === choice.inquiry;
-              const Icon = choice.icon;
-              return (
-                <li key={choice.inquiry}>
-                  <button
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => chooseOption(choice)}
-                    onPointerEnter={() => setAttention(true)}
-                    onPointerLeave={() => setAttention(false)}
-                    onFocus={() => setAttention(true)}
-                    onBlur={() => setAttention(false)}
-                    className={`contact-choice ${choice.tone}`}
-                  >
-                    <span className="flex w-full items-start justify-between">
-                      <span aria-hidden="true" className="contact-choice-icon">
-                        <Icon className="size-5" strokeWidth={2} />
-                      </span>
-                      <span aria-hidden="true" className="contact-choice-check">
-                        <Check className="size-3" strokeWidth={3} />
-                      </span>
-                    </span>
-                    <span className="contact-heading mt-4 text-[1.05rem] font-semibold leading-snug">
-                      {choice.label}
-                    </span>
-                    <span className="contact-muted mt-1 text-sm leading-relaxed">{choice.hint}</span>
-                    <span aria-hidden="true" className="contact-choice-cta">
-                      {selected ? "Selected" : "Start here"}
-                      <ArrowRight className="size-4" />
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-
       <section aria-labelledby="contact-form-title" className="contact-step flex flex-col gap-5">
-        <StepHeader index="02" id="contact-form-title" title="Write to me">
+        <StepHeader index="01" id="contact-form-title" title="Write to me">
           I read every message and usually reply within a few days.
         </StepHeader>
         <div
@@ -1370,6 +1321,55 @@ export default function ContactExperience() {
               })}
             </ul>
           </aside>
+        </div>
+      </section>
+
+      <section
+        id="contact-choices"
+        aria-labelledby="contact-choices-title"
+        className="contact-step flex scroll-mt-24 flex-col gap-5"
+      >
+        <StepHeader index="02" id="contact-choices-title" title="What's on your mind?">
+          Choose a starting point and I&apos;ll set up the form for you.
+        </StepHeader>
+        <div ref={setAnchor("choices")} className="contact-choices-panel">
+          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            {CHOICES.map((choice) => {
+              const selected = inquiry === choice.inquiry;
+              const Icon = choice.icon;
+              return (
+                <li key={choice.inquiry}>
+                  <button
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => chooseOption(choice)}
+                    onPointerEnter={() => setAttention(true)}
+                    onPointerLeave={() => setAttention(false)}
+                    onFocus={() => setAttention(true)}
+                    onBlur={() => setAttention(false)}
+                    className={`contact-choice ${choice.tone}`}
+                  >
+                    <span className="flex w-full items-start justify-between">
+                      <span aria-hidden="true" className="contact-choice-icon">
+                        <Icon className="size-5" strokeWidth={2} />
+                      </span>
+                      <span aria-hidden="true" className="contact-choice-check">
+                        <Check className="size-3" strokeWidth={3} />
+                      </span>
+                    </span>
+                    <span className="contact-heading mt-4 text-[1.05rem] font-semibold leading-snug">
+                      {choice.label}
+                    </span>
+                    <span className="contact-muted mt-1 text-sm leading-relaxed">{choice.hint}</span>
+                    <span aria-hidden="true" className="contact-choice-cta">
+                      {selected ? "Selected" : "Start here"}
+                      <ArrowRight className="size-4" />
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
