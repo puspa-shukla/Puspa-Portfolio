@@ -2019,6 +2019,20 @@ html.dark body:has(.contact-page) {
 .contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:first-child { font-size: 0.95rem; }
 .contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:last-child { font-size: 0.75rem; }
 
+/* Both boxes use a soft light blue (a deep teal in dark mode). */
+.contact-card.contact-reach-box {
+  border-color: #c9dde2;
+  background: #dcebef;
+}
+
+.dark .contact-card.contact-reach-box {
+  border-color: rgb(255 255 255 / 10%);
+  background: #16343a;
+}
+
+.contact-card.contact-reach-box .contact-reach-head { border-bottom-color: #c3d8de; }
+.dark .contact-card.contact-reach-box .contact-reach-head { border-bottom-color: rgb(255 255 255 / 10%); }
+
 /* Dot grid behind each box's cards; it fades in below the heading. */
 .contact-reach-dots {
   position: absolute;
