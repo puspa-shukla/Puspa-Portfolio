@@ -242,7 +242,7 @@ function ReachCard({
         <span className="contact-muted block truncate text-sm">{link.handle}</span>
       </span>
       <span className="contact-reach3d-cta">
-        <span className="hidden sm:inline">{link.action}</span>
+        <span className="sr-only">{link.action}</span>
         <ArrowUpRight aria-hidden="true" className="size-4" />
       </span>
     </a>
@@ -1269,16 +1269,19 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-5">
-        <StepHeader index="03" id="contact-direct-title" title="Other ways to reach me">
-          Not a form person? Find me here.
-        </StepHeader>
-        {/* A thin, flat strip that slides left to right. */}
-        <div ref={setAnchor("reach")} aria-hidden="true" className="contact-marquee">
+      <section aria-labelledby="contact-direct-title" className="contact-step -mt-6 flex flex-col gap-4 sm:-mt-8">
+        <h2 id="contact-direct-title" className="sr-only">
+          Other ways to reach me
+        </h2>
+        {/* A thin, flat strip that slides left to right across the full width of
+            the screen. The wrapper stays in the content column so the kitty
+            sits in line with the page. */}
+        <div ref={setAnchor("reach")} aria-hidden="true">
+          <div className="contact-marquee">
           <div className="contact-marquee-track">
             {Array.from({ length: 2 }, (_, copy) => (
               <span key={copy} className="contact-marquee-run">
-                {Array.from({ length: 4 }, (_, index) => (
+                {Array.from({ length: 8 }, (_, index) => (
                   <span key={index} className="contact-marquee-item">
                     <span className="contact-marquee-label">Reach me at</span>
                     <span><b className="contact-dot-linkedin" />LinkedIn</span>
@@ -1288,6 +1291,7 @@ export default function ContactExperience() {
                 ))}
               </span>
             ))}
+          </div>
           </div>
         </div>
         {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
@@ -1306,7 +1310,7 @@ export default function ContactExperience() {
                   <button
                     type="button"
                     onClick={() => void copyEmail()}
-                    className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 sm:right-3 sm:top-3 sm:translate-y-0 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
+                    className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
                   >
                     <Copy aria-hidden="true" className="size-3" />
                     Copy
