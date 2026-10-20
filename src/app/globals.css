@@ -2125,6 +2125,22 @@ html.dark body:has(.contact-page) {
 .dark .contact-tone-opportunity { --tone: #9aa8ff; }
 .dark .contact-tone-hello { --tone: #ff8fab; }
 
+/* The four choices sit together in one softly tinted panel, like the other
+   sections on the page. */
+.contact-choices-panel {
+  border: 1px solid var(--c-line);
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, var(--c-teal) 5%, var(--c-surface));
+  box-shadow: 0 18px 42px -30px rgb(23 52 58 / 22%);
+  padding: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .contact-choices-panel { padding: 1rem; }
+}
+
+.dark .contact-choices-panel { background: #0f262a; }
+
 .contact-choice {
   position: relative;
   display: flex;

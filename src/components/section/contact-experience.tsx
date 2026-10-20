@@ -975,7 +975,7 @@ export default function ContactExperience() {
         <StepHeader index="01" id="contact-choices-title" title="What's on your mind?">
           Choose a starting point and I&apos;ll set up the form for you.
         </StepHeader>
-        <div ref={setAnchor("choices")}>
+        <div ref={setAnchor("choices")} className="contact-choices-panel">
           <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {CHOICES.map((choice) => {
               const selected = inquiry === choice.inquiry;
