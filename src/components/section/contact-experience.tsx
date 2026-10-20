@@ -14,15 +14,12 @@ import dynamic from "next/dynamic";
 import {
   ArrowRight,
   ArrowUp,
-  BriefcaseBusiness,
   ArrowUpRight,
   Check,
   CircleAlert,
   CircleCheck,
   Copy,
   Hand,
-  Handshake,
-  Lightbulb,
   LoaderCircle,
   MousePointerClick,
   Mail,
@@ -31,10 +28,8 @@ import {
   PenLine,
   Plus,
   Send,
-  type LucideIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { DATA } from "@/data/resume";
 import {
   CONTACT_EMAIL,
@@ -52,8 +47,7 @@ const KittyScene = dynamic(() => import("./kitty-scene"), { ssr: false });
 const CHOICES: {
   inquiry: InquiryType;
   label: string;
-  icon: LucideIcon;
-  tone: string;
+  emoji: string;
   hint: string;
   reply: string;
   action: KittyAction;
@@ -61,8 +55,7 @@ const CHOICES: {
   {
     inquiry: "Project Idea",
     label: "I have an idea",
-    icon: Lightbulb,
-    tone: "contact-tone-idea",
+    emoji: "💡",
     hint: "Project suggestions, AI ideas, things to build",
     reply: "Ooh, an idea! Tell me about it.",
     action: "tilt",
@@ -70,8 +63,7 @@ const CHOICES: {
   {
     inquiry: "Collaboration",
     label: "Let's collaborate",
-    icon: Handshake,
-    tone: "contact-tone-collab",
+    emoji: "🤝",
     hint: "Software projects, AI experiments, community work",
     reply: "Something to build together? I'm listening!",
     action: "wave",
@@ -79,8 +71,7 @@ const CHOICES: {
   {
     inquiry: "Career Opportunity",
     label: "I have an opportunity",
-    icon: BriefcaseBusiness,
-    tone: "contact-tone-opportunity",
+    emoji: "✨",
     hint: "Internships, jobs, mentorship, partnerships",
     reply: "That sounds exciting. Let's get Puspa involved.",
     action: "hop",
@@ -88,8 +79,7 @@ const CHOICES: {
   {
     inquiry: "General Conversation",
     label: "I just want to say hi",
-    icon: Hand,
-    tone: "contact-tone-hello",
+    emoji: "👋",
     hint: "Questions, introductions, networking",
     reply: "Hi right back! What would you like to talk about?",
     action: "nod",
@@ -97,8 +87,8 @@ const CHOICES: {
 ];
 
 // The places the kitty sits as the visitor scrolls, in page order: on the talk
-// button, then on top of each step's card (form, topics, then other ways).
-const SPOTS = ["hero", "write", "choices", "reach"] as const;
+// button, then on top of each step's card.
+const SPOTS = ["hero", "choices", "write", "reach"] as const;
 type Spot = (typeof SPOTS)[number];
 
 const SPOT_LINES: Record<Spot, string> = {
@@ -137,11 +127,11 @@ const gmailComposeUrl = (subject = "", body = "") => {
 function GmailGlyph() {
   return (
     <svg aria-hidden="true" viewBox="52 42 88 66" className="w-[72%]">
-      <path className="contact-glyph-multi" fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
-      <path className="contact-glyph-multi" fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
-      <path className="contact-glyph-multi" fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
-      <path className="contact-glyph-multi" fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
-      <path className="contact-glyph-multi" fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+      <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+      <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+      <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+      <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
+      <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
     </svg>
   );
 }
@@ -158,7 +148,7 @@ function LinkedinGlyph() {
 }
 
 function GithubGlyph() {
-  return <Icons.github aria-hidden="true" className="w-[62%]" />;
+  return <Icons.github aria-hidden="true" className="w-[80%]" />;
 }
 
 const githubHandle = new URL(DATA.contact.social.GitHub.url).pathname.replace(/\//g, "");
@@ -171,8 +161,6 @@ const DIRECT_LINKS = [
     href: gmailComposeUrl(),
     glyph: GmailGlyph,
     brand: "contact-brand-email",
-    color: "#ea4335",
-    tile: "#ffffff",
   },
   {
     label: "LinkedIn",
@@ -181,8 +169,6 @@ const DIRECT_LINKS = [
     href: DATA.contact.social.LinkedIn.url,
     glyph: LinkedinGlyph,
     brand: "contact-brand-linkedin",
-    color: "#0a66c2",
-    tile: "#0a66c2",
   },
   {
     label: "GitHub",
@@ -191,83 +177,6 @@ const DIRECT_LINKS = [
     href: DATA.contact.social.GitHub.url,
     glyph: GithubGlyph,
     brand: "contact-brand-github",
-    color: "#181717",
-    tile: "",
-  },
-];
-
-function FacebookGlyph() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="w-[58%]">
-      <path
-        fill="currentColor"
-        d="M14 8.5V6.6c0-.8.5-1.1 1-1.1h2.4V2h-3.3C10.6 2 9.8 4.6 9.8 6.3v2.2H7.5V12h2.3v10H14V12h3.1l.4-3.5H14z"
-      />
-    </svg>
-  );
-}
-
-function InstagramGlyph() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      className="w-[60%]"
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-const TIKTOK_PATH =
-  "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z";
-
-// TikTok's note, with its cyan and pink offset shadows.
-function TiktokGlyph() {
-  return (
-    <svg aria-hidden="true" viewBox="-1 -1 26 26" className="w-[58%]">
-      <path className="contact-glyph-offset" fill="#25f4ee" d={TIKTOK_PATH} transform="translate(-0.7 -0.7)" />
-      <path className="contact-glyph-offset" fill="#fe2c55" d={TIKTOK_PATH} transform="translate(0.7 0.7)" />
-      <path fill="currentColor" d={TIKTOK_PATH} />
-    </svg>
-  );
-}
-
-const SOCIAL_LINKS = [
-  {
-    label: "Instagram",
-    handle: "@shuklapuspa105",
-    action: "Follow on Instagram",
-    href: "https://www.instagram.com/shuklapuspa105/",
-    glyph: InstagramGlyph,
-    brand: "contact-brand-instagram",
-    color: "#e1306c",
-    tile: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%)",
-  },
-  {
-    label: "Facebook",
-    handle: "Puspa Shukla",
-    action: "Follow on Facebook",
-    href: "https://www.facebook.com/puspa.shukla.257558",
-    glyph: FacebookGlyph,
-    brand: "contact-brand-facebook",
-    color: "#1877f2",
-    tile: "#1877f2",
-  },
-  {
-    label: "TikTok",
-    handle: "@puspa.shukla3",
-    action: "Follow on TikTok",
-    href: "https://www.tiktok.com/@puspa.shukla3",
-    glyph: TiktokGlyph,
-    brand: "contact-brand-tiktok",
-    color: "#010101",
-    tile: "#010101",
   },
 ];
 
@@ -279,16 +188,7 @@ function ReachCard({
   popped,
   onOpen,
 }: {
-  link: {
-    label: string;
-    handle: string;
-    action: string;
-    href: string;
-    glyph: () => ReactNode;
-    brand: string;
-    color: string;
-    tile: string;
-  };
+  link: (typeof DIRECT_LINKS)[number];
   index: number;
   popped: boolean;
   onOpen: () => void;
@@ -325,26 +225,24 @@ function ReachCard({
       onPointerCancel={settle}
       onClick={onOpen}
       data-popped={popped ? "" : undefined}
-      style={{ "--i": index, "--brand-fallback": link.color } as CSSProperties}
-      className={`contact-reach3d contact-reach3d-tile ${link.brand} group`}
+      style={{ "--i": index } as CSSProperties}
+      className={`contact-reach3d ${link.brand} group`}
     >
       <span aria-hidden="true" className="contact-reach3d-sheen" />
       <span className="contact-reach3d-float">
-        <span
-          className="contact-reach3d-icon"
-        >
+        <span className="contact-reach3d-icon">
           <Glyph />
         </span>
       </span>
       <span className="contact-reach3d-text">
-        <span className="contact-heading text-base font-semibold">
+        <span className="contact-heading text-base font-semibold sm:text-lg">
           {link.label}
           <span className="sr-only"> (opens in a new tab)</span>
         </span>
         <span className="contact-muted block truncate text-sm">{link.handle}</span>
       </span>
       <span className="contact-reach3d-cta">
-        <span className="sr-only">{link.action}</span>
+        <span className="hidden sm:inline">{link.action}</span>
         <ArrowUpRight aria-hidden="true" className="size-4" />
       </span>
     </a>
@@ -684,7 +582,7 @@ export default function ContactExperience() {
     if (status === "success") setStatus("idle");
     playKitty(choice.action);
     say(choice.reply);
-    setAnnouncement(`${choice.reply} The form above is set to “${choice.inquiry}”.`);
+    setAnnouncement(`${choice.reply} The form below is set to “${choice.inquiry}”.`);
     // Give the kitty a moment to react before moving to the form.
     const instant = reduceMotion();
     window.setTimeout(
@@ -1060,15 +958,63 @@ export default function ContactExperience() {
         </div>
       </section>
 
+      <section
+        id="contact-choices"
+        aria-labelledby="contact-choices-title"
+        className="contact-step flex scroll-mt-24 flex-col gap-5"
+      >
+        <StepHeader index="01" id="contact-choices-title" title="What's on your mind?">
+          Choose a starting point and I&apos;ll set up the form for you.
+        </StepHeader>
+        <div ref={setAnchor("choices")} className="contact-card rounded-2xl p-3 sm:p-4">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {CHOICES.map((choice) => {
+              const selected = inquiry === choice.inquiry;
+              return (
+                <li key={choice.inquiry}>
+                  <button
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => chooseOption(choice)}
+                    onPointerEnter={() => setAttention(true)}
+                    onPointerLeave={() => setAttention(false)}
+                    onFocus={() => setAttention(true)}
+                    onBlur={() => setAttention(false)}
+                    className="contact-option flex h-full w-full items-start gap-3 rounded-xl p-4 text-left"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="contact-option-icon inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-lg"
+                    >
+                      {choice.emoji}
+                    </span>
+                    <span className="flex min-w-0 flex-col gap-0.5">
+                      <span className="contact-heading font-semibold">{choice.label}</span>
+                      <span className="contact-muted text-sm leading-snug">{choice.hint}</span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="contact-option-check ml-auto inline-flex size-5 shrink-0 items-center justify-center rounded-full"
+                    >
+                      <Check className="size-3" strokeWidth={3} />
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
       <section aria-labelledby="contact-form-title" className="contact-step flex flex-col gap-5">
-        <StepHeader index="01" id="contact-form-title" title="Write to me">
+        <StepHeader index="02" id="contact-form-title" title="Write to me">
           I read every message and usually reply within a few days.
         </StepHeader>
         <div
           ref={setAnchor("write")}
-          className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)]"
+          className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)]"
         >
-          <div className="contact-card scroll-mt-24 rounded-[1.25rem] p-5 sm:p-8">
+          <div className="contact-card scroll-mt-24 rounded-2xl p-5 sm:p-8">
             <div role="status" aria-live="polite" className="empty:hidden mb-5">
               {status === "success" && (
                 <div className="contact-alert contact-alert-success flex gap-3 rounded-xl p-4">
@@ -1289,7 +1235,7 @@ export default function ContactExperience() {
             </form>
           </div>
 
-          <aside aria-labelledby="contact-feedback-title" className="contact-card contact-card-warm flex flex-col rounded-[1.25rem] p-5 sm:p-6">
+          <aside aria-labelledby="contact-feedback-title" className="contact-card contact-card-warm rounded-2xl p-5 sm:p-6">
             <h3 id="contact-feedback-title" className="contact-heading text-lg font-semibold tracking-tight">
               Help me make this better.
             </h3>
@@ -1319,181 +1265,40 @@ export default function ContactExperience() {
                 );
               })}
             </ul>
-            <p className="contact-muted mt-5 flex items-center gap-2 border-t lg:mt-auto border-[var(--c-warm-line)] pt-4 text-xs">
-              <MessageCircleMore aria-hidden="true" className="size-4 shrink-0" />
-              Every note is read personally.
-            </p>
           </aside>
         </div>
       </section>
 
-      <section
-        id="contact-choices"
-        aria-labelledby="contact-choices-title"
-        className="contact-step flex scroll-mt-24 flex-col gap-5"
-      >
-        <StepHeader index="02" id="contact-choices-title" title="What's on your mind?">
-          Choose a starting point and I&apos;ll set up the form for you.
+      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-5">
+        <StepHeader index="03" id="contact-direct-title" title="Other ways to reach me">
+          Not a form person? Find me here.
         </StepHeader>
-        <div ref={setAnchor("choices")} className="contact-choices-panel">
-          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-            {CHOICES.map((choice) => {
-              const selected = inquiry === choice.inquiry;
-              const Icon = choice.icon;
-              return (
-                <li key={choice.inquiry}>
+        {/* One box, three 3D cards. Each tilts toward the pointer; the chosen
+            one pops out and opens in a new tab. */}
+        <div ref={setAnchor("reach")} className="contact-card rounded-3xl p-3 sm:p-4">
+          <ul className="contact-reach3d-grid grid gap-3 sm:grid-cols-3 sm:gap-4">
+            {DIRECT_LINKS.map((link, index) => (
+              <li key={link.label} className="contact-reach3d-cell relative">
+                <ReachCard
+                  link={link}
+                  index={index}
+                  popped={popped === link.label}
+                  onOpen={() => popLink(link.label)}
+                />
+                {link.label === "Email" && (
                   <button
                     type="button"
-                    aria-pressed={selected}
-                    onClick={() => chooseOption(choice)}
-                    onPointerEnter={() => setAttention(true)}
-                    onPointerLeave={() => setAttention(false)}
-                    onFocus={() => setAttention(true)}
-                    onBlur={() => setAttention(false)}
-                    className={`contact-choice ${choice.tone}`}
+                    onClick={() => void copyEmail()}
+                    className="contact-app-copy absolute right-14 top-1/2 z-10 inline-flex -translate-y-1/2 sm:right-3 sm:top-3 sm:translate-y-0 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
                   >
-                    <span className="flex w-full items-start justify-between">
-                      <span aria-hidden="true" className="contact-choice-icon">
-                        <Icon className="size-5" strokeWidth={2} />
-                      </span>
-                      <span aria-hidden="true" className="contact-choice-check">
-                        <Check className="size-3" strokeWidth={3} />
-                      </span>
-                    </span>
-                    <span className="contact-heading mt-4 text-[1.05rem] font-semibold leading-snug">
-                      {choice.label}
-                    </span>
-                    <span className="contact-muted mt-1 text-sm leading-relaxed">{choice.hint}</span>
-                    <span aria-hidden="true" className="contact-choice-cta">
-                      {selected ? "Selected" : "Start here"}
-                      <ArrowRight className="size-4" />
-                    </span>
+                    <Copy aria-hidden="true" className="size-3" />
+                    Copy
+                    <span className="sr-only"> email address</span>
                   </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-
-      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col">
-        <h2 id="contact-direct-title" className="sr-only">
-          Other ways to reach me
-        </h2>
-        {/* A thin, flat strip that slides left to right across the full width of
-            the screen. The wrapper stays in the content column so the kitty
-            sits in line with the page. */}
-        <div ref={setAnchor("reach")} aria-hidden="true">
-          <div className="contact-marquee">
-          <div className="contact-marquee-track">
-            {Array.from({ length: 2 }, (_, copy) => (
-              <span key={copy} className="contact-marquee-run">
-                {Array.from({ length: 8 }, (_, index) => (
-                  <span key={index} className="contact-marquee-item">
-                    <span className="contact-marquee-label">Reach me at</span>
-                    <span><b className="contact-dot-linkedin" />LinkedIn</span>
-                    <span><b className="contact-dot-github" />GitHub</span>
-                    <span><b className="contact-dot-gmail" />Gmail</span>
-                  </span>
-                ))}
-              </span>
+                )}
+              </li>
             ))}
-          </div>
-          </div>
-        </div>
-        {/* Two boxes side by side: other ways to reach me, and social media.
-            Each card tilts toward the pointer; the chosen one pops out and
-            opens in a new tab. */}
-        {/* One box, two halves side by side: other ways to reach me, and social
-            media. Each half has its own dot grid that fades out behind its heading. */}
-        <div className="contact-card contact-reach-box contact-reach-merged">
-          {/* On wide screens one dot grid spans the whole band. */}
-          <div aria-hidden="true" className="contact-reach-dots hidden lg:block">
-            <FlickeringGrid
-              className="h-full w-full"
-              color="rgb(150, 150, 150)"
-              squareSize={3}
-              gridGap={4}
-              flickerChance={0.12}
-              maxOpacity={0.28}
-            />
-          </div>
-          <div className="px-4 sm:px-8 lg:px-12">
-          <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-          <div className="contact-reach-half relative isolate">
-            {/* Soft grey flickering dots fill the box below its heading, so the
-                heading itself stays on a clean background. */}
-            <div aria-hidden="true" className="contact-reach-dots lg:hidden">
-              <FlickeringGrid
-                className="h-full w-full"
-                color="rgb(150, 150, 150)"
-                squareSize={3}
-                gridGap={4}
-                flickerChance={0.12}
-                maxOpacity={0.28}
-              />
-            </div>
-            <div className="contact-reach-head">
-              <h3 className="contact-heading text-base font-semibold sm:text-lg">Reach me other ways</h3>
-              <p className="contact-muted text-sm">Email, professional network and code.</p>
-            </div>
-            <ul className="contact-reach3d-grid contact-tile-grid grid grid-cols-3">
-              {DIRECT_LINKS.map((link, index) => (
-                <li key={link.label} className="contact-reach3d-cell flex flex-col items-center gap-1.5">
-                  <ReachCard
-                    link={link}
-                    index={index}
-                    popped={popped === link.label}
-                    onOpen={() => popLink(link.label)}
-                  />
-                  {link.label === "Email" && (
-                    <button
-                      type="button"
-                      onClick={() => void copyEmail()}
-                      className="contact-app-copy inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
-                    >
-                      <Copy aria-hidden="true" className="size-3" />
-                      Copy
-                      <span className="sr-only"> email address</span>
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="contact-reach-half relative isolate">
-            {/* Soft grey flickering dots fill the box below its heading, so the
-                heading itself stays on a clean background. */}
-            <div aria-hidden="true" className="contact-reach-dots lg:hidden">
-              <FlickeringGrid
-                className="h-full w-full"
-                color="rgb(150, 150, 150)"
-                squareSize={3}
-                gridGap={4}
-                flickerChance={0.12}
-                maxOpacity={0.28}
-              />
-            </div>
-            <div className="contact-reach-head">
-              <h3 className="contact-heading text-base font-semibold sm:text-lg">Find me on social media</h3>
-              <p className="contact-muted text-sm">Say hi, follow along and see what I&apos;m up to.</p>
-            </div>
-            <ul className="contact-reach3d-grid contact-tile-grid grid grid-cols-3">
-              {SOCIAL_LINKS.map((link, index) => (
-                <li key={link.label} className="contact-reach3d-cell flex flex-col items-center gap-1.5">
-                  <ReachCard
-                    link={link}
-                    index={index + DIRECT_LINKS.length}
-                    popped={popped === link.label}
-                    onOpen={() => popLink(link.label)}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-          </div>
-          </div>
+          </ul>
         </div>
       </section>
     </div>

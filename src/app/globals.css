@@ -1693,28 +1693,23 @@ html.dark body:has(.contact-page) {
 .contact-brand-email { --brand: #ea4335; --brand-on: #ffffff; }
 .contact-brand-linkedin { --brand: #0a66c2; --brand-on: #ffffff; }
 .contact-brand-github { --brand: #181717; --brand-on: #ffffff; }
-.contact-brand-facebook { --brand: #1877f2; --brand-on: #ffffff; }
-.contact-brand-instagram { --brand: #e1306c; --brand-on: #ffffff; }
-.contact-brand-tiktok { --brand: #010101; --brand-on: #ffffff; }
 /* On the dark page GitHub flips to white so it stays visible. */
 .dark .contact-brand-github { --brand: #f0f3f6; --brand-on: #181717; }
 
 .contact-reach3d-grid { perspective: 1000px; }
 
 .contact-reach3d {
-  --brand: var(--brand-fallback, #1f5f6b);
-  --brand-on: #ffffff;
   position: relative;
   display: flex;
   height: 100%;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   border: 1px solid var(--c-line);
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   background:
     radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--brand) 14%, transparent), transparent 60%),
     var(--c-surface);
-  padding: 0.7rem 0.8rem;
+  padding: 1rem 1.1rem;
   color: var(--c-ink);
   transform-style: preserve-3d;
   transform:
@@ -1731,12 +1726,22 @@ html.dark body:has(.contact-page) {
   touch-action: manipulation;
 }
 
+@media (min-width: 640px) {
+  .contact-reach3d {
+    min-height: 19rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding: 1.5rem;
+  }
+}
+
 /* While the pointer moves, follow it closely instead of springing. */
 .contact-reach3d[data-tilting] { transition: transform 90ms linear, box-shadow 300ms ease, border-color 300ms ease; }
 
 .contact-reach3d:hover,
 .contact-reach3d:focus-visible {
-  --lift: -4px;
+  --lift: -6px;
   border-color: color-mix(in srgb, var(--brand) 45%, var(--c-line));
   box-shadow: 0 30px 50px -28px color-mix(in srgb, var(--brand) 70%, transparent);
 }
@@ -1749,7 +1754,7 @@ html.dark body:has(.contact-page) {
 .contact-reach3d:active { --scale: 0.97; }
 
 .contact-reach3d[data-popped] {
-  --lift: -8px;
+  --lift: -12px;
   --scale: 1.04;
   z-index: 1;
   border-color: var(--brand);
@@ -1783,13 +1788,13 @@ html.dark body:has(.contact-page) {
 }
 
 @keyframes contact-reach-bob {
-  0%, 100% { transform: translate3d(0, 0, 30px); }
-  50% { transform: translate3d(0, -3px, 30px); }
+  0%, 100% { transform: translate3d(0, 0, 46px); }
+  50% { transform: translate3d(0, -6px, 46px); }
 }
 
 .contact-reach3d-icon {
   display: inline-flex;
-  width: 3rem;
+  width: 4.5rem;
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
@@ -1802,6 +1807,14 @@ html.dark body:has(.contact-page) {
     0 1px 0 rgb(255 255 255 / 30%) inset,
     0 14px 24px -12px color-mix(in srgb, var(--brand) 85%, black);
   transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (min-width: 640px) {
+  /* A large app icon that takes up about half the card. */
+  .contact-reach3d-icon {
+    width: clamp(6.5rem, 11vw, 8.75rem);
+    border-radius: 23%;
+  }
 }
 
 .contact-reach3d:hover .contact-reach3d-icon { transform: scale(1.08) rotate(-4deg); }
@@ -1851,6 +1864,14 @@ html.dark body:has(.contact-page) {
     0 14px 24px -12px rgb(23 52 58 / 45%);
 }
 
+@media (min-width: 640px) {
+  .contact-reach3d-cta {
+    margin-top: auto;
+    margin-left: 0;
+    padding: 0.45rem 0.9rem;
+  }
+}
+
 .contact-reach3d:hover .contact-reach3d-cta,
 .contact-reach3d[data-popped] .contact-reach3d-cta {
   border-color: var(--brand);
@@ -1858,280 +1879,10 @@ html.dark body:has(.contact-page) {
   color: var(--brand-on);
 }
 
-/* "Reach me at" strip: flat and straight, sliding left to right; pauses on hover. */
-.contact-marquee {
-  /* Break out of the content column to run from one screen edge to the other;
-     the page clips anything under the scrollbar. */
-  position: relative;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  overflow: hidden;
-  /* The same soft light blue as the contact box below, with thin blue-grey edges. */
-  border-block: 1.5px solid #b9d3da;
-  background: #dcebef;
-  padding: 1.05rem 0;
+/* Leave room for the Copy button beside the email address on phones. */
+@media (max-width: 639px) {
+  .contact-brand-email .contact-reach3d-text { padding-right: 4.25rem; }
 }
-
-.contact-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: contact-marquee-right 40s linear infinite;
-}
-
-.contact-marquee:hover .contact-marquee-track { animation-play-state: paused; }
-
-/* The track holds the run twice; sliding from -50% to 0 loops seamlessly. */
-@keyframes contact-marquee-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-.contact-marquee-run { display: flex; }
-
-.contact-marquee-item {
-  display: inline-flex;
-  align-items: center;
-  padding-right: 3rem;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  color: #17343a;
-}
-
-.contact-marquee-item > span:not(.contact-marquee-label) {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0 1.5rem;
-  line-height: 1;
-}
-
-/* Thin dividers between the channels keep the strip tidy. */
-.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid rgb(23 52 58 / 18%); }
-
-.contact-marquee-label {
-  margin-right: 0.75rem;
-  color: rgb(23 52 58 / 50%);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-/* The band stays light in dark mode too, so its text and dots keep their colours. */
-.dark .contact-marquee .contact-dot-github { background: #181717; }
-
-.contact-marquee-item b {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 9999px;
-}
-
-.contact-dot-linkedin { background: #0a66c2; }
-.contact-dot-github { background: #181717; }
-.dark .contact-dot-github { background: #f0f3f6; }
-.contact-dot-gmail { background: #ea4335; }
-
-/* Instagram's icon is its warm gradient square. */
-.contact-brand-instagram .contact-reach3d-icon {
-  background:
-    radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
-}
-
-.dark .contact-brand-facebook .contact-reach3d-cta { color: #6aa8ff; }
-.dark .contact-brand-instagram .contact-reach3d-cta { color: #ff7aa8; }
-
-/* The two boxes: "Reach me other ways" and "Find me on social media". */
-.contact-reach-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  border-radius: 1.25rem;
-  padding: 0.85rem 1rem 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .contact-reach-box { padding: 1rem 1.25rem 0.85rem; }
-}
-
-/* Inside each box the apps sit side by side as home-screen style tabs: a
-   rounded square filled with the app's logo, its name underneath. */
-.contact-tile-grid {
-  flex: 1;
-  align-content: center;
-  justify-items: center;
-  gap: 0.75rem;
-  padding: 0.15rem 0 0;
-}
-
-.contact-reach3d.contact-reach3d-tile {
-  width: 100%;
-  max-width: 10rem;
-  height: auto;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.45rem;
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-  padding: 0.25rem;
-  text-align: center;
-}
-
-.contact-reach3d.contact-reach3d-tile:hover,
-.contact-reach3d.contact-reach3d-tile:focus-visible,
-.contact-reach3d.contact-reach3d-tile[data-popped] {
-  border-color: transparent;
-  box-shadow: none;
-}
-
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-sheen,
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-cta { display: none; }
-
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
-  width: clamp(3.5rem, 5vw, 4.25rem);
-  border-radius: 26%;
-}
-
-.contact-reach3d.contact-reach3d-tile:hover .contact-reach3d-icon {
-  box-shadow:
-    0 1px 0 rgb(255 255 255 / 30%) inset,
-    0 22px 34px -14px color-mix(in srgb, var(--brand) 75%, transparent);
-}
-
-.contact-reach3d.contact-reach3d-tile[data-popped] .contact-reach3d-icon {
-  box-shadow:
-    0 0 0 3px var(--c-surface),
-    0 0 0 5px var(--brand),
-    0 24px 36px -16px color-mix(in srgb, var(--brand) 75%, transparent);
-}
-
-/* App tabs styled like the site's dock buttons: a light, raised square with a
-   grey symbol that shows its real brand colour on hover, focus or tap. */
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
-  border: 1px solid #dfe7e9;
-  background: linear-gradient(180deg, #ffffff 0%, #eef3f4 100%);
-  color: #5f6467;
-  box-shadow:
-    0 1px 0 #ffffff inset,
-    0 2px 0 #d6dfe1,
-    0 10px 18px -12px rgb(23 52 58 / 40%);
-  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1), color 200ms ease, box-shadow 250ms ease;
-}
-
-.dark .contact-reach3d.contact-reach3d-tile .contact-reach3d-icon {
-  border-color: rgb(255 255 255 / 10%);
-  background: linear-gradient(180deg, #24434a 0%, #17343a 100%);
-  color: #c7d3d6;
-  box-shadow:
-    0 1px 0 rgb(255 255 255 / 10%) inset,
-    0 2px 0 #0d2125,
-    0 10px 18px -12px rgb(0 0 0 / 70%);
-}
-
-.contact-reach3d.contact-reach3d-tile:hover .contact-reach3d-icon,
-.contact-reach3d.contact-reach3d-tile:focus-visible .contact-reach3d-icon,
-.contact-reach3d.contact-reach3d-tile[data-popped] .contact-reach3d-icon { color: var(--brand); }
-
-/* Multicolour logos (Gmail, TikTok) stay grey until hovered or tapped. */
-.contact-reach3d-tile:not(:hover):not(:focus-visible):not([data-popped]) .contact-glyph-multi { fill: currentColor; }
-.contact-reach3d-tile:not(:hover):not(:focus-visible):not([data-popped]) .contact-glyph-offset { opacity: 0; }
-
-.contact-brand-tiktok { --brand: #010101; }
-.dark .contact-brand-tiktok { --brand: #f0f3f6; }
-
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-text {
-  max-width: 100%;
-  align-items: center;
-  padding-right: 0;
-}
-
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:first-child { font-size: 0.95rem; }
-.contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:last-child { font-size: 0.75rem; }
-
-/* Both boxes use a soft light blue (a deep teal in dark mode). */
-.contact-card.contact-reach-box {
-  border-color: #c9dde2;
-  background: #dcebef;
-}
-
-.dark .contact-card.contact-reach-box {
-  border-color: rgb(255 255 255 / 10%);
-  background: #16343a;
-}
-
-.contact-card.contact-reach-box .contact-reach-head { border-bottom-color: #c3d8de; }
-.dark .contact-card.contact-reach-box .contact-reach-head { border-bottom-color: rgb(255 255 255 / 10%); }
-.contact-reach-half .contact-reach-head { border-bottom-color: #c3d8de; }
-.dark .contact-reach-half .contact-reach-head { border-bottom-color: rgb(255 255 255 / 10%); }
-
-/* The merged box: no padding of its own; each half carries the spacing and a
-   thin divider separates them (side by side on wide screens, stacked on phones). */
-.contact-card.contact-reach-box.contact-reach-merged {
-  /* Runs from one screen edge to the other, like the strip above it; the
-     content inside stays in line with the rest of the page. */
-  position: relative;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  overflow: hidden;
-  border-inline: 0;
-  /* The strip sits right on top, so its bottom edge is the only line between them. */
-  border-top: 0;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-}
-
-.contact-reach-half {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.85rem 1rem 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .contact-reach-half { padding: 1rem 1.25rem 0.85rem; }
-}
-
-.contact-reach-half + .contact-reach-half { border-top: 1px solid #c3d8de; }
-
-@media (min-width: 1024px) {
-  .contact-reach-half + .contact-reach-half {
-    border-top: 0;
-    border-left: 1px solid #c3d8de;
-  }
-}
-
-.dark .contact-reach-half + .contact-reach-half { border-color: rgb(255 255 255 / 10%); }
-
-/* Dot grid behind each box's cards; it fades in below the heading. */
-.contact-reach-dots {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 3.4rem, #000 5.5rem);
-  mask-image: linear-gradient(to bottom, transparent 0, transparent 3.4rem, #000 5.5rem);
-}
-
-/* Heading at the top of each box, with a thin rule under it. */
-.contact-reach-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.1rem 0.6rem;
-  border-bottom: 1px solid var(--c-line);
-  padding: 0 0.25rem 0.6rem;
-}
-
-/* Leave room for the Copy button beside the email address. */
-.contact-brand-email .contact-reach3d-text { padding-right: 4.25rem; }
 
 /* The three cards rise in one after another when the step comes into view. */
 .contact-reveal-ready .contact-step .contact-reach3d-cell {
@@ -2307,161 +2058,6 @@ html.dark body:has(.contact-page) {
 .contact-card-warm {
   border-color: var(--c-warm-line);
   background: var(--c-warm);
-}
-
-/* "What's on your mind?" choices: clean cards, each with its own accent. */
-/* One accent for all four, the page's own teal (gold in dark mode). */
-.contact-choice { --tone: var(--c-teal); }
-
-/* The four choices sit together in one softly tinted panel, like the other
-   sections on the page. */
-/* The cards sit straight on the page, like the form card below. */
-.contact-choices-panel { padding: 0; }
-
-
-
-.contact-choice {
-  position: relative;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
-  border: 1px solid var(--c-line);
-  border-radius: 1rem;
-  border-radius: 1.25rem;
-  background: var(--c-surface);
-  box-shadow:
-    0 1px 2px rgb(23 52 58 / 6%),
-    0 14px 30px -24px rgb(23 52 58 / 45%);
-  padding: 1.5rem;
-  padding: 1.25rem;
-  text-align: left;
-  box-shadow: 0 1px 2px rgb(23 52 58 / 5%);
-  transition:
-    transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 250ms ease,
-    border-color 250ms ease,
-    background 250ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.dark .contact-choice {
-  border-color: rgb(255 255 255 / 10%);
-  background: #132c31;
-}
-
-.contact-choice:hover {
-  border-color: color-mix(in srgb, var(--tone) 40%, var(--c-line));
-  box-shadow: 0 18px 32px -22px color-mix(in srgb, var(--tone) 60%, transparent);
-  transform: translateY(-3px);
-}
-
-.contact-choice:active { transform: translateY(0); }
-
-/* Chosen: a strong contrasting deep teal with white text and gold accents
-   (gold with dark text in dark mode). */
-.contact-choice[aria-pressed="true"] {
-  border-color: #1f5f6b;
-  background: linear-gradient(160deg, #23727f 0%, #1f5f6b 45%, #17343a 100%);
-  box-shadow: 0 24px 40px -24px rgb(31 95 107 / 80%);
-}
-
-.contact-choice[aria-pressed="true"] .contact-heading { color: #ffffff; }
-.contact-choice[aria-pressed="true"] .contact-muted { color: rgb(255 255 255 / 80%); }
-.contact-choice[aria-pressed="true"] .contact-choice-cta { color: #ffc23a; }
-
-.contact-choice[aria-pressed="true"] .contact-choice-icon,
-.contact-choice[aria-pressed="true"] .contact-choice-check {
-  border-color: #ffc23a;
-  background: #ffc23a;
-  color: #17343a;
-}
-
-.dark .contact-choice[aria-pressed="true"] {
-  border-color: #ffb300;
-  background: #ffb300;
-  box-shadow: 0 20px 36px -22px rgb(0 0 0 / 80%);
-}
-
-.dark .contact-choice[aria-pressed="true"] .contact-heading { color: #17343a; }
-.dark .contact-choice[aria-pressed="true"] .contact-muted { color: rgb(23 52 58 / 80%); }
-.dark .contact-choice[aria-pressed="true"] .contact-choice-cta { color: #17343a; }
-
-.dark .contact-choice[aria-pressed="true"] .contact-choice-icon,
-.dark .contact-choice[aria-pressed="true"] .contact-choice-check {
-  border-color: #17343a;
-  background: #17343a;
-  color: #ffb300;
-}
-
-.contact-choice:focus-visible {
-  outline: 2px solid var(--c-focus);
-  outline-offset: 3px;
-}
-
-.contact-choice-icon {
-  display: inline-flex;
-  width: 2.75rem;
-  height: 2.75rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.8rem;
-  background: color-mix(in srgb, var(--tone) 12%, transparent);
-  color: var(--tone);
-  transition: background 250ms ease, color 250ms ease;
-}
-
-.contact-choice:not([aria-pressed="true"]):hover .contact-choice-icon {
-  background: var(--tone);
-  color: var(--c-surface);
-}
-
-.contact-choice-check {
-  display: inline-flex;
-  width: 1.35rem;
-  height: 1.35rem;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid var(--c-line);
-  border-radius: 9999px;
-  color: transparent;
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
-}
-
-.contact-choice-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  color: var(--tone);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.contact-choice-cta svg {
-  box-sizing: content-box;
-  border: 1px solid currentColor;
-  border-radius: 9999px;
-  padding: 0.3rem;
-  transition: transform 250ms ease, background 250ms ease, color 250ms ease;
-}
-
-.contact-choice:not([aria-pressed="true"]):hover .contact-choice-cta svg {
-  border-color: var(--tone);
-  background: var(--tone);
-  color: var(--c-surface);
-  transform: translateX(3px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-choice,
-  .contact-choice-cta svg { transition: none; }
-
-  .contact-choice:hover { transform: none; }
 }
 
 /* Inquiry option cards */
@@ -2664,7 +2260,6 @@ html.dark body:has(.contact-page) {
   .contact-kitty-menu,
   .contact-reach3d-float,
   .contact-reach3d[data-popped] .contact-reach3d-icon,
-  .contact-marquee-track,
   .contact-talk {
     animation: none;
   }
@@ -2674,7 +2269,7 @@ html.dark body:has(.contact-page) {
 
   .contact-reach3d:hover .contact-reach3d-icon { transform: none; }
 
-  .contact-reach3d-float { transform: translateZ(30px); }
+  .contact-reach3d-float { transform: translateZ(46px); }
 
   .contact-rise {
     opacity: 1;
