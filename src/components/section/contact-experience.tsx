@@ -1373,7 +1373,7 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-direct-title" className="contact-step -mt-6 flex flex-col gap-4 sm:-mt-8">
+      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-4">
         <h2 id="contact-direct-title" className="sr-only">
           Other ways to reach me
         </h2>
