@@ -1404,8 +1404,11 @@ export default function ContactExperience() {
         {/* Two boxes side by side: other ways to reach me, and social media.
             Each card tilts toward the pointer; the chosen one pops out and
             opens in a new tab. */}
-        <div className="grid items-stretch gap-4 lg:grid-cols-2">
-          <div className="contact-card contact-reach-box relative isolate">
+        {/* One box, two halves side by side: other ways to reach me, and social
+            media. Each half has its own dot grid that fades out behind its heading. */}
+        <div className="contact-card contact-reach-box contact-reach-merged">
+          <div className="grid lg:grid-cols-2">
+          <div className="contact-reach-half relative isolate">
             {/* Soft grey flickering dots fill the box below its heading, so the
                 heading itself stays on a clean background. */}
             <div aria-hidden="true" className="contact-reach-dots">
@@ -1447,7 +1450,7 @@ export default function ContactExperience() {
             </ul>
           </div>
 
-          <div className="contact-card contact-reach-box relative isolate">
+          <div className="contact-reach-half relative isolate">
             {/* Soft grey flickering dots fill the box below its heading, so the
                 heading itself stays on a clean background. */}
             <div aria-hidden="true" className="contact-reach-dots">
@@ -1476,6 +1479,7 @@ export default function ContactExperience() {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
         </div>
       </section>

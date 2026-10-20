@@ -2067,6 +2067,37 @@ html.dark body:has(.contact-page) {
 
 .contact-card.contact-reach-box .contact-reach-head { border-bottom-color: #c3d8de; }
 .dark .contact-card.contact-reach-box .contact-reach-head { border-bottom-color: rgb(255 255 255 / 10%); }
+.contact-reach-half .contact-reach-head { border-bottom-color: #c3d8de; }
+.dark .contact-reach-half .contact-reach-head { border-bottom-color: rgb(255 255 255 / 10%); }
+
+/* The merged box: no padding of its own; each half carries the spacing and a
+   thin divider separates them (side by side on wide screens, stacked on phones). */
+.contact-card.contact-reach-box.contact-reach-merged {
+  overflow: hidden;
+  padding: 0;
+}
+
+.contact-reach-half {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .contact-reach-half { padding: 1rem 1.25rem 0.85rem; }
+}
+
+.contact-reach-half + .contact-reach-half { border-top: 1px solid #c3d8de; }
+
+@media (min-width: 1024px) {
+  .contact-reach-half + .contact-reach-half {
+    border-top: 0;
+    border-left: 1px solid #c3d8de;
+  }
+}
+
+.dark .contact-reach-half + .contact-reach-half { border-color: rgb(255 255 255 / 10%); }
 
 /* Dot grid behind each box's cards; it fades in below the heading. */
 .contact-reach-dots {
