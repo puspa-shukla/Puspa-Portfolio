@@ -1695,9 +1695,6 @@ html.dark body:has(.contact-page) {
 .contact-brand-email { --brand: #ea4335; --brand-on: #ffffff; }
 .contact-brand-linkedin { --brand: #0a66c2; --brand-on: #ffffff; }
 .contact-brand-github { --brand: #181717; --brand-on: #ffffff; }
-/* TikTok's square stays black in both modes; its accents use the pink. */
-.contact-brand-tiktok { --brand: #fe2c55; --brand-on: #ffffff; }
-.contact-brand-tiktok .contact-reach3d-icon { background: #010101; }
 /* On the dark page GitHub flips to white so it stays visible. */
 .dark .contact-brand-github { --brand: #f0f3f6; --brand-on: #181717; }
 
@@ -1946,7 +1943,6 @@ html.dark body:has(.contact-page) {
 .contact-dot-github { background: #181717; }
 .dark .contact-dot-github { background: #f0f3f6; }
 .contact-dot-gmail { background: #ea4335; }
-.contact-dot-tiktok { background: #fe2c55; }
 
 /* Leave room for the Copy button beside the email address. */
 .contact-brand-email .contact-reach3d-text { padding-right: 4.25rem; }
