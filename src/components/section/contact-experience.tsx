@@ -34,6 +34,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
+import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { DATA } from "@/data/resume";
 import {
   CONTACT_EMAIL,
@@ -1377,7 +1378,19 @@ export default function ContactExperience() {
             Each card tilts toward the pointer; the chosen one pops out and
             opens in a new tab. */}
         <div className="grid items-stretch gap-4 lg:grid-cols-2">
-          <div className="contact-card contact-reach-box">
+          <div className="contact-card contact-reach-box relative isolate">
+            {/* Soft grey flickering dots fill the box below its heading, so the
+                heading itself stays on a clean background. */}
+            <div aria-hidden="true" className="contact-reach-dots">
+              <FlickeringGrid
+                className="h-full w-full"
+                color="rgb(150, 150, 150)"
+                squareSize={3}
+                gridGap={4}
+                flickerChance={0.12}
+                maxOpacity={0.28}
+              />
+            </div>
             <div className="contact-reach-head">
               <h3 className="contact-heading text-base font-semibold sm:text-lg">Reach me other ways</h3>
               <p className="contact-muted text-sm">Email, professional network and code.</p>
@@ -1407,7 +1420,19 @@ export default function ContactExperience() {
             </ul>
           </div>
 
-          <div className="contact-card contact-reach-box">
+          <div className="contact-card contact-reach-box relative isolate">
+            {/* Soft grey flickering dots fill the box below its heading, so the
+                heading itself stays on a clean background. */}
+            <div aria-hidden="true" className="contact-reach-dots">
+              <FlickeringGrid
+                className="h-full w-full"
+                color="rgb(150, 150, 150)"
+                squareSize={3}
+                gridGap={4}
+                flickerChance={0.12}
+                maxOpacity={0.28}
+              />
+            </div>
             <div className="contact-reach-head">
               <h3 className="contact-heading text-base font-semibold sm:text-lg">Find me on social media</h3>
               <p className="contact-muted text-sm">Say hi, follow along and see what I&apos;m up to.</p>

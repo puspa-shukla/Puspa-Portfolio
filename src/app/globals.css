@@ -1871,7 +1871,7 @@ html.dark body:has(.contact-page) {
   border-top: 1.5px solid #e86a82;
   border-bottom: 1.5px solid #f2c063;
   background: #fdf0ea;
-  padding: 0.8rem 0;
+  padding: 1.05rem 0;
 }
 
 .contact-marquee-track {
@@ -1893,8 +1893,8 @@ html.dark body:has(.contact-page) {
 .contact-marquee-item {
   display: inline-flex;
   align-items: center;
-  padding-right: 2.5rem;
-  font-size: 0.9375rem;
+  padding-right: 3rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -1904,8 +1904,8 @@ html.dark body:has(.contact-page) {
 .contact-marquee-item > span:not(.contact-marquee-label) {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0 1.25rem;
+  gap: 0.55rem;
+  padding: 0 1.5rem;
   line-height: 1;
 }
 
@@ -1913,9 +1913,9 @@ html.dark body:has(.contact-page) {
 .contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid rgb(58 21 32 / 15%); }
 
 .contact-marquee-label {
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
   color: rgb(58 21 32 / 45%);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   line-height: 1;
@@ -1926,8 +1926,8 @@ html.dark body:has(.contact-page) {
 .dark .contact-marquee .contact-dot-github { background: #181717; }
 
 .contact-marquee-item b {
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 9999px;
 }
 
@@ -2018,6 +2018,18 @@ html.dark body:has(.contact-page) {
 
 .contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:first-child { font-size: 0.95rem; }
 .contact-reach3d.contact-reach3d-tile .contact-reach3d-text > span:last-child { font-size: 0.75rem; }
+
+/* Dot grid behind each box's cards; it fades in below the heading. */
+.contact-reach-dots {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 3.4rem, #000 5.5rem);
+  mask-image: linear-gradient(to bottom, transparent 0, transparent 3.4rem, #000 5.5rem);
+}
 
 /* Heading at the top of each box, with a thin rule under it. */
 .contact-reach-head {
