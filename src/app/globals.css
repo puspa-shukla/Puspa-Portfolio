@@ -1867,11 +1867,9 @@ html.dark body:has(.contact-page) {
   width: 100vw;
   transform: translateX(-50%);
   overflow: hidden;
-  /* A light blush band with a thin crimson edge above and gold below:
-     it stands apart from the page while staying light. */
-  border-top: 1.5px solid #e86a82;
-  border-bottom: 1.5px solid #f2c063;
-  background: #fdf0ea;
+  /* The same soft light blue as the contact box below, with thin blue-grey edges. */
+  border-block: 1.5px solid #b9d3da;
+  background: #dcebef;
   padding: 1.05rem 0;
 }
 
@@ -1899,7 +1897,7 @@ html.dark body:has(.contact-page) {
   font-weight: 700;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  color: #3a1520;
+  color: #17343a;
 }
 
 .contact-marquee-item > span:not(.contact-marquee-label) {
@@ -1911,11 +1909,11 @@ html.dark body:has(.contact-page) {
 }
 
 /* Thin dividers between the channels keep the strip tidy. */
-.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid rgb(58 21 32 / 15%); }
+.contact-marquee-item > span:not(.contact-marquee-label) + span { border-left: 1px solid rgb(23 52 58 / 18%); }
 
 .contact-marquee-label {
   margin-right: 0.75rem;
-  color: rgb(58 21 32 / 45%);
+  color: rgb(23 52 58 / 50%);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -2081,6 +2079,8 @@ html.dark body:has(.contact-page) {
   transform: translateX(-50%);
   overflow: hidden;
   border-inline: 0;
+  /* The strip sits right on top, so its bottom edge is the only line between them. */
+  border-top: 0;
   border-radius: 0;
   box-shadow: none;
   padding: 0;

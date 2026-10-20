@@ -1376,7 +1376,7 @@ export default function ContactExperience() {
         </div>
       </section>
 
-      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col gap-5">
+      <section aria-labelledby="contact-direct-title" className="contact-step flex flex-col">
         <h2 id="contact-direct-title" className="sr-only">
           Other ways to reach me
         </h2>
