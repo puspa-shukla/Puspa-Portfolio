@@ -12,7 +12,7 @@ const navigationItems = [
   { label: "Social Impact", href: "/social-work", hint: "Community and volunteer work" },
   { label: "U-GO AI", href: "/blog", hint: "My AI learning and leadership story" },
   { label: "Insights", href: "/content-creation", hint: "Writing and content" },
-  { label: "Contact", href: "/#contact", hint: "Get in touch" },
+  { label: "Contact", href: "/contact", hint: "Get in touch" },
 ];
 
 // Per visit (tab session): until the menu is opened once, the button keeps
