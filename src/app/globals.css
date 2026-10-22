@@ -1502,6 +1502,57 @@ html.dark body:has(.insights-page) {
   color: #0d2125;
 }
 
+/* ---------- Projects page: same palette as Insights ---------- */
+/* Overrides the theme tokens so the shared projects section and cards pick
+   up the teal/cream palette here without changing the home page. */
+.projects-page {
+  --background: #fbf8f2;
+  --foreground: #17343a;
+  --card: #ffffff;
+  --card-foreground: #17343a;
+  --primary: #17343a;
+  --primary-foreground: #ffffff;
+  --muted: #e6f0f2;
+  --muted-foreground: #33525a;
+  --accent: #e6f0f2;
+  --accent-foreground: #17343a;
+  --border: #c9d6d9;
+  --input: #c9d6d9;
+  --ring: #1f5f6b;
+}
+
+.projects-page [data-slot="project-card"] {
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 1px 2px rgb(23 52 58 / 6%);
+}
+
+html.dark body:has(.projects-page) {
+  background: #0d2125;
+  color: #eef5f6;
+}
+
+.dark .projects-page {
+  --background: #0d2125;
+  --foreground: #eef5f6;
+  --card: #132c31;
+  --card-foreground: #eef5f6;
+  --primary: #8ed7bc;
+  --primary-foreground: #0d2125;
+  --muted: #1f3f45;
+  --muted-foreground: #b5cbd0;
+  --accent: #1f3f45;
+  --accent-foreground: #eef5f6;
+  --border: rgb(255 255 255 / 12%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #8ed7bc;
+  color: #eef5f6;
+}
+
+.dark .projects-page [data-slot="project-card"] {
+  box-shadow: none;
+}
+
 /* ---------- Contact page ---------- */
 /* .contact-card-light keeps the light palette even in dark mode. */
 .contact-page,

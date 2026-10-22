@@ -12,7 +12,7 @@ export const metadata = pageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <main className="mx-auto min-h-dvh w-full max-w-4xl pt-[4.5rem]">
+    <main className="projects-page blog-page-shell mx-auto min-h-dvh w-full max-w-4xl px-4 pb-24 pt-[4.5rem] sm:px-8">
       <JsonLd data={graph(projectsNode("/projects"))} />
       <section id="projects">
         <ProjectsSection as="h1" title="Projects by Puspa Shukla" />
