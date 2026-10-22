@@ -4,6 +4,7 @@ import { absoluteUrl } from "@/lib/site";
 // Only finished, indexable pages. Placeholder pages are noindex and left out.
 const ROUTES = [
   { path: "/", priority: 1 },
+  { path: "/my-story", priority: 0.9 },
   { path: "/projects", priority: 0.9 },
   { path: "/achievements", priority: 0.8 },
   { path: "/blog", priority: 0.8 },

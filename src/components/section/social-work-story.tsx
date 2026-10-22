@@ -2,12 +2,9 @@ import { HeartHandshake, HandHeart, UsersRound } from "lucide-react";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 
 const socialWorkCategories = [
-  { label: "My beginning", href: "#beginning", target: "beginning" },
-  { label: "Hunger Relief", href: "#small-actions", target: "small-actions" },
-  { label: "Disaster Relief", href: "#flood-support", target: "flood-support" },
+  { label: "Food Relief", href: "#small-actions", target: "small-actions" },
   { label: "Blood for life", href: "#blood-donation", target: "blood-donation" },
   { label: "What I’m learning", href: "#learning", target: "learning" },
-  { label: "The journey continues", href: "#continues", target: "continues" },
 ];
 
 export default function SocialWorkStory() {

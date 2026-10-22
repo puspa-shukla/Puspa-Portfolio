@@ -117,7 +117,8 @@ export const metadata: Metadata = {
 
 export default function AchievementArticlePage() {
   return (
-    <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
+    <div className="story-page blog-page-shell mx-auto w-full max-w-none px-4 pb-24 pt-0 sm:px-8 lg:px-12">
+    <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] dark:text-[#eef5f6] sm:gap-y-12">
       <JsonLd
         data={graph(
           articleNode({
@@ -131,7 +132,7 @@ export default function AchievementArticlePage() {
       <StoryCategoryRibbon categories={achievementCategories} allStories={null} />
       <header
         id="scholarships"
-        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
+        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
       >
         <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#8ed7bc]">
@@ -147,34 +148,34 @@ export default function AchievementArticlePage() {
             By Puspa Shukla · TechSkills Nepal IT Scholarship Program
           </p>
         </div>
-        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] sm:min-h-72 lg:min-h-full">
+        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] dark:bg-[#1f3f45] dark:text-[#eef5f6] sm:min-h-72 lg:min-h-full">
           <div
             aria-hidden="true"
-            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 sm:size-80"
+            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 sm:size-80"
+            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
           />
           <div className="relative z-10 grid max-w-sm grid-cols-2 gap-3">
-            <div className="col-span-2 rounded-2xl border border-[#c9d6d9] bg-white/90 p-5 shadow-sm">
-              <Trophy aria-hidden="true" className="mb-4 size-9 text-[#1f5f6b]" />
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#1f5f6b]">
+            <div className="col-span-2 rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-5 shadow-sm">
+              <Trophy aria-hidden="true" className="mb-4 size-9 text-[#1f5f6b] dark:text-[#8ed7bc]" />
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#1f5f6b] dark:text-[#8ed7bc]">
                 The result
               </p>
               <p className="mb-0 font-serif text-2xl font-semibold leading-snug">
                 Progress made one choice at a time.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 p-4 shadow-sm">
-              <Award aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b]" />
+            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-4 shadow-sm">
+              <Award aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b] dark:text-[#8ed7bc]" />
               <p className="mb-0 text-2xl font-bold">Top 6</p>
-              <p className="mb-0 text-xs text-[#33525a]">finalists</p>
+              <p className="mb-0 text-xs text-[#33525a] dark:text-[#b5cbd0]">finalists</p>
             </div>
-            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 p-4 shadow-sm">
-              <TrendingUp aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b]" />
+            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-4 shadow-sm">
+              <TrendingUp aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b] dark:text-[#8ed7bc]" />
               <p className="mb-0 text-2xl font-bold">2,000+</p>
-              <p className="mb-0 text-xs text-[#33525a]">applicants</p>
+              <p className="mb-0 text-xs text-[#33525a] dark:text-[#b5cbd0]">applicants</p>
             </div>
           </div>
         </div>
@@ -188,7 +189,7 @@ export default function AchievementArticlePage() {
         </section>
 
         <section id="global-representation" className="scroll-mt-24">
-          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] sm:text-4xl">
+          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] dark:text-[#eef5f6] sm:text-4xl">
             Global Representation
           </h2>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -199,10 +200,10 @@ export default function AchievementArticlePage() {
               .map((item) => (
                 <article
                   key={item.title}
-                  className="overflow-hidden rounded-2xl border border-[#c9d6d9] bg-white shadow-sm"
+                  className="overflow-hidden rounded-2xl border border-[#c9d6d9] bg-white shadow-sm dark:border-white/12 dark:bg-[#132c31] dark:shadow-none"
                 >
                   {item.image && (
-                    <div className="relative h-48 bg-[#edf2ee]">
+                    <div className="relative h-48 bg-[#edf2ee] dark:bg-[#1f3f45]">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -213,13 +214,13 @@ export default function AchievementArticlePage() {
                     </div>
                   )}
                   <div className="p-5">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b]">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b] dark:text-[#8ed7bc]">
                       {item.dates} <span aria-hidden="true">&middot;</span> {item.location}
                     </p>
-                    <h3 className="mt-2 text-xl font-bold text-[#17343a]">
+                    <h3 className="mt-2 text-xl font-bold text-[#17343a] dark:text-[#eef5f6]">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-[#33525a]">
+                    <p className="mt-3 text-sm leading-relaxed text-[#33525a] dark:text-[#b5cbd0]">
                       {item.description}
                     </p>
                     {item.links.map((link) => (
@@ -228,7 +229,7 @@ export default function AchievementArticlePage() {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-4 inline-flex text-sm font-semibold text-[#1f5f6b] underline underline-offset-4"
+                        className="mt-4 inline-flex text-sm font-semibold text-[#1f5f6b] underline underline-offset-4 dark:text-[#8ed7bc]"
                       >
                         {link.label}
                       </a>
@@ -240,7 +241,7 @@ export default function AchievementArticlePage() {
         </section>
 
         <section id="leadership" className="scroll-mt-24 pb-8">
-          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] sm:text-4xl">
+          <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] dark:text-[#eef5f6] sm:text-4xl">
             Leadership
           </h2>
           {DATA.hackathonsAndEvents
@@ -248,21 +249,22 @@ export default function AchievementArticlePage() {
             .map((item) => (
               <article
                 key={item.title}
-                className="rounded-2xl border border-[#c9d6d9] bg-white p-6 shadow-sm sm:p-8"
+                className="rounded-2xl border border-[#c9d6d9] bg-white p-6 shadow-sm dark:border-white/12 dark:bg-[#132c31] dark:shadow-none sm:p-8"
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b]">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#1f5f6b] dark:text-[#8ed7bc]">
                   AI learning and mentorship
                 </p>
-                <h3 className="mt-2 text-xl font-bold text-[#17343a] sm:text-2xl">
+                <h3 className="mt-2 text-xl font-bold text-[#17343a] dark:text-[#eef5f6] sm:text-2xl">
                   {item.title}
                 </h3>
-                <p className="mt-3 max-w-2xl leading-relaxed text-[#33525a]">
+                <p className="mt-3 max-w-2xl leading-relaxed text-[#33525a] dark:text-[#b5cbd0]">
                   {item.description}
                 </p>
               </article>
             ))}
         </section>
       </main>
+    </div>
     </div>
   );
 }

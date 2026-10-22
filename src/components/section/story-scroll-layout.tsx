@@ -67,8 +67,8 @@ export default function StoryScrollLayout({
         aria-label="Story highlights"
         className="hidden lg:sticky lg:top-20 lg:block"
       >
-        <div className="overflow-hidden rounded-[14px] border border-[#c9d6d9] bg-white shadow-sm">
-          <div className="relative aspect-[3/2] overflow-hidden bg-[#e6f0f2]">
+        <div className="overflow-hidden rounded-[14px] border border-[#c9d6d9] bg-white shadow-sm dark:border-white/12 dark:bg-[#132c31] dark:shadow-none">
+          <div className="relative aspect-[3/2] overflow-hidden bg-[#e6f0f2] dark:bg-[#1f3f45]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeChapter.image}
@@ -91,17 +91,17 @@ export default function StoryScrollLayout({
           </div>
           <div className="space-y-4 p-5">
             <div className="space-y-2">
-              <p className="mb-0 text-xs font-bold uppercase tracking-[0.2em] text-[#9a6a00]">
+              <p className="mb-0 text-xs font-bold uppercase tracking-[0.2em] text-[#9a6a00] dark:text-[#ffb300]">
                 The story, in motion
               </p>
               <p
                 aria-live="polite"
-                className="mb-0 text-xl font-semibold tracking-tight text-[#17343a]"
+                className="mb-0 text-xl font-semibold tracking-tight text-[#17343a] dark:text-[#eef5f6]"
               >
                 {activeChapter.label}
               </p>
             </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-muted-foreground dark:text-[#b5cbd0]">
               Student. AI educator. IT support practitioner. I turn initiative
               into practical outcomes for people and teams.
             </p>
@@ -110,14 +110,14 @@ export default function StoryScrollLayout({
                 (skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-[#c9d6d9] bg-[#e6f0f2] px-3 py-1 text-xs font-medium text-[#17343a]"
+                    className="rounded-full border border-[#c9d6d9] bg-[#e6f0f2] px-3 py-1 text-xs font-medium text-[#17343a] dark:border-white/12 dark:bg-[#1f3f45] dark:text-[#eef5f6]"
                   >
                     {skill}
                   </span>
                 ),
               )}
             </div>
-            <div className="flex items-center gap-4 border-t border-border pt-4 text-sm font-semibold">
+            <div className="flex items-center gap-4 border-t border-border pt-4 text-sm font-semibold dark:border-white/12 dark:text-[#eef5f6]">
               <Link
                 href="/resume"
                 className="underline decoration-[#699b8a] decoration-2 underline-offset-4 transition-colors hover:text-[#477a6c]"
@@ -139,8 +139,8 @@ export default function StoryScrollLayout({
               key={chapter.id}
               className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
                 chapter.id === activeChapter.id
-                  ? "bg-[#1f5f6b]"
-                  : "bg-[#c9d6d9]"
+                  ? "bg-[#1f5f6b] dark:bg-[#8ed7bc]"
+                  : "bg-[#c9d6d9] dark:bg-white/12"
               }`}
             />
           ))}

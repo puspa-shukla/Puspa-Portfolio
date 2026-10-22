@@ -1,28 +1,19 @@
-import { Brain, Compass, HelpCircle, Lightbulb, Sparkles } from "lucide-react";
+import { HelpCircle, Lightbulb, Sparkles } from "lucide-react";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 
 const insightCategories = [
-  { label: "Girls in Tech", href: "#girls-in-tech", target: "girls-in-tech" },
-  { label: "AI & Beyond", href: "#ai-and-beyond", target: "ai-and-beyond" },
+  { label: "AI and Girls in Tech", href: "#ai-and-girls-in-tech", target: "ai-and-girls-in-tech" },
   { label: "Ideas That Matter", href: "#ideas-that-matter", target: "ideas-that-matter" },
-  { label: "Lessons in Leadership", href: "#lessons-in-leadership", target: "lessons-in-leadership" },
   { label: "Things Worth Questioning", href: "#things-worth-questioning", target: "things-worth-questioning" },
 ];
 
 const insightSections = [
   {
-    id: "girls-in-tech",
-    title: "Girls in Tech",
+    id: "ai-and-girls-in-tech",
+    title: "AI and Girls in Tech",
     icon: Sparkles,
     intro:
-      "Notes on being a young woman learning technology: the doubts, the small wins, and the people who make the path easier for those who come next.",
-  },
-  {
-    id: "ai-and-beyond",
-    title: "AI & Beyond",
-    icon: Brain,
-    intro:
-      "What I am learning about artificial intelligence, how it is changing the way we study and work, and what it might mean for students like me.",
+      "What I am learning about artificial intelligence and how it is changing the way we study and work, alongside notes on being a young woman learning technology: the doubts, the small wins, and the people who make the path easier for those who come next.",
   },
   {
     id: "ideas-that-matter",
@@ -30,13 +21,6 @@ const insightSections = [
     icon: Lightbulb,
     intro:
       "Thoughts on the ideas, books, and conversations that have shaped how I see technology, community, and growth.",
-  },
-  {
-    id: "lessons-in-leadership",
-    title: "Lessons in Leadership",
-    icon: Compass,
-    intro:
-      "What leading a student club and working with teams is teaching me about responsibility, listening, and bringing people together.",
   },
   {
     id: "things-worth-questioning",

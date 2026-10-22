@@ -87,7 +87,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
     <span
       ref={countRef}
       aria-label={`${new Intl.NumberFormat("en-US").format(value)}${suffix}`}
-      className="block text-5xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums sm:text-6xl"
+      className="block text-5xl font-extrabold leading-none tracking-tight text-[#1f5f6b] tabular-nums dark:text-[#8ed7bc] sm:text-6xl"
     >
       <span aria-hidden="true">
         {formattedCount}
@@ -103,25 +103,25 @@ export default function BlogImpactStats() {
       <section
         id="impact"
         aria-label="The impact of the U-GO AI program"
-        className="not-prose m-0 grid w-full overflow-hidden border-y border-[#d9dedb] bg-white text-[#17343a] sm:grid-cols-3"
+        className="not-prose m-0 grid w-full overflow-hidden border-y border-[#d9dedb] bg-white text-[#17343a] dark:border-white/12 dark:bg-[#132c31] dark:text-[#eef5f6] sm:grid-cols-3"
       >
         {impactStats.map((stat, index) => (
           <div
             key={stat.label}
             className={`flex min-h-0 flex-col justify-center gap-3 px-6 py-5 sm:px-8 sm:py-6 lg:px-12 ${
               index < impactStats.length - 1
-                ? "border-b border-[#d9dedb] sm:border-b-0 sm:border-r"
+                ? "border-b border-[#d9dedb] dark:border-white/12 sm:border-b-0 sm:border-r"
                 : ""
             }`}
           >
             <CountUp value={stat.value} suffix={stat.suffix} />
-            <p className="m-0 max-w-sm text-lg leading-relaxed text-[#344d4e] sm:text-xl">
+            <p className="m-0 max-w-sm text-lg leading-relaxed text-[#344d4e] dark:text-[#b5cbd0] sm:text-xl">
               {stat.label}
             </p>
           </div>
         ))}
       </section>
-      <div className="blog-impact-marquee overflow-hidden bg-[#f0f1ed] py-2 text-[#1c3b40]">
+      <div className="blog-impact-marquee overflow-hidden bg-[#f0f1ed] py-2 text-[#1c3b40] dark:bg-[#17343a] dark:text-[#eef5f6]">
         <p className="sr-only">Learn it, Teach it, Pass it on, Make AI work</p>
         <div className="blog-impact-marquee-track flex w-max" aria-hidden="true">
           {[0, 1].map((copy) => (

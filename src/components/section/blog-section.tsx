@@ -6,6 +6,12 @@ import StoryScrollLayout, {
 } from "@/components/section/story-scroll-layout";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 
+const ugoCategories = [
+  { label: "My Journey", href: "#story", target: "story" },
+  { label: "AI and Tech", href: "#first-to-finish", target: "first-to-finish" },
+  { label: "Impact", href: "#impact", target: "impact" },
+];
+
 const chapters: StoryChapter[] = [
   {
     id: "first-to-finish",
@@ -65,11 +71,11 @@ const chapters: StoryChapter[] = [
 
 export default function BlogSection() {
   return (
-    <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
-      <StoryCategoryRibbon />
+    <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] dark:text-[#eef5f6] sm:gap-y-12">
+      <StoryCategoryRibbon categories={ugoCategories} allStories={null} />
       <header
         id="all-stories"
-        className="relative grid scroll-mt-20 rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
+        className="relative grid scroll-mt-20 rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
       >
         <div className="flex flex-col justify-center p-5 sm:p-7 md:p-9 lg:p-10">
           <div className="mb-5 max-w-4xl">
@@ -104,7 +110,7 @@ export default function BlogSection() {
             </a>
           </div>
         </div>
-        <div className="relative min-h-[22rem] overflow-hidden rounded-b-[14px] bg-[#edf2ee] sm:min-h-[26rem] lg:min-h-[24rem] lg:rounded-b-none lg:rounded-r-[14px]">
+        <div className="relative min-h-[22rem] overflow-hidden rounded-b-[14px] bg-[#edf2ee] dark:bg-[#1f3f45] sm:min-h-[26rem] lg:min-h-[24rem] lg:rounded-b-none lg:rounded-r-[14px]">
           <Image
             src="/ugo-scholar-presentation.jpg"
             alt="Two U-GO scholars presenting together; one speaks while holding her notes"
@@ -259,7 +265,7 @@ export default function BlogSection() {
           Stuart Kerr, Global Director of U-GO AI at U-GO University, said this
           about my work:
         </p>
-        <figure className="not-prose my-12 overflow-hidden rounded-3xl bg-[#173b3d] px-6 py-8 text-white shadow-lg shadow-[#173b3d]/10 sm:px-10 sm:py-10">
+        <figure className="not-prose my-12 overflow-hidden rounded-3xl bg-[#173b3d] px-6 py-8 text-white shadow-lg shadow-[#173b3d]/10 dark:bg-[#132c31] dark:ring-1 dark:ring-white/10 sm:px-10 sm:py-10">
           <figcaption className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f5c75e]">
             Stuart Kerr on U-GO AI community leadership
           </figcaption>
