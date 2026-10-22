@@ -1,15 +1,19 @@
-import React from 'react'
+import ComingSoon from "@/components/coming-soon";
+import { pageMetadata } from "@/lib/metadata";
 
-const Work
- = () => {
+export const metadata = pageMetadata({
+  title: "Work Journey",
+  description: "Puspa Shukla's work journey in IT support and web development. Coming soon.",
+  path: "/work",
+  noIndex: true,
+});
+
+export default function WorkPage() {
   return (
-    <div className='flex items-center justify-center'>
-      <h1 className="text-[200px] font-semibold font-mono bg-linear-to-b from-primary/30 to-secondary/10 text-transparent bg-clip-text absolute -top-40 left-1/2 -translate-x-1/2 mask-[linear-gradient(to_bottom,black,black_20%,transparent_80%)] tracking-tighter uppercase [-webkit-text-stroke:3px_hsl(var(--primary)/0.6)]">
-        Work
-      </h1>
-      <p> Will be documenting my work journey here!</p>
-    </div>
+    <ComingSoon
+      eyebrow="Work journey · Coming soon"
+      title="My work journey, in progress"
+      description="A longer write-up of my IT support and U-GO experience is on its way. My work experience is already on the home page and in my resume."
+    />
   );
 }
-
-export default Work;

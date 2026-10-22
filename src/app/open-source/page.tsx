@@ -1,18 +1,19 @@
-import React from 'react'
+import ComingSoon from "@/components/coming-soon";
+import { pageMetadata } from "@/lib/metadata";
 
-const OpenSource = () => {
-    return (
-      <div>
-        <h1 className="text-[200px] font-semibold font-mono bg-linear-to-b from-primary/30 to-secondary/10 text-transparent bg-clip-text absolute -top-40 left-1/2 -translate-x-1/2 mask-[linear-gradient(to_bottom,black,black_20%,transparent_80%)] tracking-tighter uppercase [-webkit-text-stroke:3px_hsl(var(--primary)/0.6)]">
-          Love for Open Source
-        </h1>
-        <p>
-          
-          Here, I will document my Open Source Contributions, Learnings, and
-          Experiences!
-        </p>
-      </div>
-    );
+export const metadata = pageMetadata({
+  title: "Open Source",
+  description: "Puspa Shukla's open source contributions and learnings. Coming soon.",
+  path: "/open-source",
+  noIndex: true,
+});
+
+export default function OpenSourcePage() {
+  return (
+    <ComingSoon
+      eyebrow="Open source · Coming soon"
+      title="Open source work, in progress"
+      description="I'll share my open source contributions and what I learn from them here. Until then, explore my projects or say hello."
+    />
+  );
 }
-
-export default OpenSource;

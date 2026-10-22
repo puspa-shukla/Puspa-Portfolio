@@ -1,4 +1,6 @@
+import JsonLd from "@/components/json-ld";
 import BlogSection from "@/components/section/blog-section";
+import { articleNode, graph } from "@/lib/structured-data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -37,6 +39,17 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <main className="blog-page-shell mx-auto w-full max-w-none px-4 pb-24 pt-0 sm:px-8 lg:px-12">
+      <JsonLd
+        data={graph(
+          articleNode({
+            path: "/blog",
+            headline: "The Girl Who Didn’t Wait to Be Asked",
+            description:
+              "From finishing the U-GO AI course first to helping 3,000+ scholars build skills across borders: Puspa Shukla's story of initiative, leadership, and impact.",
+            image: "/blog/opengraph-image",
+          }),
+        )}
+      />
       <BlogSection />
     </main>
   );

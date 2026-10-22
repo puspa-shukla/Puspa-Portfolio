@@ -1,8 +1,10 @@
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import type { Metadata } from "next";
+import JsonLd from "@/components/json-ld";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 import { DATA } from "@/data/resume";
+import { articleNode, graph } from "@/lib/structured-data";
 import { Award, TrendingUp, Trophy } from "lucide-react";
 
 const title = "Top 6 Out of 2,000+: The Story Behind the Result";
@@ -116,6 +118,16 @@ export const metadata: Metadata = {
 export default function AchievementArticlePage() {
   return (
     <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] sm:gap-y-12">
+      <JsonLd
+        data={graph(
+          articleNode({
+            path: "/achievements",
+            headline: title,
+            description,
+            image: "/techskills-working.jpg",
+          }),
+        )}
+      />
       <StoryCategoryRibbon categories={achievementCategories} allStories={null} />
       <header
         id="scholarships"

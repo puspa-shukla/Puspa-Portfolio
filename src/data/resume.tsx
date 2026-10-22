@@ -21,6 +21,32 @@ export const DATA = {
   location: "Kathmandu, Nepal",
   locationLink: "https://www.google.com/maps/place/Kathmandu/",
   description: "BCA student | IT Support, Systems Administration & Web Development",
+  role: "IT Support, Systems Administration & Web Development",
+  headline:
+    "I’m a BCA student building practical skills in IT support, systems administration, and web development, and I use AI to help others learn. I’ve supported 400+ U-GO scholars and finished in the top 6 of 2,000+ applicants in the TechSkills Nepal IT Scholarship Program.",
+  timezone: "Nepal Time (UTC+5:45)",
+  proofPoints: [
+    { value: "Top 6", short: "Top 6 of 2,000+", label: "of 2,000+ applicants, TechSkills Nepal IT Scholarship" },
+    { value: "400+", short: "400+ scholars supported", label: "scholars supported with AI and digital skills at U-GO Nepal" },
+    { value: "3.60", short: "3.60 CGPA", label: "CGPA, BCA at CAMAD College (Pokhara University)" },
+  ],
+  credentials: [
+    {
+      name: "System & Network Support Specialist",
+      issuer: "TechSkills Institute",
+      url: "/techskills-certificate.jpeg",
+    },
+    {
+      name: "U-GO AI Workshops & Advanced Courses",
+      issuer: "U-GO",
+      url: "/ugo-ai-certificate.pdf",
+    },
+    {
+      name: "NASA Space Apps Challenge, Certificate of Participation",
+      issuer: "NASA Space Apps Kathmandu",
+      url: "/nasa-space-apps-certificate.jpeg",
+    },
+  ],
   professionalSummary:
     "I’m a BCA student at CAMAD College, affiliated with Pokhara University, learning through web projects and hands-on IT systems support. Through U-GO, I’ve helped lead AI learning initiatives for scholars; its global publication reported a 97% course completion rate across more than 3,000 scholars in eight countries. I enjoy sharing what I learn, mentoring others, and helping more women find opportunities in technology.",
   summary:
@@ -190,6 +216,7 @@ export const DATA = {
       description:
         "Built a real-time currency conversion tool with input validation and a responsive interface.",
       technologies: ["HTML", "CSS", "JavaScript"],
+      demo: "https://puspa-shukla.github.io/CurrencyConverter/",
       links: [
         {
           icon: <Icons.globe className="size-3.5" />,
@@ -213,6 +240,7 @@ export const DATA = {
       description:
         "Created a two-player JavaScript game with win/draw detection and CSS-based visual feedback.",
       technologies: ["JavaScript", "CSS"],
+      demo: "https://puspa-shukla.github.io/TicTacToe/",
       links: [
         {
           icon: <Icons.globe className="size-3.5" />,
@@ -236,6 +264,7 @@ export const DATA = {
       description:
         "Developed a player-versus-computer game with randomized logic, winner detection, and a dynamic score display.",
       technologies: ["JavaScript", "CSS"],
+      demo: "https://puspa-shukla.github.io/ScissorPaperRock/",
       links: [
         {
           icon: <Icons.globe className="size-3.5" />,
@@ -259,6 +288,7 @@ export const DATA = {
       description:
         "Designed a route-planning application that calculates efficient paths between locations using graph-based algorithms, with a focus on clean logic and usable output.",
       technologies: ["JavaScript", "Algorithms"],
+      demo: "",
       links: [
         {
           icon: <Icons.globe className="size-3.5" />,

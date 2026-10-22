@@ -1453,6 +1453,55 @@ button:focus-visible .pill-3d {
 
 }
 
+/* ---------- Insights page (dark mode) ---------- */
+html.dark body:has(.insights-page) {
+  background: #0d2125;
+  color: #eef5f6;
+}
+
+.dark .insights-page,
+.dark .insights-page .blog-story-copy,
+.dark .insights-page .blog-story-copy :where(h2, h3, strong) {
+  color: #eef5f6;
+}
+
+.dark .insights-page .blog-story-copy :where(p, em) {
+  color: #b5cbd0;
+}
+
+.dark .insights-page .blog-story-copy :where(a) {
+  color: #8ed7bc;
+  text-decoration-color: #8ed7bc;
+}
+
+.dark .insights-page .blog-story-copy blockquote {
+  background: #17343a;
+  color: #eef5f6;
+}
+
+.dark .insights-page .story-category-ribbon {
+  border-color: rgb(255 255 255 / 12%);
+  background: rgb(13 33 37 / 95%);
+}
+
+.dark .insights-page .story-category-ribbon a {
+  border-color: rgb(255 255 255 / 12%);
+  background: #132c31;
+  color: #b5cbd0;
+}
+
+.dark .insights-page .story-category-ribbon a:hover {
+  border-color: #8ed7bc;
+  background: #17343a;
+  color: #eef5f6;
+}
+
+.dark .insights-page .story-category-ribbon a[aria-current] {
+  border-color: #8ed7bc;
+  background: #8ed7bc;
+  color: #0d2125;
+}
+
 /* ---------- Contact page ---------- */
 /* .contact-card-light keeps the light palette even in dark mode. */
 .contact-page,

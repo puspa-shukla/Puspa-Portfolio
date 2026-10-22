@@ -1,14 +1,25 @@
 import { DATA } from "@/data/resume";
 import PrintResumeButton from "@/components/ui/print-resume-button";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Resume",
-};
+  description:
+    "Resume of Puspa Shukla: BCA student with IT support and systems administration training, U-GO Nepal internship, web projects, and scholarship achievements. Printable and downloadable as PDF.",
+  path: "/resume",
+  type: "profile",
+});
 
 export default function ResumePage() {
   return (
     <main className="mx-auto min-h-screen max-w-4xl bg-background px-6 py-8 text-foreground print:max-w-none print:bg-white print:px-0 print:py-0 print:text-black">
-      <div className="mb-6 flex justify-end print:hidden">
+      <div className="mb-6 flex flex-wrap items-center justify-end gap-4 print:hidden">
+        <a
+          href="/api/resume"
+          className="text-sm font-medium underline underline-offset-4"
+        >
+          Download PDF
+        </a>
         <PrintResumeButton />
       </div>
       <article className="space-y-6 print:space-y-4">
@@ -81,7 +92,7 @@ export default function ResumePage() {
                   <strong>{education.school}</strong> - {education.program} ({education.specialization})
                   {education.href && (
                     <a className="ml-2 underline print:no-underline" href={education.href}>
-                      Pokhara University
+                      Website
                     </a>
                   )}
                   <span className="float-right">{education.start}-{education.end}</span>

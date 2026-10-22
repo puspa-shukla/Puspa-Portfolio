@@ -1,17 +1,22 @@
+import JsonLd from "@/components/json-ld";
 import ProjectsSection from "@/components/section/projects-section";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
+import { graph, projectsNode } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Projects",
   description:
-    "Explore Puspa Shukla's web development, IT, and technology projects.",
-  alternates: { canonical: "https://www.puspashukla.com.np/projects" },
-};
+    "Web projects by Puspa Shukla built with HTML, CSS and JavaScript, including a currency converter, browser games and a route-planning system. Try the live demos or read the source.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (
     <main className="mx-auto min-h-dvh w-full max-w-4xl pt-[4.5rem]">
-      <ProjectsSection />
+      <JsonLd data={graph(projectsNode("/projects"))} />
+      <section id="projects">
+        <ProjectsSection as="h1" title="Projects by Puspa Shukla" />
+      </section>
     </main>
   );
 }

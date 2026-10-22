@@ -1,18 +1,19 @@
-import React from 'react'
+import ComingSoon from "@/components/coming-soon";
+import { pageMetadata } from "@/lib/metadata";
 
-const Hackathons = () => {
-    return (
-        <div>
-        <h1 className="text-[200px] font-semibold font-mono bg-linear-to-b from-primary/30 to-secondary/10 text-transparent bg-clip-text absolute -top-40 left-1/2 -translate-x-1/2 mask-[linear-gradient(to_bottom,black,black_20%,transparent_80%)] tracking-tighter uppercase [-webkit-text-stroke:3px_hsl(var(--primary)/0.6)]">
-          Hackathons
-        </h1>
-        <p>
-          
-          Here, I will document my Hackathon & Tech Events Experiences and Learnings!
-        </p>
-      </div>
+export const metadata = pageMetadata({
+  title: "Hackathons",
+  description: "Puspa Shukla's hackathon and tech event experiences. Coming soon.",
+  path: "/hackathons",
+  noIndex: true,
+});
 
-  )
+export default function HackathonsPage() {
+  return (
+    <ComingSoon
+      eyebrow="Hackathons · Coming soon"
+      title="Hackathon stories, in progress"
+      description="I'm writing up what I learned from events like the NASA Space Apps Challenge. Until then, explore my projects or say hello."
+    />
+  );
 }
-
-export default Hackathons;

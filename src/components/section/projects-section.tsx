@@ -4,7 +4,13 @@ import { DATA } from "@/data/resume";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function ProjectsSection() {
+export default function ProjectsSection({
+  as: Heading = "h2",
+  title = "Check out my latest work",
+}: {
+  as?: "h1" | "h2";
+  title?: string;
+}) {
     return (
         <section id="projects">
             <div className="flex min-h-0 flex-col gap-y-8">
@@ -23,7 +29,7 @@ export default function ProjectsSection() {
                         />
                     </div>
                     <div className="flex flex-col gap-y-3 items-center justify-center">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Check out my latest work</h2>
+                        <Heading className="text-3xl font-bold tracking-tighter sm:text-4xl">{title}</Heading>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">

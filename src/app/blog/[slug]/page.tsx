@@ -1,31 +1,47 @@
 export const revalidate = 60;
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getPublishedPosts } from "@/lib/blog";
 import { getPostContent } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import ReactMarkdown from "react-markdown";
 import readingTime from "reading-time";
 
-export default async function BlogPost(props: any) {
-  const params = await props.params;
+type Props = { params: Promise<{ slug: string }> };
 
+async function findPost(slug: string) {
   const posts = await getPublishedPosts();
+  return posts.find((p) => p.slug && p.slug === slug.toLowerCase());
+}
 
-  const post = posts.find((p) => {
-    if (!p.slug || !params.slug) return false;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await findPost(slug);
+  if (!post) return { title: "Post not found", robots: { index: false } };
 
-    return p.slug === params.slug.toLowerCase();
+  return pageMetadata({
+    title: post.title,
+    description: `${post.title}, by Puspa Shukla.`,
+    path: `/blog/${post.slug}`,
+    type: "article",
   });
+}
 
-  if (!post) return <div>Not found</div>;
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
+  const post = await findPost(slug);
+
+  if (!post) notFound();
 
   const content = await getPostContent(post.id);
   const stats = readingTime(content);
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <main className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold">{post.title}</h1>
 
       <p className="text-muted-foreground mt-2">
-        {post.date} • {stats.text}
+        {post.date && <time dateTime={post.date}>{post.date}</time>} • {stats.text}
       </p>
 
       <div className="flex gap-2 mt-2">
@@ -42,6 +58,6 @@ export default async function BlogPost(props: any) {
       <article className="prose dark:prose-invert prose-neutral mt-6 max-w-none">
         <ReactMarkdown>{content}</ReactMarkdown>
       </article>
-    </div>
+    </main>
   );
 }
