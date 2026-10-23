@@ -1,4 +1,4 @@
-import { Compass, Flag, Footprints } from "lucide-react";
+import { ArrowRight, Compass, Flag, Footprints } from "lucide-react";
 import type { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
@@ -141,48 +141,57 @@ export default function MyStory() {
 
       <header
         id="all-stories"
-        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
+        className="relative overflow-hidden rounded-[14px] bg-[#17343a] px-6 py-8 text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 sm:px-10 sm:py-10 lg:px-12"
       >
-        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#8ed7bc]">
-            {DATA.role}
-          </p>
-          <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.25rem,4.4vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-white">
-            My Story
-          </h1>
-          <p className="mt-6 max-w-3xl font-serif text-lg leading-relaxed text-white/85 sm:text-xl">
-            From a Village That Limited My Dreams to a World of Possibilities
-          </p>
-          <p className="mt-6 text-sm font-medium text-white/70">
-            {DATA.name} · {DATA.location}
-          </p>
-        </div>
-        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] dark:bg-[#1f3f45] dark:text-[#eef5f6] sm:min-h-72 lg:min-h-full">
-          <div
-            aria-hidden="true"
-            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
-          />
-          <ul className="relative z-10 grid w-full max-w-sm gap-2">
-            {storySections.map(({ id, title, icon: Icon }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className="flex items-center gap-3 rounded-2xl border border-[#c9d6d9] bg-white/90 px-4 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-[#5b9aaa] hover:bg-white dark:border-white/12 dark:bg-[#132c31]/90 dark:hover:border-[#8ed7bc] dark:hover:bg-[#17343a]"
-                >
-                  <Icon aria-hidden="true" className="size-5 shrink-0 text-[#1f5f6b] dark:text-[#8ed7bc]" />
-                  {title}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div
+          aria-hidden="true"
+          className="absolute -right-20 -top-24 size-72 rounded-full border border-white/[0.07] sm:size-96"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -right-6 -top-10 size-44 rounded-full border border-[#8ed7bc]/10 sm:size-60"
+        />
+        <div className="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12">
+          <div>
+            <p className="mb-3 text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-[#8ed7bc] sm:text-xs">
+              {DATA.role}
+            </p>
+            <h1 className="mb-0 font-serif text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.02] tracking-tight text-white">
+              My Story
+            </h1>
+            <p className="mt-4 max-w-xl text-balance font-serif text-lg leading-snug text-white/85 sm:text-xl">
+              From a Village That Limited My Dreams to a World of Possibilities
+            </p>
+            <p className="mt-5 text-sm font-medium text-white/60">
+              {DATA.name} · {DATA.location}
+            </p>
+          </div>
+          <nav aria-label="Chapters of my story">
+            <ol className="m-0 grid list-none gap-2 p-0">
+              {storySections.map(({ id, title, icon: Icon }, index) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:translate-x-1 hover:border-[#8ed7bc]/50 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ed7bc]"
+                  >
+                    <span className="w-5 shrink-0 text-xs tabular-nums text-[#8ed7bc]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <Icon aria-hidden="true" className="size-4 shrink-0 text-white/60" />
+                    <span className="flex-1">{title}</span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="size-4 shrink-0 text-white/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#ffb300]"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
         </div>
       </header>
 
-      <article className="blog-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24 [&_blockquote]:my-8 [&_blockquote]:text-lg sm:[&_blockquote]:text-xl [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:border-l-4 [&_h3]:border-[#ffb300] [&_h3]:pl-3 [&_h3]:text-xl sm:[&_h3]:text-2xl">
+      <article className="blog-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24 [&_p]:text-justify [&_p]:hyphens-auto [&_blockquote]:my-8 [&_blockquote]:text-lg sm:[&_blockquote]:text-xl [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:border-l-4 [&_h3]:border-[#ffb300] [&_h3]:pl-3 [&_h3]:text-xl sm:[&_h3]:text-2xl">
         <div className="not-prose border-l-4 border-[#8ed7bc] pl-5 font-serif text-xl italic leading-relaxed text-[#17343a] dark:text-[#eef5f6] sm:text-2xl">
           {opening}
         </div>
