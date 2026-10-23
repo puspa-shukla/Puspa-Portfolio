@@ -52,14 +52,9 @@
   animation: blog-impact-marquee 30s linear infinite;
 }
 
+/* Full-bleed: centred on the article, stretched to both edges of the window */
 .blog-impact-band {
   transform: translateX(-50%);
-}
-
-@media (min-width: 1024px) {
-  .blog-impact-band {
-    transform: translateX(-69.5%);
-  }
 }
 
 .blog-impact-marquee:hover .blog-impact-marquee-track {
@@ -2262,6 +2257,24 @@ html.dark body:has(.story-page) {
 .dark .story-page .blog-story-copy.my-story-copy blockquote p,
 .dark .story-page .blog-story-copy.my-story-copy blockquote strong {
   color: #eef5f6;
+}
+
+/* Flat pale teal-grey variant (the Stuart Kerr testimonial on the U-GO AI page) */
+.blog-story-page .blog-story-copy.my-story-copy blockquote.story-quote-wash {
+  background: #d3e3e6;
+}
+
+/* A true serif italic for the testimonial; the attribution stays upright */
+.blog-story-page .blog-story-copy.my-story-copy blockquote.story-quote-wash p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+}
+
+.dark .story-page .blog-story-copy.my-story-copy blockquote.story-quote-wash {
+  background: #1f3f45;
 }
 
 /* ---------- Projects page: same palette as Insights ---------- */
