@@ -100,13 +100,13 @@ My role as President of the Social Work and Volunteering Club is one part of my 
 
 I do not see volunteering as something I do only during college or something that ends when I receive my degree. I see it as a habit of caring, a willingness to participate, and a responsibility I want to carry forward.
 
-As I continue developing my technical skills, exploring technology and AI, and preparing for my future career, I also want to hold on to this part of myself: the part that believes progress means more when we use what we learn to contribute to something beyond ourselves.
+As I continue developing my technical skills, exploring technology and AI, and preparing for my future career, I also want to hold on to this part of myself: the part that believes progress means more when we use what we learn to contribute to something beyond ourselves.`;
 
-I hope to keep bringing people together, supporting meaningful initiatives, and finding practical ways to help communities.
+const bringingPeopleTogether = `I hope to keep bringing people together, supporting meaningful initiatives, and finding practical ways to help communities.
 
-I may be one student, and my contribution may sometimes be small. But I have learned that being young is not a reason to wait, and being a student is not a limitation on the difference we can make.
+I may be one student, and my contribution may sometimes be small. But I have learned that being young is not a reason to wait, and being a student is not a limitation on the difference we can make.`;
 
-We can learn while we serve. We can grow while we give. And we can begin making a difference long before we feel completely ready.`;
+const learnWhileWeServe = `We can learn while we serve. We can grow while we give. And we can begin making a difference long before we feel completely ready.`;
 
 const continues = `### The journey continues
 
@@ -264,7 +264,6 @@ export default function SocialWorkStory() {
           </PhotoBlock>
           <ReactMarkdown>{balancing}</ReactMarkdown>
           <ReactMarkdown>{citizen}</ReactMarkdown>
-          <ReactMarkdown>{continues}</ReactMarkdown>
           <PhotoBlock
             side="left"
             src="/social/community-cycling-campaign.png"
@@ -272,6 +271,18 @@ export default function SocialWorkStory() {
             width={1600}
             height={1200}
             caption="With fellow riders at the Ride Against Cancer."
+          >
+            <ReactMarkdown>{bringingPeopleTogether}</ReactMarkdown>
+          </PhotoBlock>
+          <ReactMarkdown>{learnWhileWeServe}</ReactMarkdown>
+          <ReactMarkdown>{continues}</ReactMarkdown>
+          <PhotoBlock
+            side="right"
+            src="/social/club-team.png"
+            alt="Puspa taking a selfie with members of her Social Work and Volunteering Club team"
+            width={794}
+            height={603}
+            caption="With my Social Work and Volunteering Club team."
           >
             <ReactMarkdown>{thankful}</ReactMarkdown>
           </PhotoBlock>
