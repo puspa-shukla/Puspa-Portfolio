@@ -1,8 +1,14 @@
-import BlurFade from "@/components/magicui/blur-fade";
+import type { CSSProperties } from "react";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
+import ProjectCategoryTabs from "./project-category-tabs";
 
-const BLUR_FADE_DELAY = 0.04;
+// Each id doubles as a link anchor (/projects#id) that opens that category.
+export const PROJECT_CATEGORIES = [
+  { id: "build-as-i-learn", label: "Build as I Learn" },
+  { id: "web-development", label: "Web Development" },
+  { id: "ai-python", label: "AI and Python" },
+];
 
 export default function ProjectsSection({
   as: Heading = "h2",
@@ -32,27 +38,45 @@ export default function ProjectsSection({
                         <Heading className="text-3xl font-bold tracking-tighter sm:text-4xl">{title}</Heading>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
-                    {DATA.projects.map((project, id) => (
-                        <BlurFade
-                            key={project.title}
-                            delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                            className="h-full"
-                        >
-                            <ProjectCard
-                                href={project.href}
-                                key={project.title}
-                                title={project.title}
-                                description={project.description}
-                                dates={project.dates}
-                                tags={project.technologies}
-                                image={project.image}
-                                video={project.video}
-                                links={project.links}
-                            />
-                        </BlurFade>
-                    ))}
-                </div>
+                <ProjectCategoryTabs
+                    panels={PROJECT_CATEGORIES.map((category) => {
+                        const projects = DATA.projects.filter(
+                            (project) => project.category === category.id,
+                        );
+
+                        return {
+                            id: category.id,
+                            label: category.label,
+                            count: projects.length,
+                            content: projects.length > 0 ? (
+                                <div className="grid grid-cols-1 gap-3 p-1 sm:grid-cols-2 auto-rows-fr">
+                                    {projects.map((project, id) => (
+                                        <div
+                                            key={project.title}
+                                            className="project-panel-item h-full"
+                                            style={{ "--item-delay": `${80 + id * 70}ms` } as CSSProperties}
+                                        >
+                                            <ProjectCard
+                                                href={project.href}
+                                                title={project.title}
+                                                description={project.description}
+                                                dates={project.dates}
+                                                tags={project.technologies}
+                                                image={project.image}
+                                                video={project.video}
+                                                links={project.links}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="project-panel-item m-1 rounded-xl border border-dashed px-4 py-8 text-center text-sm text-muted-foreground">
+                                    Projects coming soon. I&apos;m building them as I learn.
+                                </p>
+                            ),
+                        };
+                    })}
+                />
             </div>
         </section>
     );

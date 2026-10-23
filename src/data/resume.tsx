@@ -212,6 +212,7 @@ export const DATA = {
       title: "Currency Converter",
       href: "https://puspa-shukla.github.io/CurrencyConverter/?From=USD&from=NPR",
       dates: "Web project",
+      category: "web-development",
       active: true,
       description:
         "Built a real-time currency conversion tool with input validation and a responsive interface.",
@@ -236,6 +237,7 @@ export const DATA = {
       title: "Tic Tac Toe Game",
       href: "https://puspa-shukla.github.io/TicTacToe/",
       dates: "Web project",
+      category: "web-development",
       active: true,
       description:
         "Created a two-player JavaScript game with win/draw detection and CSS-based visual feedback.",
@@ -260,6 +262,7 @@ export const DATA = {
       title: "Rock, Paper, Scissors Game",
       href: "https://puspa-shukla.github.io/ScissorPaperRock/",
       dates: "Web project",
+      category: "web-development",
       active: true,
       description:
         "Developed a player-versus-computer game with randomized logic, winner detection, and a dynamic score display.",
@@ -284,6 +287,7 @@ export const DATA = {
       title: "Route Way System",
       href: "http://localhost:3000/",
       dates: "Web project",
+      category: "web-development",
       active: true,
       description:
         "Designed a route-planning application that calculates efficient paths between locations using graph-based algorithms, with a focus on clean logic and usable output.",

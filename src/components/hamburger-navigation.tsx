@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navigationItems = [
   { label: "Home", href: "/#hero", hint: "Back to the start" },
   { label: "My Story", href: "/my-story", hint: "Who I am and what drives me" },
-  { label: "Portfolio", href: "/projects", hint: "Projects I've built" },
+  { label: "Projects", href: "/projects", hint: "Projects I've built" },
   { label: "Achievements", href: "/achievements", hint: "Recognition and milestones" },
   { label: "Social Impact", href: "/social-work", hint: "Community and volunteer work" },
   { label: "U-GO AI", href: "/blog", hint: "My AI learning and leadership story" },

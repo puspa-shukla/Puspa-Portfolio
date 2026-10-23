@@ -824,6 +824,649 @@ html.dark body:has(.home-page) {
   color: rgb(23 52 58 / 75%);
 }
 
+/* Projects page: category buttons. Flat colours, one gold accent.
+   Picking a category hides the other two and turns it into a banner. */
+@property --tab-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.project-tab {
+  position: relative;
+  border: 1px solid #d3dfe1;
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 0 #d3dfe1, 0 10px 20px -16px rgb(23 52 58 / 40%);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    padding 320ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-tab:hover {
+  border-color: #1f5f6b;
+  box-shadow: 0 3px 0 #1f5f6b, 0 16px 26px -18px rgb(23 52 58 / 50%);
+  transform: translateY(-2px);
+}
+
+.project-tab:active {
+  box-shadow: 0 0 0 #1f5f6b, 0 4px 8px -6px rgb(23 52 58 / 40%);
+  transform: translateY(2px);
+  transition-duration: 80ms;
+}
+
+.project-tab:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 3px;
+}
+
+/* Big topic tile under each button in the overview. 3D: the icon plate floats
+   above the tile; --tx/--ty tilt it toward the pointer, and --progress (from the
+   slide on the button above) turns it, lifts the plate and fills it with colour. */
+.project-tile {
+  --tile-bg: #e3edff;
+  --tile-fg: #2557c7;
+  --tx: 0deg;
+  --ty: 0deg;
+  position: relative;
+  display: flex;
+  aspect-ratio: 1;
+  margin-top: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.75rem;
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+  cursor: pointer;
+  transform: perspective(800px)
+    rotateX(calc(var(--ty) + var(--progress, 0) * 8deg))
+    rotateY(calc(var(--tx) + var(--progress, 0) * 14deg));
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms ease;
+  animation: project-reveal-up 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Colour rising from the bottom as the slide progresses */
+.project-tile-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--tile-fg) 22%, transparent), color-mix(in srgb, var(--tile-fg) 6%, transparent));
+  clip-path: inset(calc((1 - var(--progress, 0)) * 100%) 0 0 0 round 1.75rem);
+  transition: clip-path 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-tile-float {
+  display: flex;
+  transform-style: preserve-3d;
+  animation: project-tile-float 4.5s ease-in-out infinite;
+}
+
+.project-tile-plate {
+  display: inline-flex;
+  width: 5.25rem;
+  height: 5.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.4rem;
+  background: #ffffff;
+  box-shadow:
+    inset 0 -3px 0 color-mix(in srgb, var(--tile-fg) 12%, transparent),
+    0 14px 24px -14px color-mix(in srgb, var(--tile-fg) 55%, transparent);
+  transform: translateZ(calc(28px + var(--progress, 0) * 36px))
+    scale(calc(1 + var(--progress, 0) * 0.14));
+  transition: transform 420ms cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 300ms ease;
+}
+
+/* Soft ground shadow that breathes with the float */
+.project-tile-shadow {
+  position: absolute;
+  top: calc(50% + 3.4rem);
+  left: 50%;
+  width: 4.5rem;
+  height: 0.9rem;
+  margin-left: -2.25rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tile-fg) 40%, transparent);
+  filter: blur(8px);
+  opacity: 0.45;
+  animation: project-tile-shadow 4.5s ease-in-out infinite;
+}
+
+@keyframes project-tile-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes project-tile-shadow {
+  0%, 100% { opacity: 0.45; transform: scaleX(1); }
+  50% { opacity: 0.25; transform: scaleX(0.8); }
+}
+
+.project-tile:hover,
+.project-tab-slot:hover .project-tile {
+  box-shadow: 0 22px 34px -24px rgb(23 52 58 / 55%);
+}
+
+.project-tile:hover .project-tile-plate,
+.project-tab-slot:hover .project-tile-plate {
+  transform: translateZ(calc(40px + var(--progress, 0) * 24px))
+    scale(calc(1.06 + var(--progress, 0) * 0.08));
+}
+
+/* While dragging, follow the finger exactly; let go and it eases back */
+.project-tab-slot[data-dragging="true"] :is(.project-tile, .project-tile-fill, .project-tile-plate) {
+  transition: none;
+}
+
+/* Slide finished: one quick pop before the category opens */
+.project-tab-slot[data-complete="true"] .project-tile-plate {
+  animation: project-tile-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes project-tile-pop {
+  50% { scale: 1.12; }
+}
+
+.dark .project-tile-plate {
+  background: rgb(255 255 255 / 8%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 10%),
+    0 14px 24px -14px rgb(0 0 0 / 70%);
+}
+
+.project-tile[data-tone="green"] { --tile-bg: #dff6ea; --tile-fg: #177245; }
+.project-tile[data-tone="blue"] { --tile-bg: #e3edff; --tile-fg: #2557c7; }
+.project-tile[data-tone="purple"] { --tile-bg: #f0e5ff; --tile-fg: #7c3aed; }
+
+.dark .project-tile[data-tone="green"] { --tile-bg: rgb(52 199 123 / 14%); --tile-fg: #6ee7a8; }
+.dark .project-tile[data-tone="blue"] { --tile-bg: rgb(96 141 255 / 16%); --tile-fg: #9dbbff; }
+.dark .project-tile[data-tone="purple"] { --tile-bg: rgb(167 120 255 / 16%); --tile-fg: #c9a8ff; }
+
+.project-tile-icon {
+  width: 2.9rem;
+  height: 2.9rem;
+}
+
+/* On phones the stacked tiles become wide banners instead of tall squares */
+@media (max-width: 639px) {
+  .project-tile {
+    aspect-ratio: 2.4 / 1;
+  }
+
+  .project-tile-plate {
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+
+  .project-tile-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .project-tile-shadow {
+    top: calc(50% + 2.8rem);
+  }
+}
+
+/* Slot: button on top, tile below; buttons stretch to equal height so the
+   three tiles always line up even if one label wraps */
+.project-tab-slot {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-tab-slot > .project-tab {
+  flex: 1 0 auto;
+}
+
+.project-tab-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-orb {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #1f5f6b;
+  color: #ffffff;
+  box-shadow: 0 2px 0 #133f47, 0 6px 12px -6px rgb(23 52 58 / 50%);
+  transition: background-color 220ms ease, color 220ms ease, transform 220ms ease, width 320ms ease, height 320ms ease;
+}
+
+/* Slide-to-open: --drag/--progress are set while the orb is dragged */
+.project-tab:not([data-active="true"]) .project-orb {
+  position: relative;
+  z-index: 1;
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translateX(var(--drag, 0px));
+  transition:
+    background-color 220ms ease,
+    transform 420ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 220ms ease;
+}
+
+.project-tab:not([data-active="true"]):hover .project-orb {
+  transform: translateX(calc(var(--drag, 0px) + 3px)) scale(1.06);
+  box-shadow: 0 2px 0 #133f47, 0 0 0 6px rgb(31 95 107 / 12%);
+}
+
+.project-tab[data-dragging="true"] .project-orb {
+  cursor: grabbing;
+  transform: translateX(var(--drag, 0px)) scale(1.1);
+  box-shadow: 0 2px 0 #133f47, 0 0 0 8px rgb(31 95 107 / 16%);
+  transition: none;
+}
+
+.project-tab-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(var(--drag, 0px) + 3.6rem);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgb(31 95 107 / 4%), rgb(31 95 107 / 16%));
+  opacity: min(calc(var(--progress, 0) * 3), 1);
+  pointer-events: none;
+  transition: width 420ms cubic-bezier(0.34, 1.4, 0.64, 1), opacity 300ms ease;
+}
+
+.project-tab-text {
+  position: relative;
+  opacity: calc(1 - var(--progress, 0) * 1.3);
+  transition: opacity 300ms ease;
+}
+
+.project-tab[data-dragging="true"] :is(.project-tab-fill, .project-tab-text, .project-tab-hint) {
+  transition: none;
+}
+
+/* Three chevrons light up in turn: "slide me" */
+.project-tab-hint {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #1f5f6b;
+  opacity: calc(1 - var(--progress, 0) * 2);
+  transition: opacity 300ms ease;
+}
+
+/* The swipe cue: the three chevrons light up left to right in the button's
+   tone, each stepping forward with a soft glow, then rest. */
+.project-tab-hint svg {
+  margin-left: -0.4rem;
+  opacity: 0.25;
+  animation: project-hint-chevron 2s ease-in-out infinite;
+}
+
+.project-tab-hint svg:first-child { margin-left: 0; }
+.project-tab-hint svg:nth-child(2) { animation-delay: 0.18s; }
+.project-tab-hint svg:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes project-hint-chevron {
+  0%, 60%, 100% { opacity: 0.25; transform: translateX(0); filter: none; }
+  25% {
+    opacity: 1;
+    transform: translateX(3px);
+    filter: drop-shadow(0 0 4px rgb(var(--tone-rgb, 31 95 107) / 55%));
+  }
+}
+
+/* Hovering speeds the cue up a little: "yes, drag me" */
+.project-tab:hover .project-tab-hint svg {
+  animation-duration: 1.2s;
+}
+
+.dark .project-tab-fill {
+  background: linear-gradient(90deg, rgb(255 179 0 / 4%), rgb(255 179 0 / 16%));
+}
+
+.dark .project-tab-hint {
+  color: #ffb300;
+}
+
+.dark .project-tab:not([data-active="true"]) .project-orb {
+  box-shadow: 0 2px 0 #b37d00;
+}
+
+/* Per-category colour for the swipe: the fill, chevrons and hover border take
+   the colour of the button's own tile (data-tone on the slot); the orb stays teal. */
+.project-tab-slot[data-tone="green"] { --tone: #177245; --tone-deep: #0f5232; --tone-rgb: 23 114 69; }
+.project-tab-slot[data-tone="blue"] { --tone: #2557c7; --tone-deep: #1a3f94; --tone-rgb: 37 87 199; }
+.project-tab-slot[data-tone="purple"] { --tone: #7c3aed; --tone-deep: #5b21b6; --tone-rgb: 124 58 237; }
+
+.dark .project-tab-slot[data-tone="green"] { --tone: #6ee7a8; --tone-deep: #2f9e66; --tone-rgb: 110 231 168; }
+.dark .project-tab-slot[data-tone="blue"] { --tone: #9dbbff; --tone-deep: #5a82e0; --tone-rgb: 157 187 255; }
+.dark .project-tab-slot[data-tone="purple"] { --tone: #c9a8ff; --tone-deep: #8f5ff0; --tone-rgb: 201 168 255; }
+
+.project-tab-slot[data-tone] .project-tab:not([data-active="true"]):hover {
+  border-color: var(--tone);
+  box-shadow: 0 3px 0 var(--tone), 0 16px 26px -18px rgb(var(--tone-rgb) / 55%);
+}
+
+.project-tab-slot[data-tone] .project-tab-fill {
+  background: linear-gradient(90deg, rgb(var(--tone-rgb) / 4%), rgb(var(--tone-rgb) / 18%));
+}
+
+.project-tab-slot[data-tone] .project-tab-hint {
+  color: var(--tone);
+}
+
+.project-tab-label {
+  color: #17343a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.project-tab-tagline {
+  margin-top: 0.3rem;
+  line-height: 1.45;
+}
+
+.project-tab-meta {
+  margin-top: 0.15rem;
+  color: #4d666c;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Open category: dark banner with a thin gold line travelling its edge */
+/* Open category: dark banner with a thin gold line travelling its edge */
+.project-tab[data-active="true"] {
+  gap: 1.1rem;
+  border-color: #17343a;
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.5rem;
+  background: #17343a;
+  box-shadow: 0 3px 0 #0b1f23, 0 22px 36px -24px rgb(23 52 58 / 80%);
+  transform: none;
+}
+
+.project-tab[data-active="true"] .project-orb {
+  width: 3.25rem;
+  height: 3.25rem;
+  background: #ffb300;
+  color: #17343a;
+  transform: none;
+}
+
+.project-tab[data-active="true"] .project-tab-label {
+  color: #ffffff;
+  font-size: clamp(1.3rem, 3vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.project-tab[data-active="true"] .project-tab-tagline {
+  color: #d6e4e7;
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+}
+
+.project-tab[data-active="true"] .project-tab-meta {
+  margin-top: 0.5rem;
+  color: #ffb300;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-tab-ring {
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--tab-angle), transparent 0 70%, #ffb300 88%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+  animation: project-tab-spin 5s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.project-tab[data-active="true"] .project-tab-ring {
+  opacity: 1;
+}
+
+@keyframes project-tab-spin {
+  to { --tab-angle: 360deg; }
+}
+
+.project-tab-cta {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  background: #ffb300;
+  color: #17343a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 3px 0 #c98d00;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+@media (min-width: 640px) {
+  .project-tab-cta {
+    display: inline-flex;
+  }
+}
+
+.project-tab[data-active="true"]:hover .project-tab-cta {
+  box-shadow: 0 4px 0 #c98d00;
+  transform: translateY(-1px);
+}
+
+.project-tab[data-active="true"] .project-tab-tagline,
+.project-tab-cta {
+  animation: project-reveal-up 420ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both;
+}
+
+@keyframes project-reveal-up {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+.dark .project-tab {
+  border-color: rgb(255 255 255 / 12%);
+  background: #132c31;
+  box-shadow: 0 2px 0 #08181b, 0 10px 20px -16px rgb(0 0 0 / 70%);
+}
+
+.dark .project-tab:hover {
+  border-color: #ffb300;
+  box-shadow: 0 3px 0 #b37d00, 0 16px 26px -18px rgb(0 0 0 / 80%);
+}
+
+.dark .project-orb {
+  background: #ffb300;
+  color: #17343a;
+}
+
+.dark .project-tab-label {
+  color: #eef5f6;
+}
+
+.dark .project-tab-meta {
+  color: #b5cbd0;
+}
+
+.dark .project-tab[data-active="true"] {
+  border-color: rgb(255 255 255 / 14%);
+  background: #1f3f45;
+  box-shadow: 0 3px 0 #08181b, 0 22px 36px -24px rgb(0 0 0 / 85%);
+}
+
+/* Slots: the other two collapse away; they stack on phones, sit in a row above */
+.project-tab-slot {
+  flex: 1 1 0;
+  min-width: 0;
+  max-height: 22rem;
+  padding: 0.5rem;
+  transition:
+    flex-grow 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    max-width 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    max-height 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    padding 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 240ms ease;
+}
+
+.project-tab-slot[data-hidden="true"] {
+  flex-grow: 0;
+  max-height: 0;
+  padding-block: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .project-tab-slot {
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .project-tab-slot[data-hidden="true"] {
+    max-width: 0;
+    max-height: none;
+    padding: 0.5rem 0;
+  }
+}
+
+/* "All categories" */
+.project-back {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 380ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+}
+
+.project-back[data-show="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.project-back-button {
+  border: 1px solid #d3dfe1;
+  background: #ffffff;
+  color: #17343a;
+  transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-back-button:hover {
+  border-color: #17343a;
+  background: #17343a;
+  color: #ffffff;
+}
+
+.project-back-button:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 3px;
+}
+
+.dark .project-back-button {
+  border-color: rgb(255 255 255 / 14%);
+  background: #132c31;
+  color: #eef5f6;
+}
+
+.dark .project-back-button:hover {
+  border-color: #ffb300;
+  background: #ffb300;
+  color: #17343a;
+}
+
+/* Category panels slide open; cards rise in one after another */
+.project-panel {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.project-panel-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 300ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-panel[data-open="true"] .project-panel-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--item-delay, 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-tab,
+  .project-orb,
+  .project-tab-cta,
+  .project-tab-slot,
+  .project-back,
+  .project-back-button,
+  .project-panel,
+  .project-panel-item {
+    transition: none;
+  }
+
+  .project-tab,
+  .project-tab:hover,
+  .project-tab:active,
+  .project-panel-item {
+    transform: none;
+  }
+
+  .project-tab-ring,
+  .project-tab-tagline,
+  .project-tab-cta,
+  .project-tile,
+  .project-tab-hint svg {
+    animation: none;
+    opacity: 1;
+  }
+
+  .project-tab:not([data-active="true"]) .project-orb,
+  .project-tab-fill,
+  .project-tab-text,
+  .project-tab-hint {
+    transition: none;
+  }
+
+  .project-tile-float,
+  .project-tile-shadow,
+  .project-tab-slot[data-complete="true"] .project-tile-plate {
+    animation: none;
+  }
+
+  .project-tile,
+  .project-tile-fill,
+  .project-tile-plate {
+    transition: none;
+  }
+
+  .project-tile {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .menu-trigger[data-unexplored="true"]::after,
   .menu-hint,
