@@ -1,6 +1,6 @@
-import { ArrowRight, Compass, Flag, Footprints } from "lucide-react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
+import LaserPointer from "@/components/section/laser-pointer";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 import StoryPhoto from "@/components/section/story-photo";
 import { DATA } from "@/data/resume";
@@ -65,17 +65,15 @@ I am Puspa Shukla. I began with a dream that seemed too big for my circumstances
 
 > **And if my journey can help even one girl believe that her future can be different, then I want my story to be only the beginning.**`;
 
+
 const storyCategories = [
   { label: "Where I Began", href: "#where-i-began", target: "where-i-began" },
   { label: "What I’m Exploring", href: "#what-im-exploring", target: "what-im-exploring" },
   { label: "Where I’m Heading", href: "#where-im-heading", target: "where-im-heading" },
 ];
 
-const storySections = [
-  { id: "where-i-began", title: "Where I Began", icon: Footprints },
-  { id: "what-im-exploring", title: "What I’m Exploring", icon: Compass },
-  { id: "where-im-heading", title: "Where I’m Heading", icon: Flag },
-];
+// Staggers the banner's fade-up, the same entrance the Contact page uses.
+const riseDelay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 // A photo paired with the paragraphs it belongs to: two columns side by side
 // on wider screens (photo on the given side), stacked on phones. The text
@@ -139,62 +137,42 @@ export default function MyStory() {
     <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] dark:text-[#eef5f6] sm:gap-y-12">
       <StoryCategoryRibbon categories={storyCategories} allStories={null} />
 
-      <header
-        id="all-stories"
-        className="relative overflow-hidden rounded-[14px] bg-[#17343a] px-6 py-8 text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 sm:px-10 sm:py-10 lg:px-12"
-      >
-        <div
-          aria-hidden="true"
-          className="absolute -right-20 -top-24 size-72 rounded-full border border-white/[0.07] sm:size-96"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -right-6 -top-10 size-44 rounded-full border border-[#8ed7bc]/10 sm:size-60"
-        />
-        <div className="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12">
-          <div>
-            <p className="mb-3 text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-[#8ed7bc] sm:text-xs">
-              {DATA.role}
-            </p>
-            <h1 className="mb-0 font-serif text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.02] tracking-tight text-white">
-              My Story
-            </h1>
-            <p className="mt-4 max-w-xl text-balance font-serif text-lg leading-snug text-white/85 sm:text-xl">
-              From a Village That Limited My Dreams to a World of Possibilities
-            </p>
-            <p className="mt-5 text-sm font-medium text-white/60">
-              {DATA.name} · {DATA.location}
-            </p>
-          </div>
-          <nav aria-label="Chapters of my story">
-            <ol className="m-0 grid list-none gap-2 p-0">
-              {storySections.map(({ id, title, icon: Icon }, index) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:translate-x-1 hover:border-[#8ed7bc]/50 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ed7bc]"
-                  >
-                    <span className="w-5 shrink-0 text-xs tabular-nums text-[#8ed7bc]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <Icon aria-hidden="true" className="size-4 shrink-0 text-white/60" />
-                    <span className="flex-1">{title}</span>
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="size-4 shrink-0 text-white/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#ffb300]"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        </div>
+      <header id="all-stories" className="mx-auto w-full max-w-3xl pt-6 sm:pt-10">
+        <p
+          className="contact-rise m-0 inline-flex items-center gap-2 rounded-full border border-[#c9d6d9] bg-white py-1.5 pl-3 pr-4 text-[0.8125rem] font-semibold tracking-[0.02em] text-[#33525a] dark:border-white/12 dark:bg-[#132c31] dark:text-[#b5cbd0]"
+          style={riseDelay(0)}
+        >
+          <span
+            aria-hidden="true"
+            className="size-2 rounded-full bg-[#3fb28a] shadow-[0_0_0_3px_rgba(63,178,138,0.18)]"
+          />
+          My Story
+        </p>
+        <h1
+          className="contact-rise mb-0 mt-6 text-[clamp(1.9rem,6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#17343a] dark:text-[#eef5f6]"
+          style={riseDelay(90)}
+        >
+          <span className="block sm:whitespace-nowrap">From a village that limited my dreams</span>
+          <span className="block sm:whitespace-nowrap">
+            to <span className="text-[#1f5f6b] dark:text-[#8ed7bc]">a world of possibilities.</span>
+          </span>
+        </h1>
+        <p
+          className="contact-rise mb-0 mt-6 max-w-2xl text-base leading-relaxed text-[#33525a] dark:text-[#b5cbd0] sm:text-lg"
+          style={riseDelay(180)}
+        >
+          {opening}
+        </p>
+        <p
+          className="contact-rise mb-0 mt-5 text-sm font-medium text-[#33525a]/80 dark:text-[#b5cbd0]/80"
+          style={riseDelay(240)}
+        >
+          {DATA.name} · {DATA.location}
+        </p>
       </header>
 
-      <article className="blog-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24 [&_p]:text-justify [&_p]:hyphens-auto [&_blockquote]:my-8 [&_blockquote]:text-lg sm:[&_blockquote]:text-xl [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:border-l-4 [&_h3]:border-[#ffb300] [&_h3]:pl-3 [&_h3]:text-xl sm:[&_h3]:text-2xl">
-        <div className="not-prose border-l-4 border-[#8ed7bc] pl-5 font-serif text-xl italic leading-relaxed text-[#17343a] dark:text-[#eef5f6] sm:text-2xl">
-          {opening}
-        </div>
+      <LaserPointer>
+      <article className="blog-story-copy my-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-relaxed prose-headings:scroll-mt-24 [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:border-l-4 [&_h3]:border-[#1f5f6b] dark:[&_h3]:border-[#8ed7bc] [&_h3]:pl-3 [&_h3]:text-xl sm:[&_h3]:text-2xl">
 
         <section>
           <ChapterHeading part="01" id="where-i-began" title="Where I Began" />
@@ -267,6 +245,7 @@ export default function MyStory() {
           <ReactMarkdown>{closing}</ReactMarkdown>
         </section>
       </article>
+      </LaserPointer>
     </div>
   );
 }
