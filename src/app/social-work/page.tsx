@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function SocialWorkPage() {
   return (
-    <main className="blog-page-shell mx-auto w-full max-w-none px-4 pb-24 pt-0 sm:px-8 lg:px-12">
+    <main className="story-page blog-page-shell mx-auto w-full max-w-none px-4 pb-24 pt-0 sm:px-8 lg:px-12">
       <JsonLd
         data={graph(
           articleNode({

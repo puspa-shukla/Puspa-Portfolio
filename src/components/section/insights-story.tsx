@@ -1,5 +1,12 @@
+import type { CSSProperties } from "react";
 import { HelpCircle, Lightbulb, Sparkles } from "lucide-react";
+import LaserPointer from "@/components/section/laser-pointer";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
+import { ChapterHeading } from "@/components/section/story-blocks";
+import { DATA } from "@/data/resume";
+
+const opening =
+  "A place for what I am noticing, learning, and still trying to understand, about technology, leadership, and the world around me.";
 
 const insightCategories = [
   { label: "AI and Girls in Tech", href: "#ai-and-girls-in-tech", target: "ai-and-girls-in-tech" },
@@ -31,57 +38,68 @@ const insightSections = [
   },
 ];
 
+// Staggers the header's rise-in animation (same as My Story and U-GO AI).
+const riseDelay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+
 export default function InsightsStory() {
   return (
     <div className="blog-story-page flex min-h-0 flex-col gap-y-8 pt-[4.5rem] text-[#17343a] dark:text-[#eef5f6] sm:gap-y-12">
       <StoryCategoryRibbon categories={insightCategories} allStories={null} />
 
-      <header
-        id="all-stories"
-        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
-      >
-        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#8ed7bc]">
-            Insights · Reflections · Questions
-          </p>
-          <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.25rem,4.4vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-white">
-            Insights: Thinking Out Loud as I Learn
-          </h1>
-          <p className="mt-6 max-w-3xl font-serif text-lg leading-relaxed text-white/85 sm:text-xl">
-            A place for what I am noticing, learning, and still trying to
-            understand, about technology, leadership, and the world around me.
-          </p>
-          <p className="mt-6 text-sm font-medium text-white/70">By Puspa Shukla</p>
-        </div>
-        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] dark:bg-[#1f3f45] dark:text-[#eef5f6] sm:min-h-72 lg:min-h-full">
-          <div
+      {/* Same opening layout as the My Story and U-GO AI pages */}
+      <header id="all-stories" className="mx-auto w-full max-w-3xl scroll-mt-20 pt-6 sm:pt-10">
+        <p
+          className="contact-rise m-0 inline-flex items-center gap-2 rounded-full border border-[#c9d6d9] bg-white py-1.5 pl-3 pr-4 text-[0.8125rem] font-semibold tracking-[0.02em] text-[#33525a] dark:border-white/12 dark:bg-[#132c31] dark:text-[#b5cbd0]"
+          style={riseDelay(0)}
+        >
+          <span
             aria-hidden="true"
-            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
+            className="size-2 rounded-full bg-[#3fb28a] shadow-[0_0_0_3px_rgba(63,178,138,0.18)]"
           />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
-          />
-          <ul className="relative z-10 grid w-full max-w-sm gap-2">
-            {insightSections.map(({ id, title, icon: Icon }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className="flex items-center gap-3 rounded-2xl border border-[#c9d6d9] bg-white/90 px-4 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-[#5b9aaa] hover:bg-white dark:border-white/12 dark:bg-[#132c31]/90 dark:hover:border-[#8ed7bc] dark:hover:bg-[#17343a]"
-                >
-                  <Icon aria-hidden="true" className="size-5 shrink-0 text-[#1f5f6b] dark:text-[#8ed7bc]" />
-                  {title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          Insights
+        </p>
+        <h1
+          className="contact-rise mb-0 mt-6 text-[clamp(1.9rem,6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#17343a] dark:text-[#eef5f6]"
+          style={riseDelay(90)}
+        >
+          <span className="block">Thinking out loud</span>
+          <span className="block text-[#1f5f6b] dark:text-[#8ed7bc]">as I learn.</span>
+        </h1>
+        <p
+          className="contact-rise mb-0 mt-6 max-w-2xl text-base leading-relaxed text-[#33525a] dark:text-[#b5cbd0] sm:text-lg"
+          style={riseDelay(180)}
+        >
+          {opening}
+        </p>
+        <ul
+          className="contact-rise m-0 mt-6 flex list-none flex-row flex-wrap items-center gap-2 p-0 text-xs font-semibold sm:text-sm"
+          style={riseDelay(240)}
+        >
+          {insightSections.map(({ id, title, icon: Icon }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#c9d6d9] bg-white px-3 py-1.5 text-[#17343a] transition-colors hover:border-[#1f5f6b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffb300] dark:border-white/12 dark:bg-[#132c31] dark:text-[#eef5f6] dark:hover:border-[#8ed7bc]"
+              >
+                <Icon aria-hidden="true" className="size-3.5 shrink-0 text-[#1f5f6b] dark:text-[#8ed7bc]" />
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p
+          className="contact-rise mb-0 mt-5 text-sm font-medium text-[#33525a]/80 dark:text-[#b5cbd0]/80"
+          style={riseDelay(300)}
+        >
+          {DATA.name} · {DATA.location}
+        </p>
       </header>
 
-      <article className="blog-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
-        {insightSections.map(({ id, title, intro }) => (
+      <LaserPointer>
+      <article className="blog-story-copy my-story-copy prose prose-neutral mx-auto w-full max-w-3xl text-pretty dark:prose-invert prose-p:leading-relaxed prose-headings:scroll-mt-24">
+        {insightSections.map(({ id, title, intro }, index) => (
           <section key={id}>
-            <h2 id={id}>{title}</h2>
+            <ChapterHeading part={String(index + 1).padStart(2, "0")} id={id} title={title} />
             <p>{intro}</p>
             <p>
               <em>Essays in this series are on their way.</em>
@@ -89,6 +107,7 @@ export default function InsightsStory() {
           </section>
         ))}
       </article>
+      </LaserPointer>
     </div>
   );
 }

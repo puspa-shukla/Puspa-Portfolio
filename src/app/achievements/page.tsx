@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -5,7 +6,12 @@ import JsonLd from "@/components/json-ld";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 import { DATA } from "@/data/resume";
 import { articleNode, graph } from "@/lib/structured-data";
-import { Award, TrendingUp, Trophy } from "lucide-react";
+
+// Staggers the header's rise-in animation (same as My Story and U-GO AI).
+const riseDelay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+
+const pillClass =
+  "rounded-full border border-[#c9d6d9] bg-white px-3 py-1.5 dark:border-white/12 dark:bg-[#132c31]";
 
 const title = "Top 6 Out of 2,000+: The Story Behind the Result";
 const description =
@@ -130,55 +136,48 @@ export default function AchievementArticlePage() {
         )}
       />
       <StoryCategoryRibbon categories={achievementCategories} allStories={null} />
-      <header
-        id="scholarships"
-        className="relative grid overflow-hidden rounded-[14px] bg-[#17343a] text-white shadow-xl shadow-[#17343a]/10 dark:bg-[#132c31] dark:shadow-black/30 dark:ring-1 dark:ring-white/10 lg:min-h-[24rem] lg:grid-cols-[minmax(0,1fr)_minmax(17rem,0.45fr)]"
-      >
-        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#8ed7bc]">
-            Learning · Resilience · Achievement
-          </p>
-          <h1 className="mb-0 max-w-4xl font-serif text-[clamp(2.25rem,4.4vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-white">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-3xl font-serif text-lg leading-relaxed text-white/85 sm:text-xl">
-            “I was behind. But I never left.”
-          </p>
-          <p className="mt-6 text-sm font-medium text-white/70">
-            By Puspa Shukla · TechSkills Nepal IT Scholarship Program
-          </p>
-        </div>
-        <div className="relative flex min-h-64 items-center justify-center overflow-hidden bg-[#e6f0e9] p-8 text-[#17343a] dark:bg-[#1f3f45] dark:text-[#eef5f6] sm:min-h-72 lg:min-h-full">
-          <div
+      {/* Same opening layout as the My Story and U-GO AI pages */}
+      <header id="scholarships" className="mx-auto w-full max-w-3xl scroll-mt-20 pt-6 sm:pt-10">
+        <p
+          className="contact-rise m-0 inline-flex items-center gap-2 rounded-full border border-[#c9d6d9] bg-white py-1.5 pl-3 pr-4 text-[0.8125rem] font-semibold tracking-[0.02em] text-[#33525a] dark:border-white/12 dark:bg-[#132c31] dark:text-[#b5cbd0]"
+          style={riseDelay(0)}
+        >
+          <span
             aria-hidden="true"
-            className="absolute -right-10 -top-16 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
+            className="size-2 rounded-full bg-[#3fb28a] shadow-[0_0_0_3px_rgba(63,178,138,0.18)]"
           />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-24 -left-8 size-64 rounded-full border border-[#1f5f6b]/15 dark:border-white/10 sm:size-80"
-          />
-          <div className="relative z-10 grid max-w-sm grid-cols-2 gap-3">
-            <div className="col-span-2 rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-5 shadow-sm">
-              <Trophy aria-hidden="true" className="mb-4 size-9 text-[#1f5f6b] dark:text-[#8ed7bc]" />
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-[#1f5f6b] dark:text-[#8ed7bc]">
-                The result
-              </p>
-              <p className="mb-0 font-serif text-2xl font-semibold leading-snug">
-                Progress made one choice at a time.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-4 shadow-sm">
-              <Award aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b] dark:text-[#8ed7bc]" />
-              <p className="mb-0 text-2xl font-bold">Top 6</p>
-              <p className="mb-0 text-xs text-[#33525a] dark:text-[#b5cbd0]">finalists</p>
-            </div>
-            <div className="rounded-2xl border border-[#c9d6d9] bg-white/90 dark:border-white/12 dark:bg-[#132c31]/90 p-4 shadow-sm">
-              <TrendingUp aria-hidden="true" className="mb-3 size-6 text-[#1f5f6b] dark:text-[#8ed7bc]" />
-              <p className="mb-0 text-2xl font-bold">2,000+</p>
-              <p className="mb-0 text-xs text-[#33525a] dark:text-[#b5cbd0]">applicants</p>
-            </div>
-          </div>
+          Achievements
+        </p>
+        <h1
+          className="contact-rise mb-0 mt-6 text-[clamp(1.9rem,6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#17343a] dark:text-[#eef5f6]"
+          style={riseDelay(90)}
+        >
+          <span className="block">Top 6 out of 2,000+:</span>
+          <span className="block text-[#1f5f6b] dark:text-[#8ed7bc]">the story behind the result.</span>
+        </h1>
+        <p
+          className="contact-rise mb-0 mt-6 max-w-2xl text-base leading-relaxed text-[#33525a] dark:text-[#b5cbd0] sm:text-lg"
+          style={riseDelay(180)}
+        >
+          Five months near the bottom of the leaderboard, then a place in the
+          top 6. “I was behind. But I never left.”
+        </p>
+        <div
+          className="contact-rise mt-6 flex flex-row flex-wrap items-center gap-2 text-xs font-semibold text-[#17343a] dark:text-[#eef5f6] sm:text-sm"
+          style={riseDelay(240)}
+        >
+          <span className={pillClass}>Top 6 finalists</span>
+          <span className={pillClass}>2,000+ applicants</span>
+          <span className="rounded-full border border-[#1f5f6b] bg-[#1f5f6b] px-3 py-1.5 text-white dark:border-[#8ed7bc] dark:bg-[#8ed7bc] dark:text-[#0d2125]">
+            TechSkills Nepal IT Scholarship Program
+          </span>
         </div>
+        <p
+          className="contact-rise mb-0 mt-5 text-sm font-medium text-[#33525a]/80 dark:text-[#b5cbd0]/80"
+          style={riseDelay(300)}
+        >
+          {DATA.name} · {DATA.location}
+        </p>
       </header>
 
       <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 sm:gap-14">
