@@ -882,7 +882,6 @@ html.dark body:has(.home-page) {
   border-radius: 1.75rem;
   background: var(--tile-bg);
   color: var(--tile-fg);
-  cursor: pointer;
   transform: perspective(800px)
     rotateX(calc(var(--ty) + var(--progress, 0) * 8deg))
     rotateY(calc(var(--tx) + var(--progress, 0) * 14deg));

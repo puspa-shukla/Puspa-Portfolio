@@ -266,13 +266,12 @@ export default function ProjectCategoryTabs({
                 )}
               </button>
 
-              {/* Big topic tile under each button in the overview; a mouse/touch
-                  shortcut to the same choice (the button is the keyboard target). */}
+              {/* Big topic tile under each button in the overview; decorative only,
+                  the button above is the one control that opens the category. */}
               {activeId === null && (
                 <div
                   aria-hidden="true"
                   data-tone={tone}
-                  onClick={() => select(panel.id)}
                   onPointerMove={tiltTile}
                   onPointerLeave={resetTile}
                   className="project-tile"
