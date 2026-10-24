@@ -42,15 +42,19 @@ export function UgoAiVideoGallery() {
   const [activeItem, setActiveItem] = useState<GalleryVideo>(defaultVideo);
   const [playbackMessage, setPlaybackMessage] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Videos only play after a click: never on page load, hover or focus.
+  const playRequested = useRef(false);
 
   const selectItem = (item: GalleryVideo) => {
     setPlaybackMessage("");
+    playRequested.current = true;
     setActiveItem(item);
   };
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !playRequested.current) return;
+    playRequested.current = false;
 
     void video.play().catch((error: unknown) => {
       if (error instanceof DOMException && error.name === "NotAllowedError") {
@@ -102,8 +106,6 @@ export function UgoAiVideoGallery() {
               <button
                 key={item.src}
                 type="button"
-                onMouseEnter={() => selectItem(item)}
-                onFocus={() => selectItem(item)}
                 onClick={() => selectItem(item)}
                 aria-pressed={selected}
                 aria-label={`Play ${item.title}`}
