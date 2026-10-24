@@ -252,16 +252,7 @@ export default function SocialWorkStory() {
         <section>
           <ChapterHeading part="03" id="what-im-learning" title="What I’m Learning" />
           <ReactMarkdown>{learning}</ReactMarkdown>
-          <PhotoBlock
-            side="right"
-            src="/social/sharing-fruit-with-children.png"
-            alt="Puspa smiling with young children, everyone holding a piece of fruit"
-            width={799}
-            height={690}
-            caption="Small moments that make a difference in someone’s world."
-          >
-            <ReactMarkdown>{someonesWorld}</ReactMarkdown>
-          </PhotoBlock>
+          <ReactMarkdown>{someonesWorld}</ReactMarkdown>
           <ReactMarkdown>{balancing}</ReactMarkdown>
           <ReactMarkdown>{citizen}</ReactMarkdown>
           <PhotoBlock
