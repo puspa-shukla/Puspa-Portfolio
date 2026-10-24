@@ -247,7 +247,7 @@ export default function ProjectCategoryTabs({
                     <span className="project-tab-tagline">{CATEGORY_TAGLINES[panel.id]}</span>
                   )}
                   <span className="project-tab-meta">
-                    {countLabel}
+                    {isActive ? countLabel : "Swipe to open"}
                     {!isActive && (
                       <span aria-hidden="true" className="project-tab-hint">
                         <ChevronRight className="size-4" strokeWidth={3} />
