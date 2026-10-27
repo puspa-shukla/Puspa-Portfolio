@@ -2259,6 +2259,230 @@ html.dark body:has(.story-page) {
   color: #eef5f6;
 }
 
+/* "Read more" fold for long essays on the story pages */
+.read-more-panel {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.read-more-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.read-more-button {
+  border: 1px solid #1f5f6b;
+  background: #ffffff;
+  color: #1f5f6b;
+  box-shadow: 0 2px 0 #c9d6d9;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.read-more-button:hover {
+  background: #1f5f6b;
+  color: #ffffff;
+  box-shadow: 0 3px 0 #133f47;
+  transform: translateY(-1px);
+}
+
+.read-more-button:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 3px;
+}
+
+.dark .read-more-button {
+  border-color: #8ed7bc;
+  background: #132c31;
+  color: #8ed7bc;
+  box-shadow: 0 2px 0 #08181b;
+}
+
+.dark .read-more-button:hover {
+  background: #8ed7bc;
+  color: #0d2125;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .read-more-panel,
+  .read-more-button {
+    transition: none;
+  }
+}
+
+/* 3D clickable section cards on the Achievements page. The card tilts toward
+   the pointer (--rx/--ry), a glare follows it (--mx/--my), and a thick bottom
+   edge makes it read as a raised key that presses in on click. */
+.achievement-toggle {
+  perspective: 1100px;
+}
+
+.achievement-toggle-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateY(0);
+  border: 1px solid #1f5f6b;
+  background: linear-gradient(135deg, #ffffff 0%, #eaf3f1 55%, #d6ebe4 100%);
+  color: #17343a;
+  box-shadow:
+    0 8px 0 #1f5f6b,
+    0 10px 0 #133f47,
+    0 22px 34px -10px rgba(19, 63, 71, 0.45);
+  transition:
+    transform 180ms ease-out,
+    box-shadow 180ms ease-out,
+    background 300ms ease;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Pointer-following glare */
+.achievement-toggle-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+
+.achievement-toggle-card:hover::before {
+  opacity: 1;
+}
+
+.achievement-toggle-card:hover {
+  box-shadow:
+    0 10px 0 #1f5f6b,
+    0 12px 0 #133f47,
+    0 30px 44px -12px rgba(19, 63, 71, 0.55);
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateY(-3px);
+}
+
+.achievement-toggle-card:active {
+  box-shadow:
+    0 2px 0 #1f5f6b,
+    0 3px 0 #133f47,
+    0 8px 14px -6px rgba(19, 63, 71, 0.45);
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateY(7px);
+  transition-duration: 80ms;
+}
+
+.achievement-toggle-card[data-open="true"] {
+  background: linear-gradient(135deg, #1f5f6b 0%, #174b55 60%, #133f47 100%);
+  color: #ffffff;
+  box-shadow:
+    0 8px 0 #133f47,
+    0 10px 0 #0b2a30,
+    0 22px 34px -10px rgba(19, 63, 71, 0.55);
+}
+
+.achievement-toggle-card:focus-visible {
+  outline: 2px solid #ffb300;
+  outline-offset: 4px;
+}
+
+/* The icon and chevron float above the card face */
+.achievement-toggle-icon {
+  transform: translateZ(46px);
+  background: linear-gradient(145deg, #3fb28a, #1f5f6b);
+  color: #ffffff;
+  box-shadow:
+    0 4px 0 #133f47,
+    0 10px 18px -6px rgba(19, 63, 71, 0.6);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.achievement-toggle-card:hover .achievement-toggle-icon {
+  transform: translateZ(60px) rotate(-8deg) scale(1.06);
+}
+
+.achievement-toggle-text {
+  transform: translateZ(28px);
+}
+
+.achievement-toggle-chevron {
+  transform: translateZ(36px);
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.achievement-toggle-card[data-open="true"] .achievement-toggle-icon {
+  background: linear-gradient(145deg, #ffd166, #ffb300);
+  color: #17343a;
+}
+
+.achievement-toggle-card[data-open="true"] .achievement-toggle-chevron {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.dark .achievement-toggle-card {
+  border-color: #8ed7bc;
+  background: linear-gradient(135deg, #1a3a40 0%, #132c31 60%, #0f2428 100%);
+  color: #eef5f6;
+  box-shadow:
+    0 8px 0 #2f7d68,
+    0 10px 0 #08181b,
+    0 22px 34px -10px rgba(0, 0, 0, 0.7);
+}
+
+.dark .achievement-toggle-card:hover {
+  box-shadow:
+    0 10px 0 #2f7d68,
+    0 12px 0 #08181b,
+    0 30px 44px -12px rgba(0, 0, 0, 0.75);
+}
+
+.dark .achievement-toggle-card:active {
+  box-shadow:
+    0 2px 0 #2f7d68,
+    0 3px 0 #08181b,
+    0 8px 14px -6px rgba(0, 0, 0, 0.7);
+}
+
+.dark .achievement-toggle-card::before {
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(142, 215, 188, 0.28) 0%,
+    rgba(142, 215, 188, 0) 55%
+  );
+}
+
+.dark .achievement-toggle-card[data-open="true"] {
+  background: linear-gradient(135deg, #8ed7bc 0%, #6cc3a3 60%, #4fae8c 100%);
+  color: #0d2125;
+}
+
+.dark .achievement-toggle-chevron {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-toggle-card,
+  .achievement-toggle-icon {
+    transition: none;
+  }
+
+  .achievement-toggle-card,
+  .achievement-toggle-card:hover,
+  .achievement-toggle-card:active {
+    transform: none;
+  }
+
+  .achievement-toggle-card:hover .achievement-toggle-icon {
+    transform: translateZ(46px);
+  }
+}
+
 /* Flat pale teal-grey variant (the Stuart Kerr testimonial on the U-GO AI page) */
 .blog-story-page .blog-story-copy.my-story-copy blockquote.story-quote-wash {
   background: #d3e3e6;

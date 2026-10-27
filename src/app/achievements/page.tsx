@@ -2,7 +2,9 @@ import type { CSSProperties } from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { Globe, GraduationCap, Trophy } from "lucide-react";
 import JsonLd from "@/components/json-ld";
+import AchievementToggle from "@/components/section/achievement-toggle";
 import StoryCategoryRibbon from "@/components/section/story-category-ribbon";
 import { DATA } from "@/data/resume";
 import { articleNode, graph } from "@/lib/structured-data";
@@ -181,16 +183,42 @@ export default function AchievementArticlePage() {
       </header>
 
       <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 sm:gap-14">
-        <section id="story" className="scroll-mt-24">
-          <article className="blog-story-copy prose prose-neutral mx-auto max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
-            <ReactMarkdown>{story}</ReactMarkdown>
-          </article>
+        <section id="story" className="mx-auto flex w-full max-w-3xl scroll-mt-24 flex-col gap-10 sm:gap-14">
+          <AchievementToggle
+            id="ugo-scholarship"
+            eyebrow="Scholarship"
+            title="U-GO Scholarship Recipient"
+            icon={<GraduationCap className="size-6 sm:size-7" />}
+          >
+            <p className="leading-8 text-[#33525a] dark:text-[#b5cbd0]">
+              My Bachelor in Computer Application at CAMAD College is supported
+              by a U-GO scholarship.
+            </p>
+          </AchievementToggle>
+
+          <AchievementToggle
+            id="techskills-scholarship"
+            eyebrow="Scholarship · Top 6 of 2,000+"
+            title="TechSkills Scholarship Recipient"
+            icon={<Trophy className="size-6 sm:size-7" />}
+          >
+            <article className="blog-story-copy prose prose-neutral max-w-3xl text-pretty dark:prose-invert prose-p:leading-8 prose-headings:scroll-mt-24">
+              <ReactMarkdown>{story}</ReactMarkdown>
+            </article>
+          </AchievementToggle>
         </section>
 
         <section id="global-representation" className="scroll-mt-24">
           <h2 className="mb-6 font-serif text-3xl font-semibold tracking-tight text-[#17343a] dark:text-[#eef5f6] sm:text-4xl">
             Global Representation
           </h2>
+          <AchievementToggle
+            id="ugo-ambassador-vietnam"
+            as="h3"
+            eyebrow="Global · 2025"
+            title="Represented as U-GO Nepal Ambassador in Vietnam"
+            icon={<Globe className="size-6 sm:size-7" />}
+          >
           <div className="grid gap-5 sm:grid-cols-2">
             {DATA.hackathonsAndEvents
               .filter((item) =>
@@ -237,6 +265,7 @@ export default function AchievementArticlePage() {
                 </article>
               ))}
           </div>
+          </AchievementToggle>
         </section>
 
         <section id="leadership" className="scroll-mt-24 pb-8">
