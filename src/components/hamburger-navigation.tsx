@@ -127,7 +127,7 @@ export default function HamburgerNavigation() {
   }, [closeMenu, menuOpen]);
 
   return (
-    <>
+    <div className="relative shrink-0">
       <button
         ref={menuButtonRef}
         type="button"
@@ -141,7 +141,7 @@ export default function HamburgerNavigation() {
           setMenuOpen(true);
         }}
         data-unexplored={!explored ? "true" : undefined}
-        className="menu-trigger btn-3d group fixed left-4 top-4 z-[60] inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-full px-3 text-[#17343a] hover:text-[#1f5f6b] dark:text-[#e6f0f2] dark:hover:text-[#ffb300] sm:left-6 sm:top-6 sm:px-4"
+        className="menu-trigger btn-3d group relative inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-full px-3 text-[#17343a] hover:text-[#1f5f6b] dark:text-[#e6f0f2] dark:hover:text-[#ffb300] sm:px-4"
       >
         <Menu aria-hidden="true" className="size-5 transition-transform duration-200 group-hover:scale-110" />
         <span className="hidden text-sm font-semibold sm:inline">Explore</span>
@@ -158,9 +158,9 @@ export default function HamburgerNavigation() {
             setClosing(false);
             setMenuOpen(true);
           }}
-          className="menu-hint fixed left-[4.25rem] top-[1.15rem] z-[60] inline-flex items-center gap-2 rounded-full bg-[#17343a] px-3.5 py-2 text-xs font-semibold text-white shadow-[0_12px_28px_-12px_rgba(23,52,58,0.6)] sm:left-[9.25rem] sm:top-[1.65rem] dark:bg-[#ffb300] dark:text-[#17343a]"
+          className="menu-hint absolute left-0 top-[calc(100%+0.6rem)] z-[60] inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#17343a] px-3.5 py-2 text-xs font-semibold text-white shadow-[0_12px_28px_-12px_rgba(23,52,58,0.6)] dark:bg-[#ffb300] dark:text-[#17343a]"
         >
-          <span aria-hidden="true">←</span>
+          <span aria-hidden="true">↑</span>
           Explore my portfolio
         </button>
       )}
@@ -254,6 +254,6 @@ export default function HamburgerNavigation() {
           </aside>
         </div>
       )}
-    </>
+    </div>
   );
 }

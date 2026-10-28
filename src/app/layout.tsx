@@ -1,4 +1,6 @@
 import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/site-footer";
+import SiteHeader from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -118,12 +120,14 @@ export default function RootLayout({
                 }}
               />
             </div>
+            <SiteHeader />
             <div
               data-site-content
-              className="relative z-10 mx-auto w-full px-4 py-12 pb-24 sm:px-6 sm:py-24 max-w-2xl sm:max-w-3xl "
+              className="relative z-10 mx-auto w-full px-4 py-12 pb-20 sm:px-6 sm:py-20 max-w-2xl sm:max-w-3xl "
             >
               {children}
             </div>
+            <SiteFooter />
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>

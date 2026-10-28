@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import HamburgerNavigation from "@/components/hamburger-navigation";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Separator } from "@/components/ui/separator";
@@ -31,15 +30,31 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  // The dock's light fade would wash over the dark footer, so drop it there.
+  useEffect(() => {
+    const footer = document.querySelector(".site-footer");
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      document.documentElement.toggleAttribute(
+        "data-footer-visible",
+        entry.isIntersecting,
+      );
+    });
+    observer.observe(footer);
+    return () => {
+      observer.disconnect();
+      document.documentElement.removeAttribute("data-footer-visible");
+    };
+  }, [pathname]);
+
   if (!mounted) {
     return null;
   }
 
   return (
     <>
-      <HamburgerNavigation />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
-        <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
+        <div className="dock-fade fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
         <Dock className="dock-tray z-50 pointer-events-auto relative mx-auto flex h-full items-center px-1.5 backdrop-blur-3xl border rounded-full transform-gpu overflow-x-auto overflow-y-hidden max-w-[95vw] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-1 sm:gap-2">
           {DATA.navbar.map((item) => {
             const isExternal = item.href.startsWith("http");
