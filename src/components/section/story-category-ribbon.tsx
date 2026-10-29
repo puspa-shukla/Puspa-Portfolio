@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { House } from "lucide-react";
 
 type StoryCategory = {
   label: string;
@@ -38,6 +40,7 @@ export default function StoryCategoryRibbon({
 }) {
   const initialTarget = allStories?.target ?? categories[0]?.target ?? "";
   const [activeTarget, setActiveTarget] = useState(initialTarget);
+  const [footerReached, setFooterReached] = useState(false);
 
   useEffect(() => {
     let frame = 0;
@@ -55,6 +58,10 @@ export default function StoryCategoryRibbon({
         );
 
       setActiveTarget(targets.at(-1)?.target ?? initialTarget);
+
+      // Slide the bar away once the dark footer fills the lower half of the screen.
+      const footerTop = document.querySelector(".site-footer")?.getBoundingClientRect().top;
+      setFooterReached(footerTop !== undefined && footerTop < window.innerHeight * 0.5);
     };
     const handleScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateActiveCategory);
@@ -80,9 +87,17 @@ export default function StoryCategoryRibbon({
   return (
     <nav
       aria-label="Story categories"
-      className="story-category-ribbon fixed inset-x-0 top-[var(--site-header-h)] z-[55] border-b border-[#c9d6d9] bg-[#e6f0f2]/95 shadow-sm shadow-[#17343a]/10 backdrop-blur-md"
+      data-hidden={footerReached ? "true" : undefined}
+      className="story-category-ribbon fixed inset-x-0 top-0 z-[60] flex items-center border-b border-[#c9d6d9] bg-[#e6f0f2]/95 shadow-sm shadow-[#17343a]/10 backdrop-blur-md"
     >
-      <div className="mx-auto flex min-h-[4.5rem] w-full max-w-[100rem] items-center gap-2.5 overflow-x-auto py-2 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 sm:px-8 [&>a:first-child]:ml-auto [&>a:last-child]:mr-auto">
+      {/* This bar replaces the site header on these pages, so it carries the way home. */}
+      <div className="flex shrink-0 items-center pl-3 sm:pl-4">
+        <Link href="/" aria-label="Back to home" title="Home" className="ribbon-home">
+          <House aria-hidden="true" className="size-[1.1rem]" />
+          <span className="hidden sm:inline">Home</span>
+        </Link>
+      </div>
+      <div className="mx-auto flex min-h-[4.5rem] w-full min-w-0 max-w-[100rem] items-center gap-2.5 overflow-x-auto py-2 px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 sm:px-8 [&>a:first-child]:ml-auto [&>a:last-child]:mr-auto">
         {allStories && (
           <a
             href={allStories.href}

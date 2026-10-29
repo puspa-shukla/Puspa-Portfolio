@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import HamburgerNavigation from "@/components/hamburger-navigation";
-import { DATA } from "@/data/resume";
 
 const HEADER_LINKS = [
   { label: "Home", href: "/" },
@@ -23,22 +22,12 @@ export default function SiteHeader() {
     <>
       <header className="site-header fixed inset-x-0 top-0 z-[60]">
         <div aria-hidden="true" className="site-header-bg absolute inset-0" />
-        <div className="relative mx-auto flex h-[var(--site-header-h)] w-full max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6">
-          <HamburgerNavigation />
-          <Link href="/" className="site-header-brand group" aria-label={`${DATA.name}, home`}>
-            <span aria-hidden="true" className="site-header-badge">
-              {DATA.initials}
-            </span>
-            <span className="flex min-w-0 flex-col leading-tight">
-              <span className="truncate text-[0.95rem] font-semibold tracking-tight">
-                {DATA.name}
-              </span>
-              <span className="site-header-tagline hidden truncate text-xs sm:block">
-                BCA Student · Kathmandu, Nepal
-              </span>
-            </span>
-          </Link>
-
+        <div className="relative flex h-[var(--site-header-h)] items-center">
+          {/* Menu button pinned to the far-left edge, outside the centred content. */}
+          <div className="shrink-0 pl-3 sm:pl-4">
+            <HamburgerNavigation />
+          </div>
+          <div className="mx-auto flex w-full min-w-0 max-w-6xl items-center gap-3 px-3 sm:gap-4 sm:px-6">
           <nav aria-label="Primary" className="ml-auto hidden lg:block">
             <ul className="flex items-center gap-1">
               {HEADER_LINKS.map((link) => {
@@ -65,10 +54,11 @@ export default function SiteHeader() {
             Let&apos;s talk
             <ArrowUpRight aria-hidden="true" className="size-4" />
           </Link>
+          </div>
         </div>
       </header>
       {/* Holds the header's space in the page flow. */}
-      <div aria-hidden="true" className="h-[var(--site-header-h)]" />
+      <div aria-hidden="true" className="site-header-spacer h-[var(--site-header-h)]" />
     </>
   );
 }

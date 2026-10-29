@@ -4,15 +4,25 @@ import { DATA } from "@/data/resume";
 
 // Server-rendered so every page ships plain, crawlable links to the rest of
 // the site and to the ways of getting in touch.
-const FOOTER_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "My Story", href: "/my-story" },
-  { label: "Projects", href: "/projects" },
-  { label: "Achievements", href: "/achievements" },
-  { label: "Social Impact", href: "/social-work" },
-  { label: "U-GO AI Story", href: "/blog" },
-  { label: "Insights", href: "/insights" },
-  { label: "Resume", href: "/resume" },
+const FOOTER_GROUPS = [
+  {
+    heading: "Explore",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "My Story", href: "/my-story" },
+      { label: "Projects", href: "/projects" },
+      { label: "Achievements", href: "/achievements" },
+    ],
+  },
+  {
+    heading: "Stories",
+    links: [
+      { label: "Social Impact", href: "/social-work" },
+      { label: "U-GO AI Story", href: "/blog" },
+      { label: "Insights", href: "/insights" },
+      { label: "Resume", href: "/resume" },
+    ],
+  },
 ];
 
 export default function SiteFooter() {
@@ -22,9 +32,9 @@ export default function SiteFooter() {
 
   return (
     <footer className="site-footer relative z-10 w-full">
-      <div className="mx-auto w-full max-w-6xl px-4 pb-28 pt-14 sm:px-6 sm:pt-16">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr] md:gap-12">
-          <div className="max-w-sm space-y-4">
+      <div className="mx-auto w-full max-w-6xl px-5 pb-28 pt-14 sm:px-6 sm:pt-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr] lg:gap-x-10">
+          <div className="col-span-2 max-w-sm space-y-4 lg:col-span-1">
             <div className="flex items-center gap-3">
               <span aria-hidden="true" className="site-footer-badge">
                 {DATA.initials}
@@ -40,22 +50,24 @@ export default function SiteFooter() {
             </Link>
           </div>
 
-          <nav aria-label="Footer">
-            <p className="site-footer-heading">Explore</p>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm md:grid-cols-1">
-              {FOOTER_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="site-footer-link">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {FOOTER_GROUPS.map((group) => (
+            <nav key={group.heading} aria-label={`Footer: ${group.heading}`}>
+              <p className="site-footer-heading">{group.heading}</p>
+              <ul className="space-y-3 text-sm">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="site-footer-link">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
 
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <p className="site-footer-heading">Get in touch</p>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href={`mailto:${DATA.contact.email}`}
@@ -65,7 +77,7 @@ export default function SiteFooter() {
                   {DATA.contact.email}
                 </a>
               </li>
-              <li className="site-footer-muted inline-flex items-start gap-2">
+              <li className="site-footer-muted flex items-start gap-2">
                 <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
                 <span>
                   {DATA.location}

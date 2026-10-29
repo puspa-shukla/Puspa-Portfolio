@@ -141,10 +141,10 @@ export default function HamburgerNavigation() {
           setMenuOpen(true);
         }}
         data-unexplored={!explored ? "true" : undefined}
-        className="menu-trigger btn-3d group relative inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-full px-3 text-[#17343a] hover:text-[#1f5f6b] dark:text-[#e6f0f2] dark:hover:text-[#ffb300] sm:px-4"
+        title="Explore"
+        className="menu-trigger relative inline-flex size-10 items-center justify-center rounded-xl"
       >
-        <Menu aria-hidden="true" className="size-5 transition-transform duration-200 group-hover:scale-110" />
-        <span className="hidden text-sm font-semibold sm:inline">Explore</span>
+        <Menu aria-hidden="true" strokeWidth={2.25} className="menu-trigger-icon size-5" />
         {!explored && <span aria-hidden="true" className="menu-dot" />}
       </button>
 
