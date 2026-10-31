@@ -1,18 +1,28 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import {
+  BookOpen,
+  FolderKanban,
+  HeartHandshake,
+  Home,
+  Lightbulb,
+  Mail,
+  Sparkles,
+  Trophy,
+  X,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const navigationItems = [
-  { label: "Home", href: "/#hero", hint: "Back to the start" },
-  { label: "My Story", href: "/my-story", hint: "Who I am and what drives me" },
-  { label: "Projects", href: "/projects", hint: "Projects I've built" },
-  { label: "Achievements", href: "/achievements", hint: "Recognition and milestones" },
-  { label: "Social Impact", href: "/social-work", hint: "Community and volunteer work" },
-  { label: "U-GO AI", href: "/blog", hint: "My AI learning and leadership story" },
-  { label: "Insights", href: "/insights", hint: "Reflections on tech, AI, and leadership" },
-  { label: "Contact", href: "/contact", hint: "Get in touch" },
+  { label: "Home", icon: Home, href: "/#hero", hint: "Back to the start" },
+  { label: "My Story", icon: BookOpen, href: "/my-story", hint: "Who I am and what drives me" },
+  { label: "Projects", icon: FolderKanban, href: "/projects", hint: "Projects I've built" },
+  { label: "Achievements", icon: Trophy, href: "/achievements", hint: "Recognition and milestones" },
+  { label: "Social Impact", icon: HeartHandshake, href: "/social-work", hint: "Community and volunteer work" },
+  { label: "U-GO AI", icon: Sparkles, href: "/blog", hint: "My AI learning and leadership story" },
+  { label: "Insights", icon: Lightbulb, href: "/insights", hint: "Reflections on tech, AI, and leadership" },
+  { label: "Contact", icon: Mail, href: "/contact", hint: "Get in touch" },
 ];
 
 // Per visit (tab session): until the menu is opened once, the button keeps
@@ -142,9 +152,13 @@ export default function HamburgerNavigation() {
         }}
         data-unexplored={!explored ? "true" : undefined}
         title="Explore"
-        className="menu-trigger relative inline-flex size-10 items-center justify-center rounded-xl"
+        className="menu-trigger relative inline-flex size-12 items-center justify-center rounded-full"
       >
-        <Menu aria-hidden="true" strokeWidth={2.25} className="menu-trigger-icon size-5" />
+        <span aria-hidden="true" className="menu-bars">
+          <i />
+          <i />
+          <i />
+        </span>
         {!explored && <span aria-hidden="true" className="menu-dot" />}
       </button>
 
@@ -213,8 +227,8 @@ export default function HamburgerNavigation() {
                 <X aria-hidden="true" className="size-5 transition-transform duration-300 group-hover:rotate-90" />
               </button>
             </div>
-            <nav aria-label="Main navigation" className="overflow-y-auto">
-              <ul className="space-y-1">
+            <nav aria-label="Main navigation" className="menu-scroll -mr-2 overflow-y-auto pr-2">
+              <ul className="space-y-0.5">
                 {navigationItems.map((item, index) => {
                   const targetPath = item.href.split("#")[0] || "/";
                   const isActive = activeHref === item.href ||
@@ -231,10 +245,10 @@ export default function HamburgerNavigation() {
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMenu}
                         data-active={isActive ? "true" : undefined}
-                        className="menu-item group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-foreground focus-visible:outline-none"
+                        className="menu-item group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none"
                       >
-                        <span className="w-6 shrink-0 text-xs tabular-nums text-muted-foreground">
-                          {String(index + 1).padStart(2, "0")}
+                        <span aria-hidden="true" className="menu-item-chip">
+                          <item.icon className="size-[1.05rem]" strokeWidth={2} />
                         </span>
                         <span className="flex min-w-0 flex-col">
                           <span>{item.label}</span>

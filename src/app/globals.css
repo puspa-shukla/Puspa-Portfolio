@@ -688,27 +688,51 @@ html.dark body:has(.home-page) {
 }
 
 /* Menu button: filled "Explore" pill at the header's left edge. */
+/* Menu button: vivid sunrise pill with a "Menu" label, a travelling shine
+   and three bars that line up on hover. */
 .menu-trigger {
   overflow: visible;
-  background: linear-gradient(135deg, #5aa3af 0%, #3a8693 100%);
+  border: 2px solid #fff;
+  background: linear-gradient(145deg, #2a7482 0%, #17343a 100%);
   color: #fff;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 25%),
-    0 8px 18px -10px rgb(31 95 107 / 60%);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    0 0 0 1px rgb(23 52 58 / 12%),
+    0 4px 0 #0e2227,
+    0 14px 24px -10px rgb(23 52 58 / 65%);
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms ease, background 200ms ease;
   -webkit-tap-highlight-color: transparent;
 }
 
+.menu-trigger::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / 55%) 50%, transparent 65%) 200% 0 / 250% 100% no-repeat;
+  animation: menu-shine 4s ease-in-out 1.5s infinite;
+  pointer-events: none;
+  content: "";
+}
+
+@keyframes menu-shine {
+  0% { background-position: 200% 0; }
+  35%, 100% { background-position: -100% 0; }
+}
+
 .menu-trigger:hover {
-  background: linear-gradient(135deg, #4c97a4 0%, #2f7885 100%);
+  background: linear-gradient(145deg, #339aab 0%, #1f5f6b 100%);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 25%),
-    0 12px 22px -10px rgb(31 95 107 / 70%);
-  transform: translateY(-1px);
+    0 0 0 1px rgb(23 52 58 / 12%),
+    0 6px 0 #0e2227,
+    0 18px 28px -10px rgb(23 52 58 / 70%);
+  transform: translateY(-2px);
 }
 
 .menu-trigger:active {
-  transform: translateY(0) scale(0.97);
+  transform: translateY(4px);
+  box-shadow:
+    0 0 0 1px rgb(23 52 58 / 12%),
+    0 0 0 #0e2227,
+    0 6px 12px -8px rgb(23 52 58 / 70%);
 }
 
 .menu-trigger:focus-visible {
@@ -716,29 +740,42 @@ html.dark body:has(.home-page) {
   outline-offset: 3px;
 }
 
-.menu-trigger-icon {
-  color: #fff;
-  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+.menu-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.menu-trigger:hover .menu-trigger-icon {
-  transform: scale(1.12);
+.menu-bars {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4.5px;
+  width: 20px;
 }
+
+.menu-bars i {
+  display: block;
+  height: 2.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.menu-bars i:nth-child(1) { width: 100%; }
+.menu-bars i:nth-child(2) { width: 75%; }
+.menu-bars i:nth-child(3) { width: 50%; }
+
+.menu-trigger:hover .menu-bars i { width: 100%; }
 
 .dark .menu-trigger {
+  border-color: rgb(255 255 255 / 35%);
   background: linear-gradient(135deg, #ffc433 0%, #ffb300 100%);
   color: #17343a;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 35%),
-    0 8px 18px -10px rgb(0 0 0 / 80%);
-}
-
-.dark .menu-trigger:hover {
-  background: linear-gradient(135deg, #ffd05a 0%, #ffc433 100%);
-}
-
-.dark .menu-trigger-icon {
-  color: #17343a;
+    inset 0 1px 0 rgb(255 255 255 / 45%),
+    0 3px 0 #b37d00,
+    0 14px 24px -10px rgb(0 0 0 / 80%);
 }
 
 /* Menu button: first-visit attention pulse + hint bubble */
@@ -747,7 +784,7 @@ html.dark body:has(.home-page) {
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 rgb(31 95 107 / 0%);
+  box-shadow: 0 0 0 0 rgb(23 52 58 / 0%);
   animation: menu-pulse 6s ease-out 1s infinite;
   pointer-events: none;
   content: "";
@@ -758,10 +795,10 @@ html.dark body:has(.home-page) {
 }
 
 @keyframes menu-pulse {
-  0% { box-shadow: 0 0 0 0 rgb(31 95 107 / 50%); }
-  15% { box-shadow: 0 0 0 14px rgb(31 95 107 / 0%); }
-  16% { box-shadow: 0 0 0 0 rgb(31 95 107 / 50%); }
-  31%, 100% { box-shadow: 0 0 0 14px rgb(31 95 107 / 0%); }
+  0% { box-shadow: 0 0 0 0 rgb(23 52 58 / 45%); }
+  15% { box-shadow: 0 0 0 14px rgb(23 52 58 / 0%); }
+  16% { box-shadow: 0 0 0 0 rgb(23 52 58 / 45%); }
+  31%, 100% { box-shadow: 0 0 0 14px rgb(23 52 58 / 0%); }
 }
 
 @keyframes menu-pulse-dark {
@@ -813,6 +850,45 @@ html.dark body:has(.home-page) {
   -webkit-tap-highlight-color: transparent;
 }
 
+.menu-item-chip {
+  display: inline-flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #e6f2f4;
+  color: #2f7885;
+  transition: background 180ms ease, color 180ms ease, transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.menu-item:hover .menu-item-chip {
+  background: #2f7885;
+  color: #fff;
+  transform: rotate(-6deg) scale(1.08);
+}
+
+.menu-item[data-active="true"] .menu-item-chip {
+  background: rgb(255 255 255 / 20%);
+  color: #fff;
+}
+
+.dark .menu-item-chip {
+  background: rgb(255 255 255 / 8%);
+  color: #ffb300;
+}
+
+.dark .menu-item[data-active="true"] .menu-item-chip {
+  background: rgb(23 52 58 / 15%);
+  color: #17343a;
+}
+
+.menu-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c3d6da transparent;
+}
+
 .menu-item-arrow {
   color: #5b9aaa;
   opacity: 0;
@@ -849,7 +925,7 @@ html.dark body:has(.home-page) {
     0 10px 18px -12px rgb(31 95 107 / 70%);
 }
 
-.menu-item[data-active="true"] :is(.menu-item-hint, span:first-child),
+.menu-item[data-active="true"] .menu-item-hint,
 .menu-item[data-active="true"] .menu-item-arrow {
   color: rgb(255 255 255 / 80%);
 }
@@ -867,7 +943,7 @@ html.dark body:has(.home-page) {
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%), 0 2px 0 #b37d00;
 }
 
-.dark .menu-item[data-active="true"] :is(.menu-item-hint, span:first-child),
+.dark .menu-item[data-active="true"] .menu-item-hint,
 .dark .menu-item[data-active="true"] .menu-item-arrow {
   color: rgb(23 52 58 / 75%);
 }
@@ -1521,9 +1597,12 @@ html.dark body:has(.home-page) {
     animation: none;
   }
 
+  .menu-trigger::before {
+    animation: none;
+  }
+
   .menu-trigger,
-  .menu-trigger:hover,
-  .menu-trigger:hover .menu-trigger-icon {
+  .menu-trigger:hover {
     transform: none;
   }
 
